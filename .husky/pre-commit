@@ -1,3 +1,5 @@
-echo "Running lint-staged..."
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
 
-lint-staged --allow-empty
+npm run build
+npx lint-staged
