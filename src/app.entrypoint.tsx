@@ -5,7 +5,7 @@ import { ThemeProvider } from './core/theme';
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ThemeProvider>
-            <h1>GEX Front</h1>
+      <h1>GEX Front</h1>
     </ThemeProvider>
   </StrictMode>
 );
