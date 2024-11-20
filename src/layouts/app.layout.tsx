@@ -1,8 +1,8 @@
 import React from 'react';
 import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
+import { Link } from '@tanstack/react-router';
 import LogoutIcon from '@mui/icons-material/Logout';
 import * as classes from './app.styles';
-import { Link } from '@tanstack/react-router';
 
 interface Props {
   children: React.ReactNode;

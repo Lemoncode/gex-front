@@ -6,10 +6,6 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
-    "baseUrl": "src",
-    "paths": {
-      "@/*": ["*"]
-    },
 
     /* Bundler mode */
     "moduleResolution": "Bundler",
@@ -24,7 +20,13 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Custom */
+    "baseUrl": ".",
+    "paths": {
+      "#*": ["./src/*"]
+    }
   },
   "include": ["src"]
 }
