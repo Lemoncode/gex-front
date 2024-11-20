@@ -1,18 +1,13 @@
-import { useAuth } from '@/core/auth';
-import { Button } from '@mui/material';
-import { Link } from '@tanstack/react-router';
 import React from 'react';
+import { Link } from '@tanstack/react-router';
+import { Typography } from '@mui/material';
+import * as classes from './login.styles';
 
 export const LoginPod: React.FC = () => {
-  const { onLogin } = useAuth();
-
-  const handleClick = () => {
-    onLogin({ email: 'admin', password: 'test' });
-  };
-
   return (
-    <Button onClick={handleClick}>
-      <Link to="/users">Login</Link>
-    </Button>
+    <div className={classes.root}>
+      <Typography variant="h3">Soy la página de login</Typography>
+      <Link to="/users">Navegar a listado usuarios</Link>
+    </div>
   );
 };

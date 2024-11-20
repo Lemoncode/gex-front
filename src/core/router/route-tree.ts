@@ -13,8 +13,9 @@
 import { Route as rootRoute } from './../../scenes/__root';
 import { Route as LoginImport } from './../../scenes/login';
 import { Route as AuthImport } from './../../scenes/_auth';
-import { Route as AuthIndexImport } from './../../scenes/_auth/index';
-import { Route as AuthUsersImport } from './../../scenes/_auth/users';
+import { Route as IndexImport } from './../../scenes/index';
+import { Route as AuthUsersIndexImport } from './../../scenes/_auth/users/index';
+import { Route as AuthUsersIdImport } from './../../scenes/_auth/users/$id';
 
 // Create/Update Routes
 
@@ -29,15 +30,21 @@ const AuthRoute = AuthImport.update({
   getParentRoute: () => rootRoute,
 } as any);
 
-const AuthIndexRoute = AuthIndexImport.update({
+const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any);
+
+const AuthUsersIndexRoute = AuthUsersIndexImport.update({
+  id: '/users/',
+  path: '/users/',
   getParentRoute: () => AuthRoute,
 } as any);
 
-const AuthUsersRoute = AuthUsersImport.update({
-  id: '/users',
-  path: '/users',
+const AuthUsersIdRoute = AuthUsersIdImport.update({
+  id: '/users/$id',
+  path: '/users/$id',
   getParentRoute: () => AuthRoute,
 } as any);
 
@@ -45,6 +52,13 @@ const AuthUsersRoute = AuthUsersImport.update({
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/': {
+      id: '/';
+      path: '/';
+      fullPath: '/';
+      preLoaderRoute: typeof IndexImport;
+      parentRoute: typeof rootRoute;
+    };
     '/_auth': {
       id: '/_auth';
       path: '';
@@ -59,18 +73,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginImport;
       parentRoute: typeof rootRoute;
     };
-    '/_auth/users': {
-      id: '/_auth/users';
-      path: '/users';
-      fullPath: '/users';
-      preLoaderRoute: typeof AuthUsersImport;
+    '/_auth/users/$id': {
+      id: '/_auth/users/$id';
+      path: '/users/$id';
+      fullPath: '/users/$id';
+      preLoaderRoute: typeof AuthUsersIdImport;
       parentRoute: typeof AuthImport;
     };
-    '/_auth/': {
-      id: '/_auth/';
-      path: '/';
-      fullPath: '/';
-      preLoaderRoute: typeof AuthIndexImport;
+    '/_auth/users/': {
+      id: '/_auth/users/';
+      path: '/users';
+      fullPath: '/users';
+      preLoaderRoute: typeof AuthUsersIndexImport;
       parentRoute: typeof AuthImport;
     };
   }
@@ -79,53 +93,59 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 interface AuthRouteChildren {
-  AuthUsersRoute: typeof AuthUsersRoute;
-  AuthIndexRoute: typeof AuthIndexRoute;
+  AuthUsersIdRoute: typeof AuthUsersIdRoute;
+  AuthUsersIndexRoute: typeof AuthUsersIndexRoute;
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
-  AuthUsersRoute: AuthUsersRoute,
-  AuthIndexRoute: AuthIndexRoute,
+  AuthUsersIdRoute: AuthUsersIdRoute,
+  AuthUsersIndexRoute: AuthUsersIndexRoute,
 };
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren);
 
 export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute;
   '': typeof AuthRouteWithChildren;
   '/login': typeof LoginRoute;
-  '/users': typeof AuthUsersRoute;
-  '/': typeof AuthIndexRoute;
+  '/users/$id': typeof AuthUsersIdRoute;
+  '/users': typeof AuthUsersIndexRoute;
 }
 
 export interface FileRoutesByTo {
+  '/': typeof IndexRoute;
+  '': typeof AuthRouteWithChildren;
   '/login': typeof LoginRoute;
-  '/users': typeof AuthUsersRoute;
-  '/': typeof AuthIndexRoute;
+  '/users/$id': typeof AuthUsersIdRoute;
+  '/users': typeof AuthUsersIndexRoute;
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute;
+  '/': typeof IndexRoute;
   '/_auth': typeof AuthRouteWithChildren;
   '/login': typeof LoginRoute;
-  '/_auth/users': typeof AuthUsersRoute;
-  '/_auth/': typeof AuthIndexRoute;
+  '/_auth/users/$id': typeof AuthUsersIdRoute;
+  '/_auth/users/': typeof AuthUsersIndexRoute;
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: '' | '/login' | '/users' | '/';
+  fullPaths: '/' | '' | '/login' | '/users/$id' | '/users';
   fileRoutesByTo: FileRoutesByTo;
-  to: '/login' | '/users' | '/';
-  id: '__root__' | '/_auth' | '/login' | '/_auth/users' | '/_auth/';
+  to: '/' | '' | '/login' | '/users/$id' | '/users';
+  id: '__root__' | '/' | '/_auth' | '/login' | '/_auth/users/$id' | '/_auth/users/';
   fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute;
   AuthRoute: typeof AuthRouteWithChildren;
   LoginRoute: typeof LoginRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
   AuthRoute: AuthRouteWithChildren,
   LoginRoute: LoginRoute,
 };
@@ -138,26 +158,30 @@ export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileT
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
+        "/",
         "/_auth",
         "/login"
       ]
     },
+    "/": {
+      "filePath": "index.tsx"
+    },
     "/_auth": {
       "filePath": "_auth.tsx",
       "children": [
-        "/_auth/users",
-        "/_auth/"
+        "/_auth/users/$id",
+        "/_auth/users/"
       ]
     },
     "/login": {
       "filePath": "login.tsx"
     },
-    "/_auth/users": {
-      "filePath": "_auth/users.tsx",
+    "/_auth/users/$id": {
+      "filePath": "_auth/users/$id.tsx",
       "parent": "/_auth"
     },
-    "/_auth/": {
-      "filePath": "_auth/index.tsx",
+    "/_auth/users/": {
+      "filePath": "_auth/users/index.tsx",
       "parent": "/_auth"
     }
   }
