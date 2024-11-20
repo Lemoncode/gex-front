@@ -36,14 +36,14 @@ export default [
       ...tsPlugin.configs.recommended.rules,
       ...reactPlugin.configs.recommended.rules,
       ...reactHooksPlugin.configs.recommended.rules,
-      "react-hooks/exhaustive-deps": "off", 
-      "react/react-in-jsx-scope": "off",
-      "@typescript-eslint/no-explicit-any": "warn", 
+      "react-hooks/exhaustive-deps": "off", // Disable exhaustive-deps rule we can use useEffect without dependencies
+      "react/react-in-jsx-scope": "off", // Disable react-in-jsx-scope we can use JSX without importing React
+      "@typescript-eslint/no-explicit-any": "warn", // Warn when using any type 
     },
     settings: {
       react: {
-        version: "detect", 
-        jsxRuntime: "automatic",
+        version: "detect", // Automatically detect the version of React to use
+        jsxRuntime: "automatic", // Use React 17 automatic JSX runtime
       },
     },
   },
