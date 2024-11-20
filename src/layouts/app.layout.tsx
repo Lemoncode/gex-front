@@ -16,7 +16,7 @@ export const AppLayout: React.FC<Props> = props => {
       <AppBar position="static">
         <Toolbar className={classes.toolbar}>
           <Typography variant="h6">AppBar</Typography>
-                 <IconButton size="large" edge="start" sx={{ mr: 2 }}>
+          <IconButton size="large" edge="start" sx={{ mr: 2 }}>
             <Link to="/login" style={{ color: 'white' }}>
               <LogoutIcon />
             </Link>
