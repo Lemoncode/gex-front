@@ -13,13 +13,13 @@ export const table = css`
 `;
 
 export const head = css`
-  background-color: ${theme.palette.common.black};
-  color: ${theme.palette.common.white};
+  background-color: ${theme.palette.primary.dark};
+  color: ${theme.palette.primary.contrastText};
 `;
 
 export const row = css`
   &:nth-of-type(odd) {
-    background-color: ${theme.palette.action.hover};
+    background-color: ${theme.palette.grey[100]};
   }
 `;
 
