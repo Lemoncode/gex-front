@@ -150,7 +150,7 @@ export const UserDetailPod: React.FC = () => {
                   <Checkbox
                     checked={row.getIsSelected() ?? false}
                     onChange={row.getToggleSelectedHandler()}
-                    disabled={row.original.unavailable}
+                    disabled={!row.getCanSelect()}
                   />
                 </TableCell>
                 <TableCell>{row.original.id}</TableCell>
