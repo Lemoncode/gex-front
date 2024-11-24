@@ -1,28 +1,53 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import tseslint from 'typescript-eslint'
+import eslintJs from "@eslint/js";
+import globals from "globals";
+import tsParser from "@typescript-eslint/parser";
+import tsPlugin from "@typescript-eslint/eslint-plugin";
+import reactPlugin from "eslint-plugin-react";
+import reactHooksPlugin from "eslint-plugin-react-hooks";
+import prettierPlugin from "eslint-plugin-prettier";
 
-export default tseslint.config(
-  { ignores: ['dist'] },
+const { configs: eslintConfigs } = eslintJs;
+
+export default [
+  eslintConfigs.recommended,
   {
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
-    files: ['**/*.{ts,tsx}'],
+    files: ["**/*.{ts,tsx}"], 
     languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+      parser: tsParser,
+      parserOptions: {
+        ecmaVersion: 2022,
+        sourceType: "module",
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
     },
     plugins: {
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
+      "@typescript-eslint": tsPlugin,
+      react: reactPlugin,
+      "react-hooks": reactHooksPlugin,
+      prettier: prettierPlugin,
     },
     rules: {
-      ...reactHooks.configs.recommended.rules,
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
+      ...tsPlugin.configs.recommended.rules,
+      ...reactPlugin.configs.recommended.rules,
+      ...reactHooksPlugin.configs.recommended.rules,
+      "react-hooks/exhaustive-deps": "off", // Disable exhaustive-deps rule we can use useEffect without dependencies
+      "react/react-in-jsx-scope": "off", // Disable react-in-jsx-scope we can use JSX without importing React
+      "@typescript-eslint/no-explicit-any": "warn", // Warn when using any type 
+    },
+    settings: {
+      react: {
+        version: "detect", // Automatically detect the version of React to use
+        jsxRuntime: "automatic", // Use React 17 automatic JSX runtime
+      },
     },
   },
-)
+  {
+    ignores: ["node_modules/**", "dist/**"], 
+  },
+];
