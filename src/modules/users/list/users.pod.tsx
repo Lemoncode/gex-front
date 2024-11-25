@@ -1,111 +1,118 @@
 import React from 'react';
 import { Link } from '@tanstack/react-router';
-import { ColumnDef, useReactTable, getCoreRowModel } from '@tanstack/react-table';
+import { useReactTable, getCoreRowModel, getPaginationRowModel, ColumnDef, flexRender } from '@tanstack/react-table';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Pagination } from '@mui/material';
-import { createEmptyUsersQuery, User, UsersQuery } from './list.vm';
-import { getUsersRepository } from './list.repository';
+import { createEmptyUsersQuery, User, UsersQuery } from './users.vm';
+import { getUsersRepository } from './users.repository';
 import * as classes from './users.styles';
 
 const columns: ColumnDef<User>[] = [
-  {
-    accessorKey: 'ID',
-    header: 'id',
-  },
-  {
-    accessorKey: 'Nombre',
-    header: 'nombre',
-  },
-  {
-    accessorKey: 'Apellidos',
-    header: 'apellidos',
-  },
-  {
-    accessorKey: 'Email',
-    header: 'email',
-  },
-  {
-    accessorKey: 'Teléfono fijo',
-    header: 'telefonofijo',
-  },
-  {
-    accessorKey: 'Telefono móvil',
-    header: 'telefonomovil',
-  },
-  {
-    accessorKey: 'Telefono institucional',
-    header: 'telefonoinstitucional',
-  },
-  {
-    accessorKey: 'Rol',
-    header: 'rol',
-  },
+  { accessorKey: 'id', header: 'ID' },
+  { accessorKey: 'nombre', header: 'Nombre' },
+  { accessorKey: 'apellidos', header: 'Apellidos' },
+  { accessorKey: 'email', header: 'Email' },
+  { accessorKey: 'telefonoFijo', header: 'Teléfono Fijo' },
+  { accessorKey: 'telefonoMovil', header: 'Teléfono Móvil' },
+  { accessorKey: 'telefonoInstitucional', header: 'Teléfono Institucional' },
+  { accessorKey: 'rol', header: 'Rol' },
 ];
 
-export const UsersPod: React.FC = () => {
-  const [users, setUsers] = React.useState<UsersQuery>(createEmptyUsersQuery);
-  const [pagination, setPagination] = React.useState({
-    pageIndex: 0,
-    pageSize: 10,
-  });
+interface CommonTableProps<T> {
+  columns: ColumnDef<T>[];
+  data: T[];
+  totalItems: number;
+  currentPage: number;
+  onPageChange: (event: React.ChangeEvent<unknown>, page: number) => void;
+  className?: string;
+}
 
-  const loadUsers = async (page?: number, pageSize?: number) => await getUsersRepository(page, pageSize).then(setUsers);
-
+export const CommonTable = <T,>({
+  columns,
+  data,
+  totalItems,
+  currentPage,
+  onPageChange,
+  className,
+}: CommonTableProps<T>) => {
   const tableInstance = useReactTable({
-    data: users.data,
+    data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    manualPagination: true,
-    rowCount: users.pagination.totalItems,
-    onPaginationChange: setPagination,
-    state: {
-      pagination,
-    },
+    getPaginationRowModel: getPaginationRowModel(),
+    rowCount: totalItems,
   });
 
-  const { getAllColumns, getRowModel, getPageCount, setPageIndex, getState } = tableInstance;
+  const { getRowModel, getHeaderGroups, getPageCount } = tableInstance;
 
-  const handleChangePage = (_: React.ChangeEvent<unknown>, newPage: number) => setPageIndex(newPage);
+  return (
+    <TableContainer component={Paper} className={className}>
+      <Table className={classes.table}>
+        <TableHead>
+          {getHeaderGroups().map(headerGroup => (
+            <TableRow key={headerGroup.id}>
+              {headerGroup.headers.map(header => (
+                <TableCell key={header.id} className={classes.head}>
+                  {flexRender(header.column.columnDef.header, header.getContext())}
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableHead>
+        <TableBody>
+          {getRowModel().rows.map(row => (
+            <TableRow key={row.id} className={classes.row}>
+              {row.getVisibleCells().map(cell => (
+                <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+      <Pagination
+        count={getPageCount()}
+        page={currentPage + 1}
+        onChange={onPageChange}
+        className={classes.pagination}
+      />
+    </TableContainer>
+  );
+};
+
+export const usePagination = (initialPage: number = 0, pageSize: number = 10) => {
+  const [currentPage, setCurrentPage] = React.useState(initialPage);
+  const [users, setUsers] = React.useState<UsersQuery>(createEmptyUsersQuery);
+
+  const loadUsers = async (page: number) => {
+    const result = await getUsersRepository(page, pageSize);
+    setUsers(result);
+  };
 
   React.useEffect(() => {
-    loadUsers(getState().pagination.pageIndex, getState().pagination.pageSize);
-  }, [getState().pagination.pageIndex, getState().pagination.pageSize]);
+    loadUsers(currentPage);
+  }, [currentPage]);
+
+  const handleChangePage = (_: React.ChangeEvent<unknown>, newPage: number) => setCurrentPage(newPage - 1);
+
+  return {
+    users,
+    currentPage,
+    onChangePage: handleChangePage,
+  };
+};
+
+export const UsersPod: React.FC = () => {
+  const { users, currentPage, onChangePage } = usePagination();
 
   return (
     <div className={classes.root}>
       <h1>Soy la página de listado de usuarios</h1>
-      <TableContainer component={Paper}>
-        <Table className={classes.table}>
-          <TableHead>
-            <TableRow>
-              {getAllColumns().map(column => (
-                <TableCell key={column.id} className={classes.head}>
-                  {column.id}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {getRowModel().rows.map(row => (
-              <TableRow key={row.id} className={classes.row}>
-                <TableCell>{row.original.id}</TableCell>
-                <TableCell>{row.original.nombre}</TableCell>
-                <TableCell>{row.original.apellidos}</TableCell>
-                <TableCell>{row.original.email}</TableCell>
-                <TableCell>{row.original.telefonoFijo}</TableCell>
-                <TableCell>{row.original.telefonoMovil}</TableCell>
-                <TableCell>{row.original.telefonoInstitucional}</TableCell>
-                <TableCell>{row.original.rol}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-        <Pagination
-          count={getPageCount()}
-          page={getState().pagination.pageIndex}
-          onChange={handleChangePage}
-          className={classes.pagination}
-        />
-      </TableContainer>
+      <CommonTable
+        columns={columns}
+        data={users.data}
+        totalItems={users.pagination.totalItems}
+        currentPage={currentPage}
+        onPageChange={onChangePage}
+      />
       <Link to="/users/$id" params={{ id: '1' }}>
         Navegar a detalle de usuario
       </Link>

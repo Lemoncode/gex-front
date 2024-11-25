@@ -1,5 +1,5 @@
 import * as apiModel from './api';
-import * as viewModel from './list.vm';
+import * as viewModel from './users.vm';
 
 const mapUserFromApiToVm = (user: apiModel.User): viewModel.User =>
   user
