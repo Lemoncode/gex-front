@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from '@tanstack/react-router';
 import { useReactTable, getCoreRowModel, getPaginationRowModel, ColumnDef, flexRender } from '@tanstack/react-table';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Pagination } from '@mui/material';
-import { createEmptyUsersQuery, User, UsersQuery } from './users.vm';
-import { getUsersRepository } from './users.repository';
+import { User } from './users.vm';
+import { useUsersQuery } from './users.query.hook';
 import * as classes from './users.styles';
 
 const columns: ColumnDef<User>[] = [
@@ -80,16 +80,8 @@ export const CommonTable = <T,>({
 
 export const usePagination = (initialPage: number = 0, pageSize: number = 10) => {
   const [currentPage, setCurrentPage] = React.useState(initialPage);
-  const [users, setUsers] = React.useState<UsersQuery>(createEmptyUsersQuery);
 
-  const loadUsers = async (page: number) => {
-    const result = await getUsersRepository(page, pageSize);
-    setUsers(result);
-  };
-
-  React.useEffect(() => {
-    loadUsers(currentPage);
-  }, [currentPage]);
+  const { users } = useUsersQuery({ page: currentPage, pageSize });
 
   const handleChangePage = (_: React.ChangeEvent<unknown>, newPage: number) => setCurrentPage(newPage - 1);
 

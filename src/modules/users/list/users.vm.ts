@@ -39,3 +39,8 @@ export const createEmptyUsersQuery = (): UsersQuery => ({
     totalItems: 1,
   },
 });
+
+export interface UserQueryFilter {
+  page: number;
+  pageSize: number;
+}
