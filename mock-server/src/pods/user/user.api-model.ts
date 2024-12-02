@@ -5,9 +5,9 @@ export interface User {
   nombre: string;
   apellidos: string;
   email: string;
-  telefonoFijo: string;
-  telefonoMovil: string;
-  telefonoInstitucional: string;
+  telefonoFijo?: string;
+  telefonoMovil?: string;
+  telefonoInstitucional?: string;
   rol: string;
   esResponsable: boolean;
   esAutorizante: boolean;

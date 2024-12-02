@@ -5,9 +5,6 @@ export interface User {
   nombre: string;
   apellidos: string;
   email: string;
-  telefonoFijo: string;
-  telefonoMovil: string;
-  telefonoInstitucional: string;
   rol: string;
   esResponsable: boolean;
   esAutorizante: boolean;
@@ -18,9 +15,6 @@ export const createEmptyUser = (): User => ({
   nombre: '',
   apellidos: '',
   email: '',
-  telefonoFijo: '',
-  telefonoMovil: '',
-  telefonoInstitucional: '',
   rol: '',
   esResponsable: false,
   esAutorizante: false,
@@ -36,6 +30,6 @@ export const createEmptyUsersQuery = (): UsersQuery => ({
   pagination: {
     page: 1,
     pageSize: 10,
-    totalItems: 1,
+    totalPages: 1,
   },
 });

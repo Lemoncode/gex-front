@@ -11,13 +11,14 @@ export const paginateItems = <T>(paginationArgs: PaginationItemsArgs<T>): Collec
 
   const start = page * pageSize;
   const end = start + pageSize;
+  const totalPages = Math.ceil(items.length / pageSize);
 
   return {
     data: items.slice(start, end),
     pagination: {
       pageSize,
       page,
-      totalItems: items.length,
+      totalPages,
     },
   };
 };

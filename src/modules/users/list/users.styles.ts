@@ -28,3 +28,14 @@ export const pagination = css`
   justify-content: center;
   padding: 10px;
 `;
+
+export const commands = css`
+  display: flex;
+  gap: 20px;
+`;
+
+export const link = css`
+  color: ${theme.palette.common.black};
+  text-decoration: none;
+  cursor: pointer;
+`;

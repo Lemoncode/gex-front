@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from '@tanstack/react-router';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Pagination } from '@mui/material';
+import { Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import { createEmptyUsersQuery, UsersQuery } from './users.vm';
 import { getUsersRepository } from './users.repository';
 import * as classes from './users.styles';
@@ -15,10 +16,8 @@ const columns: Lookup[] = [
   { id: 'nombre', name: 'Nombre' },
   { id: 'apellidos', name: 'Apellidos' },
   { id: 'email', name: 'Email' },
-  { id: 'telefonoFijo', name: 'Teléfono Fijo' },
-  { id: 'telefonoMovil', name: 'Teléfono Móvil' },
-  { id: 'telefonoInstitucional', name: 'Teléfono Institucional' },
   { id: 'rol', name: 'Rol' },
+  { id: 'commands', name: 'Comandos' },
 ];
 
 export const usePagination = (initialPage: number = 0, pageSize: number = 10) => {
@@ -67,20 +66,18 @@ export const UsersPod: React.FC = () => {
                 <TableCell>{row.nombre}</TableCell>
                 <TableCell>{row.apellidos}</TableCell>
                 <TableCell>{row.email}</TableCell>
-                <TableCell>{row.telefonoFijo}</TableCell>
-                <TableCell>{row.telefonoMovil}</TableCell>
-                <TableCell>{row.telefonoInstitucional}</TableCell>
                 <TableCell>{row.rol}</TableCell>
+                <TableCell className={classes.commands}>
+                  <Link to="/users/$id" params={{ id: row.id }} className={classes.link}>
+                    <EditIcon />
+                  </Link>
+                  <DeleteIcon />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
-        <Pagination
-          count={users.pagination.totalItems}
-          page={currentPage + 1}
-          onChange={onPageChange}
-          className={classes.pagination}
-        />
+        <Pagination count={2} page={currentPage + 1} onChange={onPageChange} className={classes.pagination} />
       </TableContainer>
       <Link to="/users/$id" params={{ id: '1' }}>
         Navegar a detalle de usuario

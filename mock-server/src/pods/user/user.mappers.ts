@@ -7,9 +7,6 @@ export const mapUserFromModelToApi = (user: model.User): apiModel.User => ({
   nombre: user.nombre,
   apellidos: user.apellidos,
   email: user.email,
-  telefonoFijo: user.telefonoFijo,
-  telefonoMovil: user.telefonoMovil,
-  telefonoInstitucional: user.telefonoInstitucional,
   rol: user.rol,
   esResponsable: user.esResponsable,
   esAutorizante: user.esAutorizante,
@@ -20,6 +17,6 @@ export const mapUserListFromModelToApi = (userList: model.UsersQuery): apiModel.
   pagination: {
     page: userList.pagination.page,
     pageSize: userList.pagination.pageSize,
-    totalItems: userList.pagination.totalItems,
+    totalPages: userList.pagination.totalPages,
   },
 });
