@@ -4,5 +4,14 @@ import { User, UsersQuery } from './user.model.js';
 
 export const userRepository = {
   getUserList: async (page?: number, pageSize?: number): Promise<UsersQuery> =>
-    paginateItems<User>(db.users, pageSize, page),
+    page && pageSize
+      ? paginateItems<User>({ items: db.users, page, pageSize })
+      : {
+          data: db.users,
+          pagination: {
+            page: 1,
+            pageSize: db.users.length,
+            totalItems: db.users.length,
+          },
+        },
 };

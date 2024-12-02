@@ -21,6 +21,5 @@ export const mapUserListFromModelToApi = (userList: model.UsersQuery): apiModel.
     page: userList.pagination.page,
     pageSize: userList.pagination.pageSize,
     totalItems: userList.pagination.totalItems,
-    totalPages: userList.pagination.totalPages,
   },
 });
