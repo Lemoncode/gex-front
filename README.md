@@ -1,17 +1,31 @@
-# gex-front
+### Run the project
 
-> > Note: We must be installed almost Node.js 22.11.0 or higher.
-> >
-> > [Install Node.js](https://nodejs.org/)
-> >
-> > we can also use [nvm for windows](https://github.com/coreybutler/nvm-windows/releases) to manage the Node.js versions
-> > or for linux/macOS we can use [nvm](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating)
+Now you can run the project.
+# Gex-front
 
-## Steps to run the project
+![Contributors](https://img.shields.io/github/contributors/Lemoncode/gex-front)
+![Forks](https://img.shields.io/github/forks/Lemoncode/gex-front)
+![Stars](https://img.shields.io/github/stars/Lemoncode/gex-front)
+![Licence](https://img.shields.io/github/license/Lemoncode/gex-front)
+![Issues](https://img.shields.io/github/issues/Lemoncode/gex-front)
 
-### Installation
+##  Project
+
+Electronic Manager of Public Procurement Files of the General State Administration.
+
+## 🚀 Installation
+
+
+Clone this repository:
 
 ```bash
+git clone https://github.com/Lemoncode/gex-front.git
+```
+
+Then install dependencies with:
+
+```bash
+cd gex-front
 npm install
 ```
 
@@ -33,14 +47,6 @@ _./package.json_
   },
 ```
 
-### Run the project
-
-Now you can run the project.
-
-```bash
-npm run dev
-```
-
 Checking again at the _./package.json_ file we can see that we are running two commands in parallel. The first one is the Vite server and the second one is the mock server.
 
 We have also created a script for when we start the project if the environment is not created it will create it. This is done by the script `predev`.
@@ -60,3 +66,11 @@ _./package.json_
     "prepare": "husky install"
   },
 ```
+
+Now we can run the project with:
+
+```bash
+npm run dev
+```
+
+Open your browser and go to http://localhost:5173 (if this port is busy it will be changed to the next available port)
