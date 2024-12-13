@@ -9,7 +9,7 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import PersonIcon from '@mui/icons-material/Person';
 
-import { Item } from './item.sidebar-menu.component';
+import { Item, ExpandableItem } from './item.sidebar-menu.component';
 
 import * as classes from './sidebar-menu.styles';
 
@@ -17,20 +17,25 @@ interface Props {
   open: boolean;
 }
 
-// TODO: Provisional. Pending to implement with dropdown menus and proper Icons
+// TODO: Provisional. Pending to implement routing links
 export const SidebarMenu: React.FC<Props> = (props: Props) => {
   const { open = false } = props;
   const theme = useTheme();
   return (
     <List className={classes.list(theme, open)}>
-      <Item text="Principal" IconComponent={HomeIcon} isSelected={false} />
-      <Item text="Expedientes" IconComponent={FolderIcon} isSelected={false} />
-      <Item text="Empresas" IconComponent={ApartmentIcon} isSelected={false} />
-      <Item text="Informes" IconComponent={LeaderboardIcon} isSelected={false} />
+      <Item text="Principal" IconComponent={HomeIcon} linkPath={'/'} />
+      <ExpandableItem text="Expedientes" IconComponent={FolderIcon} linkPath={'/'} isDrawerOpened={open}>
+        <Item text="Listado" linkPath={'/'} />
+        <Item text="Nuevo ACF" linkPath={'/'} />
+        <Item text="..." linkPath={'/'} />
+      </ExpandableItem>
+
+      <Item text="Empresas" IconComponent={ApartmentIcon} linkPath={'/'} />
+      <Item text="Informes" IconComponent={LeaderboardIcon} linkPath={'/'} />
 
       <Divider variant="middle" />
 
-      <Item text="Usuarios" IconComponent={PersonIcon} isSelected={true} />
+      <Item text="Usuarios" IconComponent={PersonIcon} linkPath={'/users'} />
     </List>
   );
 };
