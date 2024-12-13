@@ -12,7 +12,7 @@ export const appContainer = css`
 export const main = css`
   display: flex;
   width: 100%;
-  height: calc(100dvh - 64px);
+  height: calc(100dvh - 68px);
   position: relative;
 `;
 
