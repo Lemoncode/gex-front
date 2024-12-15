@@ -1,16 +1,33 @@
 import { css } from '@emotion/css';
+import { Theme } from '@mui/material';
 
-export const toolbar = css`
+export const appContainer = css`
+  max-width: 100dvw;
+  height: 100dvh;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: start;
 `;
 
-export const content = css`
-  width: 100vw;
-  height: 100vh;
-
+export const main = css`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  height: calc(100dvh - 68px);
+  position: relative;
+`;
+
+export const sceneContent = (theme: Theme) => css`
+  display: flex;
+  justify-content: start;
+  flex-wrap: wrap;
+  overflow: auto;
+  flex-grow: 1;
+  padding: 5dvh ${theme.spacing(9)};
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  margin-left: 0;
+  @media screen and (max-width: ${theme.breakpoints.values.lg}px) {
+    margin-left: ${theme.spacing(9)}; //Equals the width of <Drawer/> minified version;
+  }
 `;

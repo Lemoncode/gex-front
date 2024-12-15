@@ -1,29 +1,33 @@
 import React from 'react';
-import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
-import { Link } from '@tanstack/react-router';
-import LogoutIcon from '@mui/icons-material/Logout';
+import { useTheme } from '@mui/material';
+
+import { AppBar } from '#common/appbar/';
+import { Drawer } from '#common/drawer/';
+import { SidebarMenu } from '#common/sidebar-menu/index.ts';
+
 import * as classes from './app.styles';
 
 interface Props {
   children: React.ReactNode;
 }
 
+// TODO: handle this 'isUserlogged' properly when auth is implemented
+const isUserlogged: boolean = true;
+
 export const AppLayout: React.FC<Props> = props => {
   const { children } = props;
-
+  const [open, setOpen] = React.useState(false);
+  const toggleDrawer = () => setOpen(open => !open);
+  const theme = useTheme();
   return (
-    <>
-      <AppBar position="static">
-        <Toolbar className={classes.toolbar}>
-          <Typography variant="h6">AppBar</Typography>
-          <IconButton size="large" edge="start" sx={{ mr: 2 }}>
-            <Link to="/login" style={{ color: 'white' }}>
-              <LogoutIcon />
-            </Link>
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-      <main className={classes.content}>{children}</main>
-    </>
+    <div className={classes.appContainer}>
+      <AppBar open={open} handleMenu={toggleDrawer} isUserlogged={isUserlogged} />
+      <main className={classes.main}>
+        <Drawer open={open} drawerWidth={256}>
+          <SidebarMenu open={open} />
+        </Drawer>
+        <div className={classes.sceneContent(theme)}>{children}</div>
+      </main>
+    </div>
   );
 };
