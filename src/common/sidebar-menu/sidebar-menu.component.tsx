@@ -14,17 +14,24 @@ import { Item, ExpandableItem } from './item.sidebar-menu.component';
 import * as classes from './sidebar-menu.styles';
 
 interface Props {
-  open: boolean;
+  isParentMenuOpen: boolean;
+  selectionSideEffects?: () => void;
 }
 
 // TODO: Provisional. Pending to implement routing links
 export const SidebarMenu: React.FC<Props> = (props: Props) => {
-  const { open = false } = props;
+  const { isParentMenuOpen = false, selectionSideEffects } = props;
   const theme = useTheme();
   return (
-    <List className={classes.list(theme, open)}>
+    <List className={classes.list(theme, isParentMenuOpen)}>
       <Item text="Principal" IconComponent={HomeIcon} linkPath={'/'} />
-      <ExpandableItem text="Expedientes" IconComponent={FolderIcon} linkPath={'/'} isDrawerOpened={open}>
+      <ExpandableItem
+        text="Expedientes"
+        IconComponent={FolderIcon}
+        linkPath={'/'}
+        isParentVisible={isParentMenuOpen}
+        selectionSideEffects={selectionSideEffects}
+      >
         <Item text="Listado" linkPath={'/'} />
         <Item text="Nuevo ACF" linkPath={'/'} />
         <Item text="..." linkPath={'/'} />

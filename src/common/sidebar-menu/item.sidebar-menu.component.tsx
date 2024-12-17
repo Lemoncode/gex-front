@@ -36,36 +36,41 @@ export const Item: React.FC<ItemProps> = (props: ItemProps) => {
 };
 
 interface ExpandableItemProps extends ItemProps {
-  isDrawerOpened: boolean;
+  isParentVisible: boolean;
+  //Prop aimed to cause an effect on ancestors, like directly opening a drawer when selected
+  selectionSideEffects?: () => void;
   children: React.ReactNode;
 }
 
 export const ExpandableItem: React.FC<ExpandableItemProps> = (props: ExpandableItemProps) => {
-  const { text, IconComponent, isDrawerOpened, children } = props;
+  const { text, IconComponent, isParentVisible: isParentVisible, selectionSideEffects, children } = props;
   const [isListExpanded, setIsListExpanded] = React.useState(false);
   const theme = useTheme();
   const handleClick = () => {
     setIsListExpanded(!isListExpanded);
+    if (selectionSideEffects && !isParentVisible) selectionSideEffects();
   };
 
   useEffect(() => {
-    if (!isDrawerOpened) {
+    if (!isParentVisible) {
       setIsListExpanded(false);
     }
-  }, [isDrawerOpened]);
+  }, [isParentVisible]);
 
   return (
     <ListItem key={text}>
       <ListItemButton onClick={handleClick}>
         {IconComponent && <ListItemIcon>{<IconComponent />}</ListItemIcon>}
         <ListItemText primary={text} />
-        {isDrawerOpened ? isListExpanded ? <ExpandLess /> : <ExpandMore /> : ''}
+        {isParentVisible ? isListExpanded ? <ExpandLess /> : <ExpandMore /> : ''}
       </ListItemButton>
-      <Collapse in={isListExpanded} timeout="auto" unmountOnExit>
-        <List component="div" className={classes.itemsExtraIndent(theme)} disablePadding>
-          {children}
-        </List>
-      </Collapse>
+      {isParentVisible && (
+        <Collapse in={isListExpanded} timeout="auto" unmountOnExit>
+          <List component="div" className={classes.itemsExtraIndent(theme)} disablePadding>
+            {children}
+          </List>
+        </Collapse>
+      )}
     </ListItem>
   );
 };

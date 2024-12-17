@@ -5,7 +5,7 @@ import { useTheme } from '@mui/material';
 import * as classes from './drawer.styles';
 
 interface Props {
-  open?: boolean;
+  open: boolean;
   drawerWidth?: number;
   children: React.ReactNode;
 }
