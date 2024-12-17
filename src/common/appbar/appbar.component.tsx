@@ -5,22 +5,22 @@ import { AppBar as MUIAppbar, IconButton, Toolbar, Typography, Button } from '@m
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 
+import { useDrawerContext } from '#common/hooks';
 import * as classes from './appbar.styles';
 import { AppBarProfile } from './appbar.profile.component';
 
 interface AppBarProps {
   isUserlogged?: boolean;
-  isMenuActive?: boolean;
-  menuButtonAction: () => void;
 }
 
 export const AppBar: React.FC<AppBarProps> = props => {
   // TODO: Mock User login state until we have concrete data to build it correctly
-  const { isUserlogged = true, menuButtonAction, isMenuActive: initialMenuState } = props;
-  const [isMenuActive, setIsMenuActive] = useState<boolean>(initialMenuState || false);
+  const { isUserlogged = true } = props;
+  const { isDrawerOpen, toggleDrawer } = useDrawerContext();
+  const [isMenuActive, setIsMenuActive] = useState<boolean>(isDrawerOpen || false);
   const handleMenuButton = () => {
     setIsMenuActive(() => !isMenuActive);
-    menuButtonAction();
+    toggleDrawer();
   };
   return (
     <MUIAppbar className={classes.appBarContainer} position="static" color="default" variant="outlined" square>

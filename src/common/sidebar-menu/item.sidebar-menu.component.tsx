@@ -10,6 +10,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import { Collapse, List, useTheme } from '@mui/material';
 
+import { useDrawerContext } from '#common/hooks';
 import * as classes from './item.sidebar-menu.styles';
 
 interface ItemProps {
@@ -36,19 +37,17 @@ export const Item: React.FC<ItemProps> = (props: ItemProps) => {
 };
 
 interface ExpandableItemProps extends ItemProps {
-  isParentVisible: boolean;
-  //Prop aimed to cause an effect on ancestors, like directly opening a drawer when selected
-  selectionSideEffects?: () => void;
   children: React.ReactNode;
 }
 
 export const ExpandableItem: React.FC<ExpandableItemProps> = (props: ExpandableItemProps) => {
-  const { text, IconComponent, isParentVisible: isParentVisible, selectionSideEffects, children } = props;
+  const { text, IconComponent, children } = props;
+  const { isDrawerOpen: isParentVisible, toggleDrawer: sideEffect } = useDrawerContext();
   const [isListExpanded, setIsListExpanded] = React.useState(false);
   const theme = useTheme();
   const handleClick = () => {
     setIsListExpanded(!isListExpanded);
-    if (selectionSideEffects && !isParentVisible) selectionSideEffects();
+    if (!isParentVisible) sideEffect();
   };
 
   useEffect(() => {
