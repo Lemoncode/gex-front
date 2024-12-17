@@ -10,6 +10,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import { Collapse, List, useTheme } from '@mui/material';
 
+import { useDrawerContext } from '#common/hooks';
 import * as classes from './item.sidebar-menu.styles';
 
 interface ItemProps {
@@ -36,36 +37,39 @@ export const Item: React.FC<ItemProps> = (props: ItemProps) => {
 };
 
 interface ExpandableItemProps extends ItemProps {
-  isDrawerOpened: boolean;
   children: React.ReactNode;
 }
 
 export const ExpandableItem: React.FC<ExpandableItemProps> = (props: ExpandableItemProps) => {
-  const { text, IconComponent, isDrawerOpened, children } = props;
+  const { text, IconComponent, children } = props;
+  const { isDrawerOpen: isParentVisible, toggleDrawer: sideEffect } = useDrawerContext();
   const [isListExpanded, setIsListExpanded] = React.useState(false);
   const theme = useTheme();
   const handleClick = () => {
     setIsListExpanded(!isListExpanded);
+    if (!isParentVisible) sideEffect();
   };
 
   useEffect(() => {
-    if (!isDrawerOpened) {
+    if (!isParentVisible) {
       setIsListExpanded(false);
     }
-  }, [isDrawerOpened]);
+  }, [isParentVisible]);
 
   return (
     <ListItem key={text}>
       <ListItemButton onClick={handleClick}>
         {IconComponent && <ListItemIcon>{<IconComponent />}</ListItemIcon>}
         <ListItemText primary={text} />
-        {isDrawerOpened ? isListExpanded ? <ExpandLess /> : <ExpandMore /> : ''}
+        {isParentVisible ? isListExpanded ? <ExpandLess /> : <ExpandMore /> : ''}
       </ListItemButton>
-      <Collapse in={isListExpanded} timeout="auto" unmountOnExit>
-        <List component="div" className={classes.itemsExtraIndent(theme)} disablePadding>
-          {children}
-        </List>
-      </Collapse>
+      {isParentVisible && (
+        <Collapse in={isListExpanded} timeout="auto" unmountOnExit>
+          <List component="div" className={classes.itemsExtraIndent(theme)} disablePadding>
+            {children}
+          </List>
+        </Collapse>
+      )}
     </ListItem>
   );
 };
