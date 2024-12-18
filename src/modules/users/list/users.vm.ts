@@ -1,23 +1,41 @@
 import { Pagination } from '#common/models';
 
+export interface Rol {
+  id: string;
+  nombre: string;
+}
+
+export interface Unidad {
+  id: string;
+  nombre: string;
+}
+
 export interface User {
   id: string;
   nombre: string;
-  apellidos: string;
+  apellido: string;
   email: string;
-  rol: string;
+  telefono?: string;
+  movil?: string;
+  rol: Rol;
   esResponsable: boolean;
+  esProponente: boolean;
   esAutorizante: boolean;
+  esContraseñaTemporal: boolean;
+  unidad: Unidad;
 }
 
 export const createEmptyUser = (): User => ({
   id: '',
   nombre: '',
-  apellidos: '',
+  apellido: '',
   email: '',
-  rol: '',
+  rol: { id: '', nombre: '' },
   esResponsable: false,
+  esProponente: false,
   esAutorizante: false,
+  esContraseñaTemporal: false,
+  unidad: { id: '', nombre: '' },
 });
 
 export interface UsersQuery {
