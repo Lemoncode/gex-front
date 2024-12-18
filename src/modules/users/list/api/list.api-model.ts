@@ -1,16 +1,28 @@
 import { Pagination } from '#common/models';
 
+export interface Rol {
+  id: string;
+  nombre: string;
+}
+
+export interface Unidad {
+  id: string;
+  nombre: string;
+}
+
 export interface User {
   id: string;
   nombre: string;
-  apellidos: string;
+  apellido: string;
   email: string;
-  telefonoFijo: string;
-  telefonoMovil: string;
-  telefonoInstitucional: string;
-  rol: string;
+  telefono?: string;
+  movil?: string;
+  rol: Rol;
   esResponsable: boolean;
+  esProponente: boolean;
   esAutorizante: boolean;
+  esContraseñaTemporal: boolean;
+  unidad: Unidad;
 }
 
 export interface UsersQuery {

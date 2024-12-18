@@ -64,9 +64,9 @@ export const UsersPod: React.FC = () => {
               <TableRow key={row.id} className={classes.row}>
                 <TableCell>{row.id}</TableCell>
                 <TableCell>{row.nombre}</TableCell>
-                <TableCell>{row.apellidos}</TableCell>
+                <TableCell>{row.apellido}</TableCell>
                 <TableCell>{row.email}</TableCell>
-                <TableCell>{row.rol}</TableCell>
+                <TableCell>{row.rol.nombre}</TableCell>
                 <TableCell className={classes.commands}>
                   <Link to="/users/$id" params={{ id: row.id }} className={classes.link}>
                     <EditIcon />
