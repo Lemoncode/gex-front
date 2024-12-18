@@ -2,18 +2,18 @@ import * as apiModel from './lookup.api-model.js';
 import * as model from '#dals/lookup/lookup.model.js';
 import { mapObjectIdToString } from '#common/mappers/object-id.mappers.js';
 
-export const mapRoleFromModelToApi = (role: apiModel.Roles) => ({
-  id: role.id,
-  nombre: role.nombre,
+export const mapRoleFromModelToApi = (roles: model.Lookup): apiModel.Lookup => ({
+  id: mapObjectIdToString(roles._id),
+  codigo: roles.codigo,
+  nombre: roles.nombre,
 });
 
-export const mapRoleListFromModelToApi = (roles: apiModel.Roles[]) => roles.map(mapRoleFromModelToApi);
+export const mapRoleListFromModelToApi = (roles: model.Lookup[]) => roles.map(mapRoleFromModelToApi);
 
-export const mapUnidadProponenteFromModelToApi = (proponente: model.UnidadProponentes): apiModel.UnidadProponentes => ({
-  id: mapObjectIdToString(proponente._id),
-  codigo: proponente.codigo || null,
-  nombre: proponente.nombre,
+export const mapUnidadesFromModelToApi = (unidades: model.Lookup): apiModel.Lookup => ({
+  id: mapObjectIdToString(unidades._id),
+  codigo: unidades.codigo,
+  nombre: unidades.nombre,
 });
 
-export const mapUnidadProponenteListFromModelToApi = (proponentes: model.UnidadProponentes[]) =>
-  proponentes.map(mapUnidadProponenteFromModelToApi);
+export const mapUnidadesListFromModelToApi = (unidades: model.Lookup[]) => unidades.map(mapUnidadesFromModelToApi);

@@ -1,8 +1,13 @@
 import { db } from '#dals/mock.data.js';
-import { Roles, UnidadProponentes } from './lookup.model.js';
+import { Lookup } from './lookup.model.js';
 
 export const lookupRepository = {
-  getRoles: async (): Promise<Roles[]> => db.roles,
+  getRoles: async (): Promise<Lookup[]> => db.roles,
 
-  getUnidadProponente: async (): Promise<UnidadProponentes[]> => db.proponentes,
+  getUnidades: async (): Promise<Lookup[]> => db.unidades,
+
+  getUnidadesRoles: async (): Promise<{ roles: Lookup[]; unidades: Lookup[] }> => ({
+    roles: db.roles,
+    unidades: db.unidades,
+  }),
 };

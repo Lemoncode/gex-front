@@ -1,12 +1,7 @@
 import { ObjectId } from 'mongodb';
 
-export interface Roles {
-  id: string;
-  nombre: string;
-}
-
-export interface UnidadProponentes {
+export interface Lookup {
   _id: ObjectId;
-  codigo?: string;
+  codigo: string;
   nombre: string;
 }

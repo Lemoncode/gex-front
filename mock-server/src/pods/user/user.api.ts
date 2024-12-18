@@ -32,10 +32,6 @@ userApi.get('/:id', async (req, res, next) => {
     const userId = req.params.id;
     const userModel = await userRepository.getUserById(userId);
 
-    if (!userModel) {
-      return res.status(404).send({ message: `User with ID ${userId} not found` });
-    }
-
     const userApiModel = mapUserFromModelToApi(userModel);
     res.send(userApiModel);
   } catch (error) {
@@ -48,14 +44,8 @@ userApi.put('/:id', async (req, res, next) => {
     const userId = req.params.id;
     const userToUpdate = req.body;
 
-    const existingUser = await userRepository.getUserById(userId);
-    if (!existingUser) {
-      return res.status(404).send({ message: `User with ID ${userId} not found` });
-    }
-
     const updatedUser = await userRepository.updateUserById(userId, userToUpdate);
-
-    return res.status(200).send({
+    res.status(200).send({
       message: 'User successfully updated',
       user: mapUserFromModelToApi(updatedUser),
     });

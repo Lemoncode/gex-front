@@ -1,31 +1,33 @@
 import { Router } from 'express';
 import { lookupRepository } from '#dals/lookup/lookup.repository.js';
-import { mapRoleListFromModelToApi, mapUnidadProponenteListFromModelToApi } from './lookup.mappers.js';
+import { mapRoleListFromModelToApi, mapUnidadesListFromModelToApi } from './lookup.mappers.js';
 
 export const lookupApi = Router();
 
 lookupApi.get('/roles', async (req, res, next) => {
   try {
-    if (Object.keys(req.query).length > 0) {
-      return res.status(400).send({ message: 'Error in the request' });
-    }
-
     const roles = await lookupRepository.getRoles();
-
     res.status(200).send(mapRoleListFromModelToApi(roles));
   } catch (error) {
     next(error);
   }
 });
 
-lookupApi.get('/unidad-proponentes', async (req, res, next) => {
+lookupApi.get('/unidades', async (req, res, next) => {
   try {
-    if (Object.keys(req.query).length > 0) {
-      return res.status(400).send({ message: 'Error in the request' });
-    }
+    const proponentes = await lookupRepository.getUnidades();
+    res.status(200).send(mapUnidadesListFromModelToApi(proponentes));
+  } catch (error) {
+    next(error);
+  }
+});
 
-    const proponentes = await lookupRepository.getUnidadProponente();
-    res.status(200).send(mapUnidadProponenteListFromModelToApi(proponentes));
+lookupApi.get('/unidades-roles', async (req, res, next) => {
+  try {
+    const { roles, unidades } = await lookupRepository.getUnidadesRoles();
+    res
+      .status(200)
+      .send({ roles: mapRoleListFromModelToApi(roles), unidades: mapUnidadesListFromModelToApi(unidades) });
   } catch (error) {
     next(error);
   }

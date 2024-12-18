@@ -1,10 +1,5 @@
-export interface Roles {
+export interface Lookup {
   id: string;
-  nombre: string;
-}
-
-export interface UnidadProponentes {
-  id: string;
-  codigo?: string;
+  codigo: string;
   nombre: string;
 }

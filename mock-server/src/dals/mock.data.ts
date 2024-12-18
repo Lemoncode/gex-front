@@ -1,11 +1,11 @@
 import { ObjectId } from 'mongodb';
 import { User } from './user/index.js';
-import { Roles, UnidadProponentes } from './lookup/index.js';
+import { Lookup } from './lookup/index.js';
 
 export interface DB {
   users: User[];
-  roles: Roles[];
-  proponentes: UnidadProponentes[];
+  roles: Lookup[];
+  unidades: Lookup[];
 }
 
 export const db: DB = {
@@ -192,15 +192,15 @@ export const db: DB = {
     },
   ],
   roles: [
-    { id: '1', nombre: 'Administrador' },
-    { id: '2', nombre: 'Usuario' },
-    { id: '3', nombre: 'Supervisor' },
-    { id: '4', nombre: 'Gerente' },
+    { _id: new ObjectId(), nombre: 'Administrador', codigo: '64646' },
+    { _id: new ObjectId(), nombre: 'Usuario', codigo: '46346' },
+    { _id: new ObjectId(), nombre: 'Supervisor', codigo: '76967' },
+    { _id: new ObjectId(), nombre: 'Gerente', codigo: '41345' },
   ],
-  proponentes: [
-    { _id: new ObjectId(), nombre: 'Juan', codigo: '14214' },
-    { _id: new ObjectId(), nombre: 'Noelia', codigo: '23123' },
-    { _id: new ObjectId(), nombre: 'Rocio', codigo: '23233' },
-    { _id: new ObjectId(), nombre: 'Pepe', codigo: '56746' },
+  unidades: [
+    { _id: new ObjectId(), nombre: 'Informática', codigo: '14214' },
+    { _id: new ObjectId(), nombre: 'Contabilidad', codigo: '23123' },
+    { _id: new ObjectId(), nombre: 'Recursos humanos', codigo: '23233' },
+    { _id: new ObjectId(), nombre: 'Otros', codigo: '56746' },
   ],
 };
