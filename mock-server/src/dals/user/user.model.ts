@@ -1,18 +1,30 @@
 import { ObjectId } from 'mongodb';
 import { Pagination } from '#common/models';
 
+export interface Rol {
+  id: string;
+  nombre: string;
+}
+
+export interface Unidad {
+  id: string;
+  nombre: string;
+}
+
 export interface User {
   _id: ObjectId;
   nombre: string;
-  apellidos: string;
+  apellido: string;
   email: string;
-  telefonoFijo: string;
-  telefonoMovil: string;
-  telefonoInstitucional: string;
-  clave: string;
-  rol: string;
+  telefono: string;
+  movil: string;
+  rol: Rol;
   esResponsable: boolean;
+  esProponente: boolean;
   esAutorizante: boolean;
+  esContraseñaTemporal: boolean;
+  contraseña: string;
+  unidad: Unidad;
 }
 
 export interface UsersQuery {
