@@ -1,7 +1,7 @@
 import { Theme } from '@mui/material/styles';
 import { css } from '@emotion/css';
 
-export const responsiveAnimatedDrawer = (isOpen: boolean, theme: Theme, drawerWidth: number): string => css`
+export const responsiveAnimatedDrawer = (isOpen: boolean, theme: Theme): string => css`
   flex-shrink: 0;
   white-space: nowrap;
   box-sizing: border-box;
@@ -16,7 +16,7 @@ export const responsiveAnimatedDrawer = (isOpen: boolean, theme: Theme, drawerWi
   &,
   & .MuiDrawer-paper {
     position: relative;
-    width: ${isOpen ? drawerWidth + 'px' : theme.spacing(9)};
+    width: ${isOpen ? '256px' : theme.spacing(9)};
     overflow-x: hidden;
     transition: ${theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,

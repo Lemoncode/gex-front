@@ -1,10 +1,6 @@
 import React from 'react';
 import { useTheme } from '@mui/material';
-
-import { AppBar } from '#common/appbar/';
-import { Drawer } from '#common/drawer/';
-import { SidebarMenu } from '#common/sidebar-menu/';
-
+import { AppBar, Drawer, SidebarMenu } from '#common/components';
 import * as classes from './app.styles';
 
 interface Props {
@@ -22,7 +18,7 @@ export const AppLayout: React.FC<Props> = props => {
     <div className={classes.appContainer}>
       <AppBar isDrawerOpen={isDrawerOpen} onToggleDrawer={handleToggleDrawer} />
       <main className={classes.main}>
-        <Drawer isDrawerOpen={isDrawerOpen} drawerWidth={256}>
+        <Drawer isDrawerOpen={isDrawerOpen}>
           <SidebarMenu isDrawerOpen={isDrawerOpen} />
         </Drawer>
         <div className={classes.sceneContent(theme)}>{children}</div>
