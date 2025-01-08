@@ -11,7 +11,7 @@ const { configs: eslintConfigs } = eslintJs;
 export default [
   eslintConfigs.recommended,
   {
-    files: ["**/*.{ts,tsx}"], 
+    files: ["**/*.{ts,tsx}"],
     languageOptions: {
       parser: tsParser,
       parserOptions: {
@@ -24,6 +24,7 @@ export default [
       globals: {
         ...globals.browser,
         ...globals.node,
+        ...globals.jest
       },
     },
     plugins: {
@@ -38,7 +39,7 @@ export default [
       ...reactHooksPlugin.configs.recommended.rules,
       "react-hooks/exhaustive-deps": "off", // Disable exhaustive-deps rule we can use useEffect without dependencies
       "react/react-in-jsx-scope": "off", // Disable react-in-jsx-scope we can use JSX without importing React
-      "@typescript-eslint/no-explicit-any": "warn", // Warn when using any type 
+      "@typescript-eslint/no-explicit-any": "warn", // Warn when using any type
     },
     settings: {
       react: {
@@ -48,6 +49,6 @@ export default [
     },
   },
   {
-    ignores: ["node_modules/**", "dist/**"], 
+    ignores: ["node_modules/**", "dist/**"],
   },
 ];

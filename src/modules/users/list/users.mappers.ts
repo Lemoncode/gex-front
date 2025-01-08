@@ -1,23 +1,27 @@
+import { mapToCollection } from '#common/mappers';
+import { CollectionQuery, createEmptyCollectionQuery } from '#common/models';
 import * as apiModel from './api';
 import * as viewModel from './users.vm';
 
-const mapUserFromApiToVm = (user: apiModel.User): viewModel.User =>
+const mapUserFromApiToVm = (user: apiModel.Usuario): viewModel.Usuario =>
   user
     ? {
         id: user.id,
         nombre: user.nombre,
-        apellidos: user.apellidos,
+        apellido: user.apellido,
         email: user.email,
-        telefonoFijo: user.telefonoFijo,
-        telefonoMovil: user.telefonoMovil,
-        telefonoInstitucional: user.telefonoInstitucional,
         rol: user.rol,
         esResponsable: user.esResponsable,
         esAutorizante: user.esAutorizante,
       }
     : viewModel.createEmptyUser();
 
-export const mapUserListFromApiToVm = (userList: apiModel.UsersQuery): viewModel.UsersQuery => ({
-  data: userList.data ? userList.data.map(mapUserFromApiToVm) : [],
-  pagination: userList.pagination,
-});
+export const mapUserListFromApiToVm = (
+  userList: CollectionQuery<apiModel.Usuario>
+): CollectionQuery<viewModel.Usuario> =>
+  userList
+    ? {
+        data: mapToCollection(userList.data, mapUserFromApiToVm),
+        pagination: userList.pagination,
+      }
+    : createEmptyCollectionQuery<viewModel.Usuario>();
