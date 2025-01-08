@@ -10,9 +10,7 @@ const mapUserFromApiToVm = (user: apiModel.Usuario): viewModel.Usuario =>
         nombre: user.nombre,
         apellido: user.apellido,
         email: user.email,
-        rol: user.rol,
-        esResponsable: user.esResponsable,
-        esAutorizante: user.esAutorizante,
+        unidad: user.unidad,
       }
     : viewModel.createEmptyUser();
 

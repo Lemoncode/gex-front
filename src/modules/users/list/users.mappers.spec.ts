@@ -28,9 +28,7 @@ describe('users.mappers.spec', () => {
             nombre: 'John',
             apellido: 'Doe',
             email: 'test@email.com',
-            rol: 'admin',
-            esResponsable: true,
-            esAutorizante: false,
+            unidad: 'Informática',
           },
         ],
         pagination: {
@@ -51,9 +49,7 @@ describe('users.mappers.spec', () => {
             nombre: 'John',
             apellido: 'Doe',
             email: 'test@email.com',
-            rol: 'admin',
-            esResponsable: true,
-            esAutorizante: false,
+            unidad: 'Informática',
           },
         ],
         pagination: {

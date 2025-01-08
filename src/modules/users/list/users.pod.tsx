@@ -1,11 +1,25 @@
 import React from 'react';
 import { Link } from '@tanstack/react-router';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Pagination } from '@mui/material';
-import { Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Pagination,
+  Typography,
+  Chip,
+  Box,
+} from '@mui/material';
+import { Edit as EditIcon, Delete as DeleteIcon, Visibility as VisibilityIcon } from '@mui/icons-material';
 import { CollectionQuery, createEmptyCollectionQuery } from '#common/models';
 import { getUsersRepository } from './users.repository';
 import { Usuario } from './users.vm';
-import * as classes from './users.styles';
+import { NavigationButton } from '#common/components';
+import { useWithTheme } from '#core/theme/theme.hooks.ts';
+import * as innerClasses from './users.styles';
 
 interface Lookup {
   id: string;
@@ -13,11 +27,10 @@ interface Lookup {
 }
 
 const columns: Lookup[] = [
-  { id: 'id', name: 'ID' },
   { id: 'nombre', name: 'Nombre' },
   { id: 'apellidos', name: 'Apellidos' },
+  { id: 'unidad', name: 'Unidad' },
   { id: 'email', name: 'Email' },
-  { id: 'rol', name: 'Rol' },
   { id: 'commands', name: 'Comandos' },
 ];
 
@@ -48,34 +61,40 @@ export const usePagination = (initialPage: number = 0, pageSize: number = 10) =>
 
 export const UsersPod: React.FC = () => {
   const { userCollection, currentPage, totalPages, onPageChange } = usePagination();
+  const classes = useWithTheme(innerClasses);
 
   return (
     <div className={classes.root}>
-      <h1>Soy la página de listado de usuarios</h1>
+      <div className={classes.header}>
+        <Typography variant="h4">Usuarios</Typography>
+        <NavigationButton text="Nuevo Usuario" path="/create-user" />
+      </div>
       <TableContainer component={Paper}>
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
               {columns.map(header => (
-                <TableCell key={header.id} className={classes.head}>
-                  {header.name}
-                </TableCell>
+                <TableCell key={header.id}>{header.name}</TableCell>
               ))}
             </TableRow>
           </TableHead>
           <TableBody>
             {userCollection.data.map(row => (
-              <TableRow key={row.id} className={classes.row}>
-                <TableCell>{row.id}</TableCell>
+              <TableRow key={row.id}>
                 <TableCell>{row.nombre}</TableCell>
                 <TableCell>{row.apellido}</TableCell>
+                <TableCell>
+                  <Chip label={row.unidad} />
+                </TableCell>
                 <TableCell>{row.email}</TableCell>
-                <TableCell>{row.rol}</TableCell>
-                <TableCell className={classes.commands}>
-                  <Link to="/users/$id" params={{ id: row.id }} className={classes.link}>
-                    <EditIcon />
-                  </Link>
-                  <DeleteIcon />
+                <TableCell>
+                  <Box display="flex" alignItems="center" gap={2}>
+                    <VisibilityIcon />
+                    <Link to="/users/$id" params={{ id: row.id }} className={classes.link}>
+                      <EditIcon />
+                    </Link>
+                    <DeleteIcon />
+                  </Box>
                 </TableCell>
               </TableRow>
             ))}
