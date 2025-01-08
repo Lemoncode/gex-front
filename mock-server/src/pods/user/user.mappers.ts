@@ -18,8 +18,6 @@ export const mapUserListFromModelToApi = (
 ): CollectionQuery<apiModel.Usuario> => ({
   data: mapToCollection(userList.data, mapUserFromModelToApi),
   pagination: {
-    page: userList.pagination.page,
-    pageSize: userList.pagination.pageSize,
     totalPages: userList.pagination.totalPages,
   },
 });

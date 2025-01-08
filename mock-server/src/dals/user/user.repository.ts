@@ -11,8 +11,6 @@ export const userRepository = {
       : {
           data: db.users,
           pagination: {
-            page: 0,
-            pageSize: 10,
             totalPages: db.users.length,
           },
         },

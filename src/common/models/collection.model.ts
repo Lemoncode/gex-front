@@ -8,8 +8,6 @@ export interface CollectionQuery<T> {
 export const createEmptyCollectionQuery = <T>(): CollectionQuery<T> => ({
   data: [],
   pagination: {
-    page: 0,
-    pageSize: 10,
     totalPages: 0,
   },
 });
