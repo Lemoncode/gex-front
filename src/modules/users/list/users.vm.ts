@@ -13,3 +13,8 @@ export const createEmptyUser = (): Usuario => ({
   email: '',
   unidad: '',
 });
+
+export interface UserQueryFilter {
+  page: number;
+  pageSize: number;
+}
