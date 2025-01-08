@@ -18,7 +18,7 @@ export const main = css`
 
 export const sceneContent = (theme: Theme) => css`
   display: flex;
-  justify-content: start;
+  justify-content: center;
   flex-wrap: wrap;
   overflow: auto;
   flex-grow: 1;

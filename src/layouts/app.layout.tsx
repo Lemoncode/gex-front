@@ -1,7 +1,7 @@
 import React from 'react';
-import { useTheme } from '@mui/material';
 import { AppBar, Drawer, SidebarMenu } from '#common/components';
-import * as classes from './app.styles';
+import { useWithTheme } from '#core/theme';
+import * as appLayoutClasses from './app.styles';
 
 interface Props {
   children: React.ReactNode;
@@ -9,7 +9,7 @@ interface Props {
 
 export const AppLayout: React.FC<Props> = props => {
   const { children } = props;
-  const theme = useTheme();
+  const classes = useWithTheme(appLayoutClasses);
   const [isDrawerOpen, toggleDrawer] = React.useState<boolean>(false);
 
   const handleToggleDrawer = () => toggleDrawer(!isDrawerOpen);
@@ -21,7 +21,7 @@ export const AppLayout: React.FC<Props> = props => {
         <Drawer isDrawerOpen={isDrawerOpen}>
           <SidebarMenu isDrawerOpen={isDrawerOpen} />
         </Drawer>
-        <div className={classes.sceneContent(theme)}>{children}</div>
+        <div className={classes.sceneContent}>{children}</div>
       </main>
     </div>
   );
