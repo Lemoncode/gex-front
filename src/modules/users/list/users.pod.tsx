@@ -14,12 +14,10 @@ import {
   Box,
 } from '@mui/material';
 import { Edit as EditIcon, Delete as DeleteIcon, Visibility as VisibilityIcon } from '@mui/icons-material';
-import { CollectionQuery, createEmptyCollectionQuery } from '#common/models';
-import { getUsersRepository } from './users.repository';
-import { Usuario } from './users.vm';
 import { NavigationButton } from '#common/components';
 import { useWithTheme } from '#core/theme/theme.hooks.ts';
 import * as innerClasses from './users.styles';
+import { useUsersQuery } from './users.query.hook';
 
 interface Lookup {
   id: string;
@@ -36,18 +34,7 @@ const columns: Lookup[] = [
 
 export const usePagination = (initialPage: number = 0, pageSize: number = 10) => {
   const [currentPage, setCurrentPage] = React.useState(initialPage);
-  const [userCollection, setUserCollection] = React.useState<CollectionQuery<Usuario>>(
-    createEmptyCollectionQuery<Usuario>
-  );
-
-  const loadUserCollection = async (page: number) => {
-    const userCollection = await getUsersRepository(page, pageSize);
-    setUserCollection(userCollection);
-  };
-
-  React.useEffect(() => {
-    loadUserCollection(currentPage);
-  }, [currentPage]);
+  const { userCollection, isLoading } = useUsersQuery({ page: currentPage, pageSize });
 
   const handleChangePage = (_: React.ChangeEvent<unknown>, newPage: number) => setCurrentPage(newPage - 1);
 
@@ -55,6 +42,7 @@ export const usePagination = (initialPage: number = 0, pageSize: number = 10) =>
     userCollection,
     currentPage,
     totalPages: userCollection.pagination.totalPages,
+    isLoading,
     onPageChange: handleChangePage,
   };
 };
