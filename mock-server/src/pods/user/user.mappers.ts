@@ -1,18 +1,21 @@
 import { mapObjectIdToString, mapToCollection } from '#common/mappers/index.js';
+import { CollectionQuery } from '#common/models/index.js';
 import * as model from '#dals/user/user.model.js';
 import * as apiModel from './user.api-model.js';
 
-export const mapUserFromModelToApi = (user: model.User): apiModel.User => ({
+export const mapUserFromModelToApi = (user: model.Usuario): apiModel.Usuario => ({
   id: mapObjectIdToString(user._id),
   nombre: user.nombre,
-  apellidos: user.apellidos,
+  apellido: user.apellido,
   email: user.email,
-  rol: user.rol,
+  rol: user.rol.nombre,
   esResponsable: user.esResponsable,
   esAutorizante: user.esAutorizante,
 });
 
-export const mapUserListFromModelToApi = (userList: model.UsersQuery): apiModel.UsersQuery => ({
+export const mapUserListFromModelToApi = (
+  userList: CollectionQuery<model.Usuario>
+): CollectionQuery<apiModel.Usuario> => ({
   data: mapToCollection(userList.data, mapUserFromModelToApi),
   pagination: {
     page: userList.pagination.page,

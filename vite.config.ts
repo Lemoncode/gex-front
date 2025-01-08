@@ -15,6 +15,12 @@ export default defineConfig(({ mode }) => {
       }),
       react(),
     ],
+    test: {
+      globals: true,
+      environment: 'jsdom',
+      restoreMocks: true,
+      include: ['./src/**/*.spec.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    },
     server: {
       proxy: {
         '/api': {

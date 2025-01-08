@@ -1,35 +1,19 @@
-import { Pagination } from '#common/models';
-
-export interface User {
+export interface Usuario {
   id: string;
   nombre: string;
-  apellidos: string;
+  apellido: string;
   email: string;
   rol: string;
   esResponsable: boolean;
   esAutorizante: boolean;
 }
 
-export const createEmptyUser = (): User => ({
+export const createEmptyUser = (): Usuario => ({
   id: '',
   nombre: '',
-  apellidos: '',
+  apellido: '',
   email: '',
   rol: '',
   esResponsable: false,
   esAutorizante: false,
-});
-
-export interface UsersQuery {
-  data: User[];
-  pagination: Pagination;
-}
-
-export const createEmptyUsersQuery = (): UsersQuery => ({
-  data: [],
-  pagination: {
-    page: 1,
-    pageSize: 10,
-    totalPages: 1,
-  },
 });

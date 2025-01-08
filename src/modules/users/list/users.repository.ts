@@ -1,8 +1,8 @@
-import * as api from './api';
+import { CollectionQuery } from '#common/models';
 import { mapUserListFromApiToVm } from './users.mappers';
-import { UsersQuery } from './users.vm';
+import * as api from './api';
 
-export const getUsersRepository = async (page?: number, pageSize?: number): Promise<UsersQuery> => {
+export const getUsersRepository = async (page: number, pageSize: number): Promise<CollectionQuery<api.Usuario>> => {
   const usersApi = await api.getUsers(page, pageSize);
 
   const userViewModel = mapUserListFromApiToVm(usersApi);

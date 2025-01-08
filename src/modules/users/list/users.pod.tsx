@@ -2,8 +2,9 @@ import React from 'react';
 import { Link } from '@tanstack/react-router';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Pagination } from '@mui/material';
 import { Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
-import { createEmptyUsersQuery, UsersQuery } from './users.vm';
+import { CollectionQuery, createEmptyCollectionQuery } from '#common/models';
 import { getUsersRepository } from './users.repository';
+import { Usuario } from './users.vm';
 import * as classes from './users.styles';
 
 interface Lookup {
@@ -22,28 +23,31 @@ const columns: Lookup[] = [
 
 export const usePagination = (initialPage: number = 0, pageSize: number = 10) => {
   const [currentPage, setCurrentPage] = React.useState(initialPage);
-  const [users, setUsers] = React.useState<UsersQuery>(createEmptyUsersQuery);
+  const [userCollection, setUserCollection] = React.useState<CollectionQuery<Usuario>>(
+    createEmptyCollectionQuery<Usuario>
+  );
 
-  const loadUsers = async (page: number) => {
-    const result = await getUsersRepository(page, pageSize);
-    setUsers(result);
+  const loadUserCollection = async (page: number) => {
+    const userCollection = await getUsersRepository(page, pageSize);
+    setUserCollection(userCollection);
   };
 
   React.useEffect(() => {
-    loadUsers(currentPage);
+    loadUserCollection(currentPage);
   }, [currentPage]);
 
   const handleChangePage = (_: React.ChangeEvent<unknown>, newPage: number) => setCurrentPage(newPage - 1);
 
   return {
-    users,
+    userCollection,
     currentPage,
+    totalPages: userCollection.pagination.totalPages,
     onPageChange: handleChangePage,
   };
 };
 
 export const UsersPod: React.FC = () => {
-  const { users, currentPage, onPageChange } = usePagination();
+  const { userCollection, currentPage, totalPages, onPageChange } = usePagination();
 
   return (
     <div className={classes.root}>
@@ -60,11 +64,11 @@ export const UsersPod: React.FC = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {users.data.map(row => (
+            {userCollection.data.map(row => (
               <TableRow key={row.id} className={classes.row}>
                 <TableCell>{row.id}</TableCell>
                 <TableCell>{row.nombre}</TableCell>
-                <TableCell>{row.apellidos}</TableCell>
+                <TableCell>{row.apellido}</TableCell>
                 <TableCell>{row.email}</TableCell>
                 <TableCell>{row.rol}</TableCell>
                 <TableCell className={classes.commands}>
@@ -77,11 +81,8 @@ export const UsersPod: React.FC = () => {
             ))}
           </TableBody>
         </Table>
-        <Pagination count={2} page={currentPage + 1} onChange={onPageChange} className={classes.pagination} />
+        <Pagination count={totalPages} page={currentPage + 1} onChange={onPageChange} className={classes.pagination} />
       </TableContainer>
-      <Link to="/users/$id" params={{ id: '1' }}>
-        Navegar a detalle de usuario
-      </Link>
     </div>
   );
 };

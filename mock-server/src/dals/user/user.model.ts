@@ -1,21 +1,18 @@
 import { ObjectId } from 'mongodb';
-import { Pagination } from '#common/models';
+import { Lookup } from '#common/models';
 
-export interface User {
+export interface Usuario {
   _id: ObjectId;
   nombre: string;
-  apellidos: string;
+  apellido: string;
   email: string;
-  telefonoFijo: string;
-  telefonoMovil: string;
-  telefonoInstitucional: string;
-  clave: string;
-  rol: string;
+  telefono: string;
+  movil: string;
+  rol: Lookup;
   esResponsable: boolean;
+  esProponente: boolean;
   esAutorizante: boolean;
-}
-
-export interface UsersQuery {
-  data: User[];
-  pagination: Pagination;
+  esContraseñaTemporal: boolean;
+  contraseña: string;
+  unidad: Lookup;
 }
