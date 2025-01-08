@@ -3,7 +3,5 @@ export interface Usuario {
   nombre: string;
   apellido: string;
   email: string;
-  rol: string;
-  esResponsable: boolean;
-  esAutorizante: boolean;
+  unidad: string;
 }

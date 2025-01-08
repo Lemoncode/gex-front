@@ -16,8 +16,6 @@ export const paginateItems = <T>(paginationArgs: PaginationItemsArgs<T>): Collec
   return {
     data: items.slice(start, end),
     pagination: {
-      pageSize,
-      page,
       totalPages,
     },
   };

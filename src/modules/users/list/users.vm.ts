@@ -3,9 +3,7 @@ export interface Usuario {
   nombre: string;
   apellido: string;
   email: string;
-  rol: string;
-  esResponsable: boolean;
-  esAutorizante: boolean;
+  unidad: string;
 }
 
 export const createEmptyUser = (): Usuario => ({
@@ -13,7 +11,5 @@ export const createEmptyUser = (): Usuario => ({
   nombre: '',
   apellido: '',
   email: '',
-  rol: '',
-  esResponsable: false,
-  esAutorizante: false,
+  unidad: '',
 });
