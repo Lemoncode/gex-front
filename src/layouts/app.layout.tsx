@@ -6,29 +6,27 @@ import { Drawer } from '#common/drawer/';
 import { SidebarMenu } from '#common/sidebar-menu/';
 
 import * as classes from './app.styles';
-import { DrawerProvider } from '#common/drawer/drawer-provider.component.tsx';
 
 interface Props {
   children: React.ReactNode;
 }
 
-// TODO: handle this 'isUserlogged' properly when auth is implemented
-const isUserlogged: boolean = true;
-
 export const AppLayout: React.FC<Props> = props => {
   const { children } = props;
   const theme = useTheme();
+  const [isDrawerOpen, toggleDrawer] = React.useState<boolean>(false);
+
+  const handleToggleDrawer = () => toggleDrawer(!isDrawerOpen);
+
   return (
     <div className={classes.appContainer}>
-      <DrawerProvider>
-        <AppBar isUserlogged={isUserlogged} />
-        <main className={classes.main}>
-          <Drawer drawerWidth={256}>
-            <SidebarMenu />
-          </Drawer>
-          <div className={classes.sceneContent(theme)}>{children}</div>
-        </main>
-      </DrawerProvider>
+      <AppBar isDrawerOpen={isDrawerOpen} onToggleDrawer={handleToggleDrawer} />
+      <main className={classes.main}>
+        <Drawer isDrawerOpen={isDrawerOpen} drawerWidth={256}>
+          <SidebarMenu isDrawerOpen={isDrawerOpen} />
+        </Drawer>
+        <div className={classes.sceneContent(theme)}>{children}</div>
+      </main>
     </div>
   );
 };
