@@ -25,6 +25,13 @@ export const TextFieldForm: React.FC<TextFieldProps> = props => {
       error={hasError}
       helperText={helperText}
       fullWidth
+      slotProps={{
+        formHelperText: {
+          ...otherProps.slotProps?.formHelperText,
+          className: hasError ? 'Mui-error' : '',
+        },
+      }}
+      margin="normal"
     />
   );
 };

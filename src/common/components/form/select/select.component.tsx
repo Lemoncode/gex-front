@@ -30,7 +30,7 @@ export const SelectForm = (props: Props) => {
   });
 
   return (
-    <FormControl variant={variant} error={hasError} fullWidth className={className}>
+    <FormControl variant={variant} error={hasError} fullWidth className={className} margin="normal">
       <InputLabel id={labelId}>{label}</InputLabel>
       <Select
         {...otherProps}

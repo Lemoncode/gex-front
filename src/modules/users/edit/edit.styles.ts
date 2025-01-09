@@ -21,7 +21,6 @@ export const sectionContainer = (theme: Theme) => css`
   padding: ${theme.spacing(3)};
   display: flex;
   flex-direction: column;
-  gap: ${theme.spacing(3)};
 `;
 
 export const row = (theme: Theme) => css`
