@@ -4,7 +4,7 @@ import { getUnidadRolListRepository } from './edit.repository';
 import { createEmptyUnidadRolList, UnidadRolList } from './edit.vm';
 
 interface UseUnidadRolQueryResult {
-  unidadRolCollection: UnidadRolList;
+  unidadRolList: UnidadRolList;
   isLoading: boolean;
 }
 
@@ -15,7 +15,7 @@ export const useUnidadRolList = (): UseUnidadRolQueryResult => {
   });
 
   return {
-    unidadRolCollection: unidadRolList,
+    unidadRolList,
     isLoading,
   };
 };
