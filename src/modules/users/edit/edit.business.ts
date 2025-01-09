@@ -7,3 +7,5 @@ export const generateRandomPassword = (length: number = 12) => {
   }
   return password;
 };
+
+export const handleCopyPassword = (password: string) => navigator.clipboard.writeText(password);

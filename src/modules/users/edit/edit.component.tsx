@@ -5,6 +5,7 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { TextFieldForm, SelectForm, CheckboxForm, NavigationButton } from '#common/components';
 import { useWithTheme } from '#core/theme';
+import { handleCopyPassword } from './edit.business';
 import { usePassword } from './use-password.hook';
 import { createEmptyUsuario, UnidadRolList, Usuario } from './edit.vm';
 import * as innerClasses from './edit.styles';
@@ -17,13 +18,13 @@ interface Props {
 export const EditUser: React.FC<Props> = props => {
   const { unidadRolList, onSubmit } = props;
   const classes = useWithTheme(innerClasses);
-  const { password, showPassword, onCopyPassword, toggleShowPassword } = usePassword();
+  const { showPassword, toggleShowPassword } = usePassword();
 
   return (
     <div className={classes.root}>
       <Typography variant="h3">Nombre de usuario</Typography>
       <Formik initialValues={createEmptyUsuario()} enableReinitialize={true} onSubmit={onSubmit}>
-        {() => (
+        {({ values }) => (
           <Form className={classes.form}>
             <div className={classes.sectionContainer}>
               <Typography variant="h6" fontWeight={600}>
@@ -45,7 +46,6 @@ export const EditUser: React.FC<Props> = props => {
                   name="contraseña"
                   label="Contraseña"
                   type={showPassword ? 'text' : 'password'}
-                  value={password}
                   slotProps={{
                     input: {
                       endAdornment: (
@@ -56,7 +56,7 @@ export const EditUser: React.FC<Props> = props => {
                     },
                   }}
                 />
-                <IconButton onClick={onCopyPassword} className={classes.icon}>
+                <IconButton onClick={() => handleCopyPassword(values.contraseña || '')} className={classes.icon}>
                   <ContentCopyIcon />
                 </IconButton>
               </div>
