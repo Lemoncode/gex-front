@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Formik } from 'formik';
 import { Button, Typography } from '@mui/material';
-import { TextFieldForm, SelectForm, CheckboxForm } from '#common/components';
+import { TextFieldForm, SelectForm, CheckboxForm, NavigationButton } from '#common/components';
 import { useWithTheme } from '#core/theme';
 import * as innerClasses from './edit.styles';
 
@@ -79,7 +79,7 @@ export const EditPod: React.FC = () => {
               <Button type="submit" variant="contained">
                 Guardar
               </Button>
-              <Button type="submit">Cancelar</Button>
+              <NavigationButton path="/users" text="Cancelar" variant="text" />
             </div>
           </Form>
         )}
