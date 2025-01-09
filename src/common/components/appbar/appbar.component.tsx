@@ -15,13 +15,13 @@ export const AppBar: React.FC<AppBarProps> = props => {
   const { isDrawerOpen, onToggleDrawer } = props;
 
   return (
-    <MUIAppbar className={classes.appBarContainer} position="static" color="default" variant="outlined" square>
+    <MUIAppbar className={classes.appBarContainer} position="static" color="default" square elevation={1}>
       <Toolbar disableGutters className={classes.toolbar} variant="regular">
         <div className={classes.leftGroup}>
           <IconButton color="inherit" onClick={onToggleDrawer}>
             {isDrawerOpen ? <MenuIcon /> : <MenuOpenIcon />}
           </IconButton>
-          <Typography variant="h6" fontWeight={'bold'}>
+          <Typography variant="body1" fontWeight={'bold'}>
             GEX
           </Typography>
         </div>

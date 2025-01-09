@@ -5,12 +5,13 @@ import React from 'react';
 type Props = CheckboxProps & {
   label?: string;
   labelPlacement?: 'end' | 'start' | 'top' | 'bottom';
+  fullWidth?: boolean;
   error?: boolean;
   helperText?: string;
 };
 
 export const CheckboxForm: React.FunctionComponent<Props> = props => {
-  const { className, label, labelPlacement, error, helperText, ...checkboxProps } = props;
+  const { className, label, labelPlacement, fullWidth = true, error, helperText, ...checkboxProps } = props;
   const {
     value,
     hasError,
@@ -27,7 +28,7 @@ export const CheckboxForm: React.FunctionComponent<Props> = props => {
   });
 
   return (
-    <FormControl error={hasError} fullWidth={true} className={className} margin="normal">
+    <FormControl error={hasError} fullWidth={fullWidth} className={className}>
       <FormControlLabel
         control={
           <Checkbox

@@ -24,6 +24,7 @@ export const TextFieldForm: React.FC<TextFieldProps> = props => {
       value={value}
       error={hasError}
       helperText={helperText}
+      fullWidth
     />
   );
 };
