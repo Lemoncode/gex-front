@@ -33,6 +33,7 @@
     "@tanstack/react-query": "^5.63.0",
     "@tanstack/react-router": "^1.82.1",
     "axios": "^1.7.7",
+    "formik": "^2.4.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
