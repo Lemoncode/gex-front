@@ -13,8 +13,8 @@ export const EditUserPod: React.FC = () => {
 
   return (
     <>
-      <EditUser unidadRolList={unidadRolList} onSubmit={handleSubmit} />
       <Spinner isSpinnerShowing={isLoading} />
+      <EditUser unidadRolList={unidadRolList} onSubmit={handleSubmit} />
     </>
   );
 };

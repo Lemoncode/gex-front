@@ -23,10 +23,10 @@
     "noUncheckedSideEffectImports": true,
 
     /* Custom */
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      "#*": ["./src/*"]
+      "#*": ["*"]
     }
   },
-  "include": ["src", "mock-server/src/common/helpers", "mock-server/src/common/models"]
+  "include": ["./src/**/*"]
 }
