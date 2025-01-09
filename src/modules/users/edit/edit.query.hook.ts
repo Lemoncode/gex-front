@@ -1,7 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
-import { commonQueryKeys } from '#core/react-query';
-import { getUnidadRolListRepository } from './edit.repository';
-import { createEmptyUnidadRolList, UnidadRolList } from './edit.vm';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useNavigate } from '@tanstack/react-router';
+import { commonQueryKeys, queryClient } from '#core/react-query';
+import { getUnidadRolListRepository, saveUserRepository } from './edit.repository';
+import { createEmptyUnidadRolList, UnidadRolList, Usuario } from './edit.vm';
+import { usersQueryKeys } from '../users-keys';
 
 interface UseUnidadRolQueryResult {
   unidadRolList: UnidadRolList;
@@ -17,5 +19,30 @@ export const useUnidadRolList = (): UseUnidadRolQueryResult => {
   return {
     unidadRolList,
     isLoading,
+  };
+};
+
+interface UseSaveUserMutationResult {
+  saveUser: (user: Usuario) => void;
+  isPending: boolean;
+}
+
+export const useSaveUserMutation = (): UseSaveUserMutationResult => {
+  const navigate = useNavigate();
+
+  const { mutate: saveUser, isPending } = useMutation({
+    mutationFn: (user: Usuario) => saveUserRepository(user),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: usersQueryKeys.userCollection(),
+      });
+
+      navigate({ to: '/users' });
+    },
+  });
+
+  return {
+    saveUser,
+    isPending,
   };
 };

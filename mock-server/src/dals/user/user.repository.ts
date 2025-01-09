@@ -14,9 +14,8 @@ export const userRepository = {
             totalPages: db.users.length,
           },
         },
-  createUser: async (newUser: model.Usuario): Promise<model.Usuario> => {
+  createUser: async (newUser: model.Usuario): Promise<boolean> => {
     db.users.push(newUser);
-
-    return newUser;
+    return true;
   },
 };

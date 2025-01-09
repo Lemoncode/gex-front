@@ -18,3 +18,17 @@ export const mapUnidadRolListFromApiToVm = (unidadRolList: apiModel.UnidadRolLis
   unidades: mapToCollection(unidadRolList.unidades, mapUnidadFromApiToVm),
   roles: mapToCollection(unidadRolList.roles, mapRolFromApiToVm),
 });
+
+export const mapUserFromVmToApi = (user: viewModel.Usuario): apiModel.Usuario => ({
+  nombre: user.nombre,
+  apellido: user.apellido,
+  email: user.email,
+  telefono: user.telefono,
+  movil: user.movil,
+  unidad: user.unidad,
+  rol: user.rol,
+  contraseña: user.contraseña,
+  esResponsable: user.esResponsable,
+  esProponente: user.esProponente,
+  esAutorizante: user.esAutorizante,
+});

@@ -1,19 +1,18 @@
 import React from 'react';
 import { Spinner } from '#common/components';
 import { EditUser } from './edit.component';
-import { useUnidadRolList } from './edit.query.hook';
+import { useSaveUserMutation, useUnidadRolList } from './edit.query.hook';
 import { Usuario } from './edit.vm';
 
 export const EditUserPod: React.FC = () => {
   const { unidadRolList, isLoading } = useUnidadRolList();
+  const { saveUser, isPending } = useSaveUserMutation();
 
-  const handleSubmit = (values: Usuario) => {
-    alert(JSON.stringify(values, null, 2));
-  };
+  const handleSubmit = (newUser: Usuario) => saveUser(newUser);
 
   return (
     <>
-      <Spinner isSpinnerShowing={isLoading} />
+      <Spinner isSpinnerShowing={isLoading || isPending} />
       <EditUser unidadRolList={unidadRolList} onSubmit={handleSubmit} />
     </>
   );

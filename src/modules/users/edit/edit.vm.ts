@@ -24,9 +24,9 @@ export const createEmptyUsuario = (): Usuario => ({
   rol: '',
   unidad: '',
   contraseña: generateRandomPassword(),
-  esResponsable: undefined,
-  esProponente: undefined,
-  esAutorizante: undefined,
+  esResponsable: false,
+  esProponente: false,
+  esAutorizante: false,
 });
 
 export interface UnidadRolList {
