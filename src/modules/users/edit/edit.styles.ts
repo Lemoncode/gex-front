@@ -31,21 +31,37 @@ export const row = (theme: Theme) => css`
   align-items: center;
 
   @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 `;
 
 export const apellidos = css`
   grid-column: 2 / 4;
+
+  @media (max-width: 768px) {
+    grid-column: 1 / 2;
+  }
 `;
 
 export const checkboxContainer = (theme: Theme) => css`
   display: flex;
   gap: ${theme.spacing(2)};
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 export const buttonContainer = css`
   display: flex;
   justify-content: flex-end;
   gap: 16px;
+`;
+
+export const icon = css`
+  justify-self: flex-start;
+
+  @media (max-width: 768px) {
+    justify-self: center;
+  }
 `;

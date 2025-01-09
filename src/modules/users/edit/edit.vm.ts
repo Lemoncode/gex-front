@@ -8,6 +8,7 @@ export interface Usuario {
   email: string;
   rol: string;
   unidad: string;
+  contraseña: string;
   esResponsable?: boolean;
   esProponente?: boolean;
   esAutorizante?: boolean;
@@ -21,9 +22,10 @@ export const createEmptyUsuario = (): Usuario => ({
   email: '',
   rol: '',
   unidad: '',
-  esResponsable: false,
-  esProponente: false,
-  esAutorizante: false,
+  contraseña: 'hola',
+  esResponsable: undefined,
+  esProponente: undefined,
+  esAutorizante: undefined,
 });
 
 export interface UnidadRolList {
