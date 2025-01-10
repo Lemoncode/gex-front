@@ -19,7 +19,7 @@ export const EditUser: React.FC<Props> = props => {
 
   return (
     <div className={classes.root}>
-      <Typography variant="h3">Nombre de usuario</Typography>
+      <Typography variant="h3">Crear usuario</Typography>
       <Formik
         initialValues={createEmptyUsuario()}
         enableReinitialize={true}
