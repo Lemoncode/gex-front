@@ -1,7 +1,6 @@
 import { css } from '@emotion/css';
 
 export const toolbar = css`
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-content: center;
@@ -10,6 +9,7 @@ export const toolbar = css`
 `;
 
 export const appBarContainer = css`
+  width: 100%;
   z-index: 2;
 `;
 

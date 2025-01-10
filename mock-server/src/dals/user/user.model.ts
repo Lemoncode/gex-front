@@ -6,13 +6,13 @@ export interface Usuario {
   nombre: string;
   apellido: string;
   email: string;
-  telefono: string;
-  movil: string;
+  telefono?: string;
+  movil?: string;
   rol: Lookup;
-  esResponsable: boolean;
-  esProponente: boolean;
-  esAutorizante: boolean;
-  esContraseñaTemporal: boolean;
+  esResponsable?: boolean;
+  esProponente?: boolean;
+  esAutorizante?: boolean;
+  esContraseñaTemporal?: boolean;
   contraseña: string;
   unidad: Lookup;
 }

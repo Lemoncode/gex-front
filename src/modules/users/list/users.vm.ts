@@ -6,7 +6,7 @@ export interface Usuario {
   unidad: string;
 }
 
-export const createEmptyUser = (): Usuario => ({
+export const createEmptyUsuario = (): Usuario => ({
   id: '',
   nombre: '',
   apellido: '',

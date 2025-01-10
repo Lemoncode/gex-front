@@ -12,7 +12,7 @@ const mapUserFromApiToVm = (user: apiModel.Usuario): viewModel.Usuario =>
         email: user.email,
         unidad: user.unidad,
       }
-    : viewModel.createEmptyUser();
+    : viewModel.createEmptyUsuario();
 
 export const mapUserListFromApiToVm = (
   userList: CollectionQuery<apiModel.Usuario>
