@@ -4,6 +4,7 @@ import { Button, Typography } from '@mui/material';
 import { NavigationButton } from '#common/components';
 import { useWithTheme } from '#core/theme';
 import { AditionalPermissions, UserDetails } from './components';
+import { formValidation } from './validations';
 import { createEmptyUsuario, UnidadRolList, Usuario } from './edit.vm';
 import * as innerClasses from './edit.styles';
 
@@ -19,7 +20,12 @@ export const EditUser: React.FC<Props> = props => {
   return (
     <div className={classes.root}>
       <Typography variant="h3">Nombre de usuario</Typography>
-      <Formik initialValues={createEmptyUsuario()} enableReinitialize={true} onSubmit={onSubmit}>
+      <Formik
+        initialValues={createEmptyUsuario()}
+        enableReinitialize={true}
+        validate={formValidation.validateForm}
+        onSubmit={onSubmit}
+      >
         {({ values }) => (
           <Form className={classes.form}>
             <UserDetails unidadRolList={unidadRolList} contraseña={values.contraseña} />
