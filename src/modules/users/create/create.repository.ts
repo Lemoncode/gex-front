@@ -1,6 +1,6 @@
 import * as api from './api';
-import { mapUnidadRolListFromApiToVm, mapUserFromVmToApi } from './edit.mapper';
-import * as vm from './edit.vm';
+import { mapUnidadRolListFromApiToVm, mapUserFromVmToApi } from './create.mapper';
+import * as vm from './create.vm';
 
 export const getUnidadRolListRepository = async (): Promise<vm.UnidadRolList> => {
   const unidadRolListApi = await api.getUnidadRolList();

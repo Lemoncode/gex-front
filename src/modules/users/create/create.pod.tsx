@@ -1,10 +1,10 @@
 import React from 'react';
 import { Spinner } from '#common/components';
-import { EditUser } from './edit.component';
-import { useSaveUserMutation, useUnidadRolList } from './edit.query.hook';
-import { Usuario } from './edit.vm';
+import { CreateUser } from './create.component';
+import { useSaveUserMutation, useUnidadRolList } from './create.query.hook';
+import { Usuario } from './create.vm';
 
-export const EditUserPod: React.FC = () => {
+export const CreateUserPod: React.FC = () => {
   const { unidadRolList, isLoading } = useUnidadRolList();
   const { saveUser, isPending } = useSaveUserMutation();
 
@@ -13,7 +13,7 @@ export const EditUserPod: React.FC = () => {
   return (
     <>
       <Spinner isSpinnerShowing={isLoading || isPending} />
-      <EditUser unidadRolList={unidadRolList} onSubmit={handleSubmit} />
+      <CreateUser unidadRolList={unidadRolList} onSubmit={handleSubmit} />
     </>
   );
 };

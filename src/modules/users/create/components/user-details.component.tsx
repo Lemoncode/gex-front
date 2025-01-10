@@ -4,9 +4,9 @@ import { Visibility, VisibilityOff, ContentCopy } from '@mui/icons-material';
 import { SelectForm, TextFieldForm } from '#common/components';
 import { useWithTheme } from '#core/theme';
 import { usePassword } from '../use-password.hook';
-import { UnidadRolList } from '../edit.vm';
-import { handleCopyPassword } from '../edit.business';
-import * as innerClasses from '../edit.styles';
+import { UnidadRolList } from '../create.vm';
+import { handleCopyPassword } from '../create.business';
+import * as innerClasses from '../create.styles';
 
 interface Props {
   unidadRolList: UnidadRolList;

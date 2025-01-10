@@ -5,15 +5,15 @@ import { NavigationButton } from '#common/components';
 import { useWithTheme } from '#core/theme';
 import { AditionalPermissions, UserDetails } from './components';
 import { formValidation } from './validations';
-import { createEmptyUsuario, UnidadRolList, Usuario } from './edit.vm';
-import * as innerClasses from './edit.styles';
+import { createEmptyUsuario, UnidadRolList, Usuario } from './create.vm';
+import * as innerClasses from './create.styles';
 
 interface Props {
   unidadRolList: UnidadRolList;
   onSubmit: (values: Usuario) => void;
 }
 
-export const EditUser: React.FC<Props> = props => {
+export const CreateUser: React.FC<Props> = props => {
   const { unidadRolList, onSubmit } = props;
   const classes = useWithTheme(innerClasses);
 

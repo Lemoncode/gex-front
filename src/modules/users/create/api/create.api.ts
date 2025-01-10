@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { UnidadRolList, Usuario } from './edit.api-model';
+import { UnidadRolList, Usuario } from './create.api-model';
 
 export const getUnidadRolList = async (): Promise<UnidadRolList> => {
   const response = await axios.get<UnidadRolList>('/api/lookup/unidad-rol');

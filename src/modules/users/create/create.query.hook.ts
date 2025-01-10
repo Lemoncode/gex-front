@@ -1,8 +1,8 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
 import { commonQueryKeys, queryClient } from '#core/react-query';
-import { getUnidadRolListRepository, saveUserRepository } from './edit.repository';
-import { createEmptyUnidadRolList, UnidadRolList, Usuario } from './edit.vm';
+import { getUnidadRolListRepository, saveUserRepository } from './create.repository';
+import { createEmptyUnidadRolList, UnidadRolList, Usuario } from './create.vm';
 import { usersQueryKeys } from '../users-keys';
 
 interface UseUnidadRolQueryResult {

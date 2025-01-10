@@ -1,5 +1,5 @@
 import { Lookup } from '#common/models';
-import { generateRandomPassword } from './edit.business';
+import { generateRandomPassword } from './create.business';
 
 export interface Usuario {
   nombre: string;

@@ -1,7 +1,7 @@
 import { mapToCollection } from '#common/mappers/collection.mapper.ts';
 import { Lookup } from '#common/models/lookup.model.ts';
 import * as apiModel from './api';
-import * as viewModel from './edit.vm';
+import * as viewModel from './create.vm';
 
 export const mapUnidadFromApiToVm = (unidad: Lookup): Lookup => ({
   id: unidad.id,
