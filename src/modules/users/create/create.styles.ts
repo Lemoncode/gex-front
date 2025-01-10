@@ -27,7 +27,6 @@ export const row = (theme: Theme) => css`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: ${theme.spacing(2)};
-  align-items: center;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
