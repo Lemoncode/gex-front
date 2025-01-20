@@ -1,5 +1,6 @@
 import { Validators } from '@lemoncode/fonk';
 import { createFormikValidation } from '@lemoncode/fonk-formik';
+import { validateEmailAvailability } from './validate-email-availability';
 
 const validationSchema = {
   field: {
@@ -17,6 +18,9 @@ const validationSchema = {
       {
         validator: Validators.email,
         message: 'Por favor, introduce un email válido.',
+      },
+      {
+        validator: validateEmailAvailability,
       },
     ],
     apellido: [
