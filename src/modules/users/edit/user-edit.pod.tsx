@@ -10,12 +10,12 @@ export const UserEditPod: React.FC = () => {
 
   const tabsContents: TabsObjectProps[] = [
     {
-      label: 'item 1',
-      panel: `item 1 panel content. User ID: ${id}`,
+      label: 'Ficha usuario',
+      panel: `User ID: ${id}`,
     },
     {
-      label: 'item 2',
-      panel: 'item 2 panel content',
+      label: 'Resetear clave',
+      panel: 'Resetear clave',
     },
   ];
 
