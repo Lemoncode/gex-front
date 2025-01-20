@@ -43,7 +43,7 @@ export const UserDetails: React.FC<Props> = props => {
             input: {
               endAdornment: (
                 <IconButton onClick={toggleShowPassword}>
-                  {showPassword ? <Visibility /> : <VisibilityOff />}
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               ),
             },
