@@ -45,13 +45,23 @@ export const Tabs: React.FC<TabsProps> = (props: TabsProps) => {
           aria-label="basic tabs example"
         >
           {contents.map((prop, idx) => {
-            return <Tab label={prop.label} key={prop.label} {...a11yProps(idx)} />;
+            return (
+              <Tab
+                label={prop.label}
+                key={`label-${prop.label.toLocaleLowerCase().split(' ').join('-')}-${idx}`}
+                {...a11yProps(idx)}
+              />
+            );
           })}
         </MUITabs>
       </Box>
       {contents.map((prop, idx) => {
         return (
-          <TabPanel key={idx} value={value} index={idx}>
+          <TabPanel
+            key={`panel-${prop.label.toLocaleLowerCase().split(' ').join('-')}-${idx}`}
+            value={value}
+            index={idx}
+          >
             {prop.panel}
           </TabPanel>
         );
