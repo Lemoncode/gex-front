@@ -14,6 +14,10 @@ export const userRepository = {
             totalPages: db.users.length,
           },
         },
+  isAlreadyEmailOnDB: async (email: string): Promise<boolean> => {
+    const doExist = db.users.find(users => users.email === email);
+    return !!doExist;
+  },
   createUser: async (newUser: model.Usuario): Promise<boolean> => {
     db.users.push(newUser);
     return true;
