@@ -30,28 +30,6 @@ const validationSchema = {
         message: 'Este campo es obligatorio.',
       },
     ],
-    telefono: [
-      {
-        validator: Validators.required,
-        message: 'Este campo es obligatorio.',
-      },
-      {
-        validator: Validators.pattern,
-        customArgs: { pattern: /^\+?\d{9,15}$/ },
-        message: 'Por favor, introduce un número de teléfono válido.',
-      },
-    ],
-    movil: [
-      {
-        validator: Validators.required,
-        message: 'Este campo es obligatorio.',
-      },
-      {
-        validator: Validators.pattern,
-        customArgs: { pattern: /^\+?\d{9,15}$/ },
-        message: 'Por favor, introduce un número de teléfono válido.',
-      },
-    ],
     unidad: [
       {
         validator: Validators.required,

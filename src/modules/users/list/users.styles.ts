@@ -15,16 +15,6 @@ export const header = (theme: Theme) => css`
   padding: 0 ${theme.spacing(2)};
 `;
 
-export const table = css`
-  min-width: 1200px;
-`;
-
-export const pagination = css`
-  display: flex;
-  justify-content: center;
-  padding: 10px;
-`;
-
 export const link = (theme: Theme) => css`
   color: ${theme.palette.common.black};
   text-decoration: none;
