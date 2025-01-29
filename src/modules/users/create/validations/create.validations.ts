@@ -1,51 +1,52 @@
 import { Validators } from '@lemoncode/fonk';
 import { createFormikValidation } from '@lemoncode/fonk-formik';
 import { availableEmailValidation } from './available-email.validator';
+import { validationMessages } from './create.literals';
 
 const validationSchema = {
   field: {
     nombre: [
       {
         validator: Validators.required,
-        message: 'Este campo es obligatorio.',
+        message: validationMessages.nombre.required,
       },
     ],
     email: [
       {
         validator: Validators.required,
-        message: 'Este campo es obligatorio.',
+        message: validationMessages.email.required,
       },
       {
         validator: Validators.email,
-        message: 'Por favor, introduce un email válido.',
+        message: validationMessages.email.notValid,
       },
       {
         validator: availableEmailValidation,
-        message: 'Email no disponible en el sistema, introduce otro email.',
+        message: validationMessages.email.notAvailable,
       },
     ],
     apellido: [
       {
         validator: Validators.required,
-        message: 'Este campo es obligatorio.',
+        message: validationMessages.apellido.required,
       },
     ],
     unidad: [
       {
         validator: Validators.required,
-        message: 'Este campo es obligatorio.',
+        message: validationMessages.unidad.required,
       },
     ],
     rol: [
       {
         validator: Validators.required,
-        message: 'Este campo es obligatorio.',
+        message: validationMessages.rol.required,
       },
     ],
     contraseña: [
       {
         validator: Validators.required,
-        message: 'Este campo es obligatorio.',
+        message: validationMessages.contraseña.required,
       },
     ],
   },
