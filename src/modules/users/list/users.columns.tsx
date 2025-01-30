@@ -23,8 +23,10 @@ export const useColumns = (): ColumnDef<Usuario>[] => {
       header: 'Comandos',
       cell: ({ row }) => (
         <Box display="flex" alignItems="center" gap={2}>
-          <VisibilityIcon />
           <Link to={`/users/${row.original.id}`} className={classes.link}>
+            <VisibilityIcon />
+          </Link>
+          <Link to={`/edit-user/${row.original.id}`} className={classes.link}>
             <EditIcon />
           </Link>
           <DeleteIcon />
