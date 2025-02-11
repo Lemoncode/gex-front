@@ -14,6 +14,7 @@ export const userRepository = {
             totalPages: db.users.length,
           },
         },
+  isAlreadyEmailOnDB: async (email: string): Promise<boolean> => db.users.some(user => user.email === email),
   createUser: async (newUser: model.Usuario): Promise<boolean> => {
     db.users.push(newUser);
     return true;
