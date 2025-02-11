@@ -1,14 +1,14 @@
-const defaultRequiredField = { required: 'Este campo es obligatorio.' };
+const requiredMessage = 'Este campo es obligatorio.';
 
 export const validationMessages = {
-  nombre: defaultRequiredField,
+  nombre: { required: requiredMessage },
   email: {
-    ...defaultRequiredField,
+    required: requiredMessage,
     notValid: 'Por favor, introduce un email válido.',
     notAvailable: 'Email no disponible en el sistema, introduce otro email.',
   },
-  apellido: defaultRequiredField,
-  unidad: defaultRequiredField,
-  rol: defaultRequiredField,
-  contraseña: defaultRequiredField,
+  apellido: { required: requiredMessage },
+  unidad: { required: requiredMessage },
+  rol: { required: requiredMessage },
+  contraseña: { required: requiredMessage },
 };
