@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { UserEditPod } from '#modules/users/edit';
+import { UserScene } from './edit-user.scene';
 
 export const Route = createFileRoute('/_auth/edit-user/$id')({
-  component: UserEditPod,
+  component: UserScene,
 });

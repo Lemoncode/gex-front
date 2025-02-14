@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useWithTheme } from '#core/theme/theme.hooks.ts';
-import * as innerClasses from './tabs.styles';
+import * as innerClasses from './tab-panel.styles';
 
 interface TabPanelProps {
   index: number;

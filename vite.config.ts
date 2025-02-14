@@ -12,6 +12,7 @@ export default defineConfig(({ mode }) => {
         routesDirectory: 'src/scenes',
         generatedRouteTree: 'src/core/router/route-tree.ts',
         autoCodeSplitting: true,
+        routeFileIgnorePattern: '.((scene|component|styles).(ts|tsx))',
       }),
       react(),
     ],
