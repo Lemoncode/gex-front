@@ -1,19 +1,18 @@
-import * as React from 'react';
-import { TabPanel } from './tab-panel.component';
+import React from 'react';
+import { useParams } from '@tanstack/react-router';
 import { Tabs as MUITabs, Tab, Paper } from '@mui/material/';
-
-import * as innerClasses from './tabs.styles';
+import { EditUserSheet } from '#modules/users/edit-user-sheet/edit-user-sheet.pod.tsx';
+import { EditResetPassword } from '#modules/users/edit-reset-password/edit-reset-password.pod.tsx';
+import { TabPanel } from './components/tab-panel.component';
+import * as innerClasses from './edit-user.styles';
 
 enum TabIndex {
   USER_SHEET,
   RESET_PASSWORD,
 }
 
-interface Props {
-  id: string;
-}
-
-export const Tabs: React.FC<Props> = ({ id }) => {
+export const UserScene: React.FC = () => {
+  const { id } = useParams({ from: '/_auth/edit-user/$id' });
   const [activeTab, setActiveTab] = React.useState<number>(0);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => setActiveTab(newValue);
@@ -28,10 +27,10 @@ export const Tabs: React.FC<Props> = ({ id }) => {
           </MUITabs>
         </div>
         <TabPanel value={activeTab} index={TabIndex.USER_SHEET}>
-          <h3>User id: {id}</h3>
+          <EditUserSheet id={id} />
         </TabPanel>
         <TabPanel value={activeTab} index={TabIndex.RESET_PASSWORD}>
-          <h3>Reset Password</h3>
+          <EditResetPassword />
         </TabPanel>
       </Paper>
     </div>
