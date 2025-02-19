@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link as RouterLink } from '@tanstack/react-router';
+import { Link as RouterLink, useLocation } from '@tanstack/react-router';
 
 import MuiLink from '@mui/material/Link';
 import ListItem from '@mui/material/ListItem';
@@ -10,18 +10,18 @@ import ListItemText from '@mui/material/ListItemText';
 interface ItemProps {
   text: string;
   IconComponent?: React.ComponentType;
-  // TODO: implement router links with safe types
   linkPath: string;
 }
 
 export const Item: React.FC<ItemProps> = (props: ItemProps) => {
   const { text, IconComponent, linkPath } = props;
+  const location = useLocation();
+  const isSelected = location.pathname === linkPath;
 
   return (
     <MuiLink component={RouterLink} to={linkPath} underline="none" color="textPrimary">
       <ListItem key={text}>
-        {/* TODO: implement 'active path matching' using the router hook. "/users" path is used below just as an example */}
-        <ListItemButton selected={linkPath === '/users'}>
+        <ListItemButton selected={isSelected}>
           {IconComponent && <ListItemIcon>{<IconComponent />}</ListItemIcon>}
           <ListItemText primary={text} />
         </ListItemButton>
