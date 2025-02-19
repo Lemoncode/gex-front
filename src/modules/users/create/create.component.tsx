@@ -5,7 +5,8 @@ import { NavigationButton } from '#common/components';
 import { useWithTheme } from '#core/theme';
 import { AditionalPermissions, UserDetails } from './components';
 import { formValidation } from './validations';
-import { createEmptyUsuario, UnidadRolList, Usuario } from './create.vm';
+import { UnidadRolList } from '#core/api/lookups/unidad-rol';
+import { createEmptyUsuario, Usuario } from './create.vm';
 import * as innerClasses from './create.styles';
 
 interface Props {

@@ -1,4 +1,3 @@
-import { Lookup } from '#common/models';
 import { generateRandomPassword } from './create.business';
 
 export interface Usuario {
@@ -27,14 +26,4 @@ export const createEmptyUsuario = (): Usuario => ({
   esResponsable: false,
   esProponente: false,
   esAutorizante: false,
-});
-
-export interface UnidadRolList {
-  roles: Lookup[];
-  unidades: Lookup[];
-}
-
-export const createEmptyUnidadRolList = (): UnidadRolList => ({
-  roles: [],
-  unidades: [],
 });

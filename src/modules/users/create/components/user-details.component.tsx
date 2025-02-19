@@ -4,7 +4,7 @@ import { Visibility, VisibilityOff, ContentCopy } from '@mui/icons-material';
 import { SelectForm, TextFieldForm } from '#common/components';
 import { useWithTheme } from '#core/theme';
 import { usePassword } from '../use-password.hook';
-import { UnidadRolList } from '../create.vm';
+import { UnidadRolList } from '#core/api/lookups/unidad-rol';
 import { handleCopyPassword } from '../create.business';
 import * as innerClasses from '../create.styles';
 
