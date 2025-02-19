@@ -21,7 +21,7 @@ export const SidebarMenu: React.FC<Props> = props => {
   return (
     <List className={classes.list(theme, isDrawerOpen)}>
       <Item text="Principal" IconComponent={HomeIcon} linkPath={'/'} />
-      <Item text="Expedientes" IconComponent={FolderIcon} linkPath={'/'} />
+      <Item text="Expedientes" IconComponent={FolderIcon} linkPath={'/records'} />
       <Item text="Empresas" IconComponent={ApartmentIcon} linkPath={'/'} />
       <Item text="Informes" IconComponent={LeaderboardIcon} linkPath={'/'} />
       <Divider variant="middle" />
