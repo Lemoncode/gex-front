@@ -2,7 +2,8 @@ import React from 'react';
 
 import { Form, Formik } from 'formik';
 import { useWithTheme } from '#core/theme';
-import { UnidadRolList, Usuario, createEmptyUsuario } from './edit.vm';
+import { UnidadRolList } from '#core/api/lookups/unidad-rol';
+import { Usuario, createEmptyUsuario } from './edit.vm';
 import { Button } from '@mui/material';
 import { AditionalPermissions, UserDetails } from './components';
 import { NavigationButton } from '#common/components';

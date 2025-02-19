@@ -1,5 +1,3 @@
-import { Lookup } from '#common/models';
-
 export interface Usuario {
   nombre: string;
   apellido: string;
@@ -29,8 +27,3 @@ export const createEmptyUsuario = (): Usuario => ({
   esProponente: false,
   esAutorizante: false,
 });
-
-export interface UnidadRolList {
-  roles: Lookup[];
-  unidades: Lookup[];
-}

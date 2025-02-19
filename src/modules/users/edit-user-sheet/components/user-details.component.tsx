@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography } from '@mui/material';
 import { SelectForm, TextFieldForm } from '#common/components';
 import { useWithTheme } from '#core/theme';
-import { UnidadRolList } from '../edit.vm';
+import { UnidadRolList } from '#core/api/lookups/unidad-rol';
 import * as innerClasses from '../edit.styles';
 
 interface Props {

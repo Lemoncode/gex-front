@@ -1,8 +1,7 @@
 import React from 'react';
 import { Spinner } from '#common/components/';
+import { useUnidadRolList } from '#core/api/lookups/unidad-rol';
 import { EditUser } from './edit.component';
-// TODO: Ask to refactor 'useUnidadRolList' hook and make it available throughout the entire module
-import { useUnidadRolList } from '../create/create.query.hook';
 
 interface Props {
   id: string;
