@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useWithTheme } from '#core/theme/theme.hooks.ts';
+import { useWithTheme } from '#core/theme';
 import * as innerClasses from './tab-panel.styles';
 
 interface TabPanelProps {
