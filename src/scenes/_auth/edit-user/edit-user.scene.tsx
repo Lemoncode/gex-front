@@ -30,7 +30,7 @@ export const UserScene: React.FC = () => {
           <EditUserSheet id={id} />
         </TabPanel>
         <TabPanel value={activeTab} index={TabIndex.RESET_PASSWORD}>
-          <EditResetPassword />
+          <EditResetPassword id={id} />
         </TabPanel>
       </Paper>
     </div>
