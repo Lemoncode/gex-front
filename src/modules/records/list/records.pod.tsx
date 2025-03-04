@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationButton } from '#common/components';
 import { Button } from '@mui/material';
-import { CreateRecordPod } from '../create-record';
+import { CreateRecordPod } from '../create';
 
 export const RecordsPod: React.FC = () => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
