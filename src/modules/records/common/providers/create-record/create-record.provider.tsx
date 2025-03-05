@@ -9,62 +9,54 @@ interface Props {
 export const CreateRecordProvider: React.FC<Props> = props => {
   const { children } = props;
 
-  const [formData, setFormData] = React.useState<Record>(createEmptyRecordFormData());
+  const [formData, setFormData] = React.useState<Record>(createEmptyRecordFormData);
   const [activeStep, setActiveStep] = React.useState<number>(Steps.generalData);
-  const [isOpenModal, setIsOpenModal] = React.useState<boolean>(false);
+  const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
-  const resetFormData = () => setFormData(createEmptyRecordFormData());
+  const reset = () => {
+    setFormData(createEmptyRecordFormData());
+    setActiveStep(Steps.generalData);
+  };
 
   const updateStepData = <K extends keyof Record>(step: K, data: Record[K]) =>
     setFormData(prev => ({ ...prev, [step]: data }));
 
-  const toggleModal = () => setIsOpenModal(!isOpenModal);
+  const toggleModal = () => setIsOpen(!isOpen);
   const isLastStep = activeStep === Steps.temporality;
+
+  const handleSubmitAll = async (data: Record) => {
+    console.log('Formulario enviado:', data);
+    toggleModal();
+    alert('Formulario enviado con éxito');
+  };
 
   const handleNextStep = <K extends keyof Record>(step: K, value: Record[K]) => {
     updateStepData(step, value);
     if (!isLastStep) {
       setActiveStep(prev => prev + 1);
+    } else {
+      handleSubmitAll({ ...formData, [step]: value });
     }
   };
 
   const handlePreviusStep = () => setActiveStep(prev => prev - 1);
 
-  const handleCancelCreation = () => {
-    setActiveStep(Steps.generalData);
-    resetFormData();
-    toggleModal();
-  };
-
-  const handleSubmitAll = async () => {
-    try {
-      console.log('Formulario enviado:', formData);
-      setActiveStep(1);
-      resetFormData();
-      toggleModal();
-      alert('Formulario enviado con éxito');
-    } catch (error) {
-      console.error('Error al guardar:', error);
-    }
-  };
-
   React.useEffect(() => {
-    if (formData.temporality.description !== '' && isLastStep) {
-      handleSubmitAll();
+    if (!isOpen) {
+      reset();
     }
-  }, [activeStep, formData]);
+  }, [isOpen]);
 
   return (
     <CreateRecordContext.Provider
       value={{
         formData,
         activeStep,
-        isOpenModal,
-        toggleModal,
+        isOpen,
+        onOpen: toggleModal,
         onNextStep: handleNextStep,
         onPreviousStep: handlePreviusStep,
-        onCancelCreation: handleCancelCreation,
-        onSubmitAll: handleSubmitAll,
+        onCancel: toggleModal,
       }}
     >
       {children}

@@ -5,10 +5,10 @@ import { Button } from '@mui/material';
 import { CreateRecordPod } from '../create';
 
 export const RecordsPod: React.FC = () => {
-  const { isOpenModal, toggleModal } = useCreateRecordContext();
+  const { onOpen } = useCreateRecordContext();
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      <Button variant="contained" color="primary" onClick={toggleModal}>
+      <Button variant="contained" color="primary" onClick={onOpen}>
         Crear expediente
       </Button>
       <NavigationButton
@@ -18,7 +18,7 @@ export const RecordsPod: React.FC = () => {
           id: '123456',
         }}
       />
-      <CreateRecordPod isOpenModal={isOpenModal} toggleModal={toggleModal} />
+      <CreateRecordPod />
     </div>
   );
 };

@@ -5,14 +5,8 @@ import { BudgetStep, GeneralDataStep, TemporalityStep } from './components';
 import * as innerClasses from './create-record.styles';
 import { useCreateRecordContext } from '../common/providers';
 
-interface Props {
-  isOpenModal: boolean;
-  toggleModal: () => void;
-}
-
-export const CreateRecord: React.FC<Props> = props => {
-  const { isOpenModal, toggleModal } = props;
-  const { activeStep } = useCreateRecordContext();
+export const CreateRecord: React.FC = () => {
+  const { activeStep, isOpen, onCancel } = useCreateRecordContext();
   const classes = useWithTheme(innerClasses);
 
   const steps = ['Datos generales', 'Presupuesto base', 'Temporalidad'];
@@ -29,7 +23,7 @@ export const CreateRecord: React.FC<Props> = props => {
   };
 
   return (
-    <Dialog open={isOpenModal} onClose={toggleModal} maxWidth="md" fullWidth>
+    <Dialog open={isOpen} onClose={onCancel} maxWidth="md" fullWidth>
       <DialogTitle>Crear nuevo expediente</DialogTitle>
       <DialogContent>
         <div className={classes.root}>

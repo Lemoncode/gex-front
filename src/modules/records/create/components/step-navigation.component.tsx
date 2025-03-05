@@ -5,12 +5,12 @@ import { Steps, useCreateRecordContext } from '#modules/records/common/providers
 import * as innerClasses from './step-navigation.styles';
 
 export const StepNavigation: React.FC = () => {
-  const { activeStep, onCancelCreation, onPreviousStep } = useCreateRecordContext();
+  const { activeStep, onCancel, onPreviousStep } = useCreateRecordContext();
   const classes = useWithTheme(innerClasses);
 
   return (
     <div className={classes.buttonContainer}>
-      <Button onClick={onCancelCreation}>Cancelar</Button>
+      <Button onClick={onCancel}>Cancelar</Button>
       <div className={classes.buttonGroup}>
         {activeStep !== Steps.generalData && (
           <Button variant="outlined" onClick={onPreviousStep}>
