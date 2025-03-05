@@ -5,9 +5,6 @@ interface CreateRecordContextProps {
   formData: Record;
   activeStep: number;
   isOpenModal: boolean;
-  isLastStep: boolean;
-  resetFormData: () => void;
-  updateStepData: <K extends keyof Record>(step: K, data: Record[K]) => void;
   toggleModal: () => void;
   onNextStep: <K extends keyof Record>(step: K, value: Record[K]) => void;
   onPreviousStep: () => void;

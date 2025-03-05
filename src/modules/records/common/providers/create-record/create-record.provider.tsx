@@ -15,17 +15,15 @@ export const CreateRecordProvider: React.FC<Props> = props => {
 
   const resetFormData = () => setFormData(createEmptyRecordFormData());
 
-  const updateStepData = <K extends keyof Record>(step: K, data: Record[K]) => {
+  const updateStepData = <K extends keyof Record>(step: K, data: Record[K]) =>
     setFormData(prev => ({ ...prev, [step]: data }));
-  };
 
   const toggleModal = () => setIsOpenModal(!isOpenModal);
+  const isLastStep = activeStep === Steps.temporality;
 
   const handleNextStep = <K extends keyof Record>(step: K, value: Record[K]) => {
     updateStepData(step, value);
-    if (step === 'temporality') {
-      handleSubmitAll();
-    } else {
+    if (!isLastStep) {
       setActiveStep(prev => prev + 1);
     }
   };
@@ -37,8 +35,6 @@ export const CreateRecordProvider: React.FC<Props> = props => {
     resetFormData();
     toggleModal();
   };
-
-  const isLastStep = activeStep === Steps.temporality;
 
   const handleSubmitAll = async () => {
     try {
@@ -52,14 +48,17 @@ export const CreateRecordProvider: React.FC<Props> = props => {
     }
   };
 
+  React.useEffect(() => {
+    if (formData.temporality.description !== '' && isLastStep) {
+      handleSubmitAll();
+    }
+  }, [activeStep, formData]);
+
   return (
     <CreateRecordContext.Provider
       value={{
         formData,
         activeStep,
-        isLastStep,
-        resetFormData,
-        updateStepData,
         isOpenModal,
         toggleModal,
         onNextStep: handleNextStep,
