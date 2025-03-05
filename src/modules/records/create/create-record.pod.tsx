@@ -1,6 +1,7 @@
 import React from 'react';
-import { Button, Dialog, DialogContent, DialogTitle, Step, StepLabel, Stepper } from '@mui/material';
+import { Dialog, DialogContent, DialogTitle, Step, StepLabel, Stepper } from '@mui/material';
 import { useWithTheme } from '#core/theme/theme.hooks.ts';
+import { useCreateRecordContext } from './create-record.context';
 import { BudgetStep, GeneralDataStep, TemporalityStep } from './components';
 import * as innerClasses from './create-record.styles';
 
@@ -16,17 +17,31 @@ interface Props {
 }
 
 export const CreateRecordPod: React.FC<Props> = props => {
-  const { isOpen, toggleModal } = props;
   const classes = useWithTheme(innerClasses);
-
+  const { isOpen, toggleModal } = props;
+  const { formData } = useCreateRecordContext();
   const [activeStep, setActiveStep] = React.useState<number>(0);
 
-  const handleNext = () =>
-    activeStep === steps.length - 1
-      ? console.log('Final step reached')
-      : setActiveStep(prevActiveStep => prevActiveStep + 1);
+  const handleNext = () => (activeStep === steps.length - 1 ? handleSubmitAll() : setActiveStep(prev => prev + 1));
 
-  const handleBack = () => setActiveStep(prevActiveStep => prevActiveStep - 1);
+  const handleBack = () => setActiveStep(prev => prev - 1);
+
+  const handleSubmitAll = async () => {
+    try {
+      console.log('Datos finales:', formData);
+      alert('Formulario enviado con éxito');
+      toggleModal();
+      setActiveStep(0);
+    } catch (error) {
+      console.error('Error al guardar:', error);
+    }
+  };
+
+  const handleCancel = () => {
+    setActiveStep(0);
+    toggleModal();
+  };
+
   const { Component } = steps[activeStep];
 
   return (
@@ -41,20 +56,12 @@ export const CreateRecordPod: React.FC<Props> = props => {
               </Step>
             ))}
           </Stepper>
-          {/* Componentes segun el step */}
-          <Component />
-          {/* Mostrar botones según step */}
-          <div className={classes.buttonContainer}>
-            <Button onClick={() => toggleModal()}>Cancelar</Button>
-            <div className={classes.buttonGroup}>
-              <Button variant="outlined" disabled={activeStep === 0} onClick={handleBack}>
-                Anterior
-              </Button>
-              <Button onClick={handleNext} variant="contained">
-                {activeStep === steps.length - 1 ? 'Guardar' : 'Siguiente'}
-              </Button>
-            </div>
-          </div>
+          <Component
+            isLastStep={activeStep === steps.length - 1}
+            onBack={handleBack}
+            onNext={handleNext}
+            onCancel={handleCancel}
+          />
         </div>
       </DialogContent>
     </Dialog>
