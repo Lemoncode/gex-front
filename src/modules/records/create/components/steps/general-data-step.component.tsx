@@ -7,10 +7,10 @@ import { StepNavigation } from '../step-navigation.component';
 import * as classes from './steps.styles';
 
 export const GeneralDataStep: React.FC = () => {
-  const { formData, updateStepData } = useCreateRecordContext();
+  const { formData, onNextStep } = useCreateRecordContext();
 
   const handleSubmit = (values: GeneralData) => {
-    updateStepData('generalData', values);
+    onNextStep('generalData', values);
   };
 
   return (

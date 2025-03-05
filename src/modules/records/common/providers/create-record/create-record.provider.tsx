@@ -10,31 +10,30 @@ export const CreateRecordProvider: React.FC<Props> = props => {
   const { children } = props;
 
   const [formData, setFormData] = React.useState<Record>(createEmptyRecordFormData());
-  const [activeStep, setActiveStep] = React.useState<number>(1);
+  const [activeStep, setActiveStep] = React.useState<number>(Steps.generalData);
   const [isOpenModal, setIsOpenModal] = React.useState<boolean>(false);
 
   const resetFormData = () => setFormData(createEmptyRecordFormData());
 
   const updateStepData = <K extends keyof Record>(step: K, data: Record[K]) => {
     setFormData(prev => ({ ...prev, [step]: data }));
-    handleNextStep();
-    console.log('Formulario actualizado:', formData);
   };
 
   const toggleModal = () => setIsOpenModal(!isOpenModal);
 
-  const handleNextStep = () => {
-    if (activeStep === Steps.temporality) {
+  const handleNextStep = <K extends keyof Record>(step: K, value: Record[K]) => {
+    updateStepData(step, value);
+    if (step === 'temporality') {
       handleSubmitAll();
-      return;
+    } else {
+      setActiveStep(prev => prev + 1);
     }
-    setActiveStep(prev => prev + 1);
   };
 
   const handlePreviusStep = () => setActiveStep(prev => prev - 1);
 
   const handleCancelCreation = () => {
-    setActiveStep(1);
+    setActiveStep(Steps.generalData);
     resetFormData();
     toggleModal();
   };

@@ -7,10 +7,10 @@ import { temporalityValidation } from '../validations';
 import * as classes from './steps.styles';
 
 export const TemporalityStep: React.FC = () => {
-  const { updateStepData, formData } = useCreateRecordContext();
+  const { formData, onNextStep } = useCreateRecordContext();
 
   const handleSubmit = (values: Temporality) => {
-    updateStepData('temporality', values);
+    onNextStep('temporality', values);
   };
 
   return (

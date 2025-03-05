@@ -9,7 +9,7 @@ interface CreateRecordContextProps {
   resetFormData: () => void;
   updateStepData: <K extends keyof Record>(step: K, data: Record[K]) => void;
   toggleModal: () => void;
-  onNextStep: (data: any) => void;
+  onNextStep: <K extends keyof Record>(step: K, value: Record[K]) => void;
   onPreviousStep: () => void;
   onCancelCreation: () => void;
   onSubmitAll: () => void;

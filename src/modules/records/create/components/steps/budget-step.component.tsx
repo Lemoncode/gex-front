@@ -7,10 +7,10 @@ import { budgetValidation } from '../validations';
 import * as classes from './steps.styles';
 
 export const BudgetStep: React.FC = () => {
-  const { updateStepData, formData } = useCreateRecordContext();
+  const { formData, onNextStep } = useCreateRecordContext();
 
   const handleSubmit = (values: Budget) => {
-    updateStepData('budget', values);
+    onNextStep('budget', values);
   };
 
   return (

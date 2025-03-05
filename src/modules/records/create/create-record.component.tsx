@@ -13,7 +13,6 @@ interface Props {
 export const CreateRecord: React.FC<Props> = props => {
   const { isOpenModal, toggleModal } = props;
   const { activeStep } = useCreateRecordContext();
-  console.log(activeStep);
   const classes = useWithTheme(innerClasses);
 
   const steps = ['Datos generales', 'Presupuesto base', 'Temporalidad'];
