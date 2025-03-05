@@ -3,8 +3,16 @@ import { Record } from './create-record.vm';
 
 interface CreateRecordContextProps {
   formData: Record;
+  activeStep: number;
+  isOpenModal: boolean;
+  isLastStep: boolean;
   resetFormData: () => void;
   updateStepData: <K extends keyof Record>(step: K, data: Record[K]) => void;
+  toggleModal: () => void;
+  onNextStep: (data: any) => void;
+  onPreviousStep: () => void;
+  onCancelCreation: () => void;
+  onSubmitAll: () => void;
 }
 
 export const CreateRecordContext = React.createContext<CreateRecordContextProps | undefined>(undefined);

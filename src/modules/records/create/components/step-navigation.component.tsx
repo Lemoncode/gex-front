@@ -1,31 +1,24 @@
 import React from 'react';
 import { Button } from '@mui/material';
-import { useFormikContext } from 'formik';
 import { useWithTheme } from '#core/theme/theme.hooks.ts';
+import { Steps, useCreateRecordContext } from '#modules/records/common/providers';
 import * as innerClasses from './step-navigation.styles';
 
-interface Props {
-  onCancel: () => void;
-  onBack?: () => void;
-  isLastStep?: boolean;
-}
-
-export const StepNavigation: React.FC<Props> = props => {
-  const { onBack, onCancel, isLastStep } = props;
+export const StepNavigation: React.FC = () => {
+  const { activeStep, onCancelCreation, onPreviousStep } = useCreateRecordContext();
   const classes = useWithTheme(innerClasses);
-  const formik = useFormikContext();
 
   return (
     <div className={classes.buttonContainer}>
-      <Button onClick={onCancel}>Cancelar</Button>
+      <Button onClick={onCancelCreation}>Cancelar</Button>
       <div className={classes.buttonGroup}>
-        {onBack && (
-          <Button variant="outlined" onClick={onBack}>
+        {activeStep !== Steps.generalData && (
+          <Button variant="outlined" onClick={onPreviousStep}>
             Anterior
           </Button>
         )}
-        <Button type="submit" variant="contained" disabled={formik.isSubmitting}>
-          {isLastStep ? 'Guardar' : 'Siguiente'}
+        <Button type="submit" variant="contained">
+          {activeStep === Steps.temporality ? 'Guardar' : 'Siguiente'}
         </Button>
       </div>
     </div>

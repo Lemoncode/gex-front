@@ -1,6 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router';
+import { CreateRecordProvider } from '#modules/records/common/providers';
 import { RecordsPod } from '#modules/records/list';
 
 export const Route = createFileRoute('/_auth/records/')({
-  component: RecordsPod,
+  component: () => (
+    <CreateRecordProvider>
+      <RecordsPod />
+    </CreateRecordProvider>
+  ),
 });

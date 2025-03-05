@@ -6,20 +6,11 @@ import { StepNavigation } from '../step-navigation.component';
 import { temporalityValidation } from '../validations';
 import * as classes from './steps.styles';
 
-interface Props {
-  isLastStep: boolean;
-  onNext: () => void;
-  onBack: () => void;
-  onCancel: () => void;
-}
-
-export const TemporalityStep: React.FC<Props> = props => {
-  const { onNext, onBack, onCancel, isLastStep } = props;
+export const TemporalityStep: React.FC = () => {
   const { updateStepData, formData } = useCreateRecordContext();
 
   const handleSubmit = (values: Temporality) => {
     updateStepData('temporality', values);
-    onNext();
   };
 
   return (
@@ -32,7 +23,7 @@ export const TemporalityStep: React.FC<Props> = props => {
       {() => (
         <Form className={classes.form}>
           <TextFieldForm name="description" label="Descripcion" />
-          <StepNavigation onBack={onBack} isLastStep={isLastStep} onCancel={onCancel} />
+          <StepNavigation />
         </Form>
       )}
     </Formik>

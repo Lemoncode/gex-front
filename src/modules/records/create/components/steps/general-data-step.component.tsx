@@ -1,24 +1,16 @@
 import React from 'react';
 import { Form, Formik } from 'formik';
 import { TextFieldForm } from '#common/components';
-import { useCreateRecordContext, GeneralData } from '#modules/records/common/providers';
+import { GeneralData, useCreateRecordContext } from '#modules/records/common/providers';
 import { generalDataValidation } from '../validations';
 import { StepNavigation } from '../step-navigation.component';
 import * as classes from './steps.styles';
 
-interface Props {
-  isLastStep: boolean;
-  onNext: () => void;
-  onCancel: () => void;
-}
-
-export const GeneralDataStep: React.FC<Props> = props => {
-  const { onNext, onCancel, isLastStep } = props;
-  const { updateStepData, formData } = useCreateRecordContext();
+export const GeneralDataStep: React.FC = () => {
+  const { formData, updateStepData } = useCreateRecordContext();
 
   const handleSubmit = (values: GeneralData) => {
     updateStepData('generalData', values);
-    onNext();
   };
 
   return (
@@ -31,7 +23,7 @@ export const GeneralDataStep: React.FC<Props> = props => {
       {() => (
         <Form className={classes.form}>
           <TextFieldForm name="name" label="Nombre" />
-          <StepNavigation isLastStep={isLastStep} onCancel={onCancel} />
+          <StepNavigation />
         </Form>
       )}
     </Formik>

@@ -1,28 +1,24 @@
 import React from 'react';
 import { NavigationButton } from '#common/components';
-import { CreateRecordProvider } from '#modules/records/common/providers';
+import { useCreateRecordContext } from '#modules/records/common/providers';
 import { Button } from '@mui/material';
 import { CreateRecordPod } from '../create';
 
 export const RecordsPod: React.FC = () => {
-  const [isOpen, setIsOpen] = React.useState<boolean>(false);
-
-  const toggleModal = () => setIsOpen(!isOpen);
+  const { isOpenModal, toggleModal } = useCreateRecordContext();
   return (
-    <CreateRecordProvider>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        <Button variant="contained" color="primary" onClick={toggleModal}>
-          Crear expediente
-        </Button>
-        <NavigationButton
-          text="Editar expediente"
-          path="/edit-record/$id"
-          params={{
-            id: '123456',
-          }}
-        />
-        <CreateRecordPod isOpen={isOpen} toggleModal={toggleModal} />
-      </div>
-    </CreateRecordProvider>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+      <Button variant="contained" color="primary" onClick={toggleModal}>
+        Crear expediente
+      </Button>
+      <NavigationButton
+        text="Editar expediente"
+        path="/edit-record/$id"
+        params={{
+          id: '123456',
+        }}
+      />
+      <CreateRecordPod isOpenModal={isOpenModal} toggleModal={toggleModal} />
+    </div>
   );
 };

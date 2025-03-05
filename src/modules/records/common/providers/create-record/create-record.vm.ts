@@ -27,3 +27,9 @@ export const createEmptyRecordFormData = (): Record => ({
     description: '',
   },
 });
+
+export enum Steps {
+  generalData = 1,
+  budget = 2,
+  temporality = 3,
+}
