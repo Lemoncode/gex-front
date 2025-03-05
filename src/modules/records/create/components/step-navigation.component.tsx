@@ -14,6 +14,7 @@ export const StepNavigation: React.FC<Props> = props => {
   const { onBack, onCancel, isLastStep } = props;
   const classes = useWithTheme(innerClasses);
   const formik = useFormikContext();
+
   return (
     <div className={classes.buttonContainer}>
       <Button onClick={onCancel}>Cancelar</Button>

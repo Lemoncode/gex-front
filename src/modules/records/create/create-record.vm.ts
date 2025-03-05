@@ -7,17 +7,16 @@ export interface Budget {
 }
 
 export interface Temporality {
-  startDate: Date;
-  endDate: Date;
+  description: string;
 }
 
-export interface RecordFormData {
+export interface Record {
   generalData: GeneralData;
   budget: Budget;
   temporality: Temporality;
 }
 
-export const createEmptyRecordFormData = (): RecordFormData => ({
+export const createEmptyRecordFormData = (): Record => ({
   generalData: {
     name: '',
   },
@@ -25,7 +24,6 @@ export const createEmptyRecordFormData = (): RecordFormData => ({
     amount: 0,
   },
   temporality: {
-    startDate: new Date(),
-    endDate: new Date(),
+    description: '',
   },
 });

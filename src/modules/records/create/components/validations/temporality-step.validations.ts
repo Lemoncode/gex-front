@@ -3,8 +3,7 @@ import { createFormikValidation } from '@lemoncode/fonk-formik';
 
 const validationSchema = {
   field: {
-    startDate: [Validators.required],
-    endDate: [Validators.required],
+    description: [Validators.required],
   },
 };
 

@@ -5,6 +5,7 @@ import { StepNavigation } from '../step-navigation.component';
 import { useCreateRecordContext } from '../../create-record.context';
 import { budgetValidation } from '../validations';
 import { Budget } from '../../create-record.vm';
+import * as classes from './steps.styles';
 
 interface Props {
   isLastStep: boolean;
@@ -30,7 +31,7 @@ export const BudgetStep: React.FC<Props> = props => {
       validate={budgetValidation.validateForm}
     >
       {() => (
-        <Form style={{ width: '100%' }}>
+        <Form className={classes.form}>
           <TextFieldForm type="number" name="amount" label="Cantidad" />
           <StepNavigation onBack={onBack} isLastStep={isLastStep} onCancel={onCancel} />
         </Form>

@@ -5,6 +5,7 @@ import { StepNavigation } from '../step-navigation.component';
 import { temporalityValidation } from '../validations';
 import { useCreateRecordContext } from '../../create-record.context';
 import { Temporality } from '../../create-record.vm';
+import * as classes from './steps.styles';
 
 interface Props {
   isLastStep: boolean;
@@ -30,9 +31,8 @@ export const TemporalityStep: React.FC<Props> = props => {
       validate={temporalityValidation.validateForm}
     >
       {() => (
-        <Form style={{ width: '100%' }}>
-          <TextFieldForm type="date" name="startDate" label="Fecha de inicio" />
-          <TextFieldForm type="date" name="endDate" label="Fecha de fin" />
+        <Form className={classes.form}>
+          <TextFieldForm name="description" label="Descripcion" />
           <StepNavigation onBack={onBack} isLastStep={isLastStep} onCancel={onCancel} />
         </Form>
       )}

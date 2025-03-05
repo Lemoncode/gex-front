@@ -5,6 +5,7 @@ import { generalDataValidation } from '../validations';
 import { useCreateRecordContext } from '../../create-record.context';
 import { StepNavigation } from '../step-navigation.component';
 import { GeneralData } from '../../create-record.vm';
+import * as classes from './steps.styles';
 
 interface Props {
   isLastStep: boolean;
@@ -29,7 +30,7 @@ export const GeneralDataStep: React.FC<Props> = props => {
       validate={generalDataValidation.validateForm}
     >
       {() => (
-        <Form style={{ width: '100%' }}>
+        <Form className={classes.form}>
           <TextFieldForm name="name" label="Nombre" />
           <StepNavigation isLastStep={isLastStep} onCancel={onCancel} />
         </Form>

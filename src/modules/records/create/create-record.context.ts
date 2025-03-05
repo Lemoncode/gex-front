@@ -1,10 +1,10 @@
 import React from 'react';
-import { RecordFormData } from './create-record.vm';
+import { Record } from './create-record.vm';
 
 interface CreateRecordContextProps {
-  formData: RecordFormData;
+  formData: Record;
   resetFormData: () => void;
-  updateStepData: <K extends keyof RecordFormData>(step: K, data: RecordFormData[K]) => void;
+  updateStepData: <K extends keyof Record>(step: K, data: Record[K]) => void;
 }
 
 export const CreateRecordContext = React.createContext<CreateRecordContextProps | undefined>(undefined);
