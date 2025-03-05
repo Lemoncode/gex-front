@@ -1,10 +1,9 @@
 import React from 'react';
 import { Form, Formik } from 'formik';
 import { TextFieldForm } from '#common/components';
+import { useCreateRecordContext, GeneralData } from '#modules/records/common/providers';
 import { generalDataValidation } from '../validations';
-import { useCreateRecordContext } from '../../create-record.context';
 import { StepNavigation } from '../step-navigation.component';
-import { GeneralData } from '../../create-record.vm';
 import * as classes from './steps.styles';
 
 interface Props {

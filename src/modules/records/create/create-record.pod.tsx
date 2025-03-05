@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCreateRecordContext } from './create-record.context';
+import { useCreateRecordContext } from '#modules/records/common/providers';
 import { CreateRecord } from './create-record.component';
 import { BudgetStep, GeneralDataStep, TemporalityStep } from './components';
 import { useSaveRecord } from './create-record.query.hook';

@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { Record } from './create-record.vm';
+import { Record } from '../common/providers/create-record/create-record.vm';
 import { saveRecordRepository } from './create-record.repository';
 
 interface UseSaveRecordMutationResult {
