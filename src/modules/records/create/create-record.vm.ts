@@ -16,3 +16,16 @@ export interface RecordFormData {
   budget: Budget;
   temporality: Temporality;
 }
+
+export const createEmptyRecordFormData = (): RecordFormData => ({
+  generalData: {
+    name: '',
+  },
+  budget: {
+    amount: 0,
+  },
+  temporality: {
+    startDate: new Date(),
+    endDate: new Date(),
+  },
+});

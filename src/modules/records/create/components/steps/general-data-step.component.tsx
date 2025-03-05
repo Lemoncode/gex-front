@@ -1,10 +1,10 @@
 import React from 'react';
 import { Form, Formik } from 'formik';
 import { TextFieldForm } from '#common/components';
-import { generalDataValidation } from './validations';
-import { useCreateRecordContext } from '../create-record.context';
-import { StepNavigation } from './step-navigation.component';
-import { GeneralData } from '../create-record.vm';
+import { generalDataValidation } from '../validations';
+import { useCreateRecordContext } from '../../create-record.context';
+import { StepNavigation } from '../step-navigation.component';
+import { GeneralData } from '../../create-record.vm';
 
 interface Props {
   isLastStep: boolean;

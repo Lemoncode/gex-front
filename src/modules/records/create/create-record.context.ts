@@ -3,6 +3,7 @@ import { RecordFormData } from './create-record.vm';
 
 interface CreateRecordContextProps {
   formData: RecordFormData;
+  resetFormData: () => void;
   updateStepData: <K extends keyof RecordFormData>(step: K, data: RecordFormData[K]) => void;
 }
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Form, Formik } from 'formik';
 import { TextFieldForm } from '#common/components';
-import { StepNavigation } from './step-navigation.component';
-import { temporalityValidation } from './validations';
-import { useCreateRecordContext } from '../create-record.context';
-import { Temporality } from '../create-record.vm';
+import { StepNavigation } from '../step-navigation.component';
+import { useCreateRecordContext } from '../../create-record.context';
+import { budgetValidation } from '../validations';
+import { Budget } from '../../create-record.vm';
 
 interface Props {
   isLastStep: boolean;
@@ -13,26 +13,25 @@ interface Props {
   onCancel: () => void;
 }
 
-export const TemporalityStep: React.FC<Props> = props => {
+export const BudgetStep: React.FC<Props> = props => {
   const { onNext, onBack, onCancel, isLastStep } = props;
   const { updateStepData, formData } = useCreateRecordContext();
 
-  const handleSubmit = (values: Temporality) => {
-    updateStepData('temporality', values);
+  const handleSubmit = (values: Budget) => {
+    updateStepData('budget', values);
     onNext();
   };
 
   return (
     <Formik
-      initialValues={formData.temporality}
+      initialValues={formData.budget}
       enableReinitialize={true}
       onSubmit={handleSubmit}
-      validate={temporalityValidation.validateForm}
+      validate={budgetValidation.validateForm}
     >
       {() => (
         <Form style={{ width: '100%' }}>
-          <TextFieldForm type="date" name="startDate" label="Fecha de inicio" />
-          <TextFieldForm type="date" name="endDate" label="Fecha de fin" />
+          <TextFieldForm type="number" name="amount" label="Cantidad" />
           <StepNavigation onBack={onBack} isLastStep={isLastStep} onCancel={onCancel} />
         </Form>
       )}
