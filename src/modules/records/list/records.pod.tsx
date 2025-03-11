@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavigationButton } from '#common/components';
-import { useCreateRecordContext } from '#modules/records/common/providers';
+import { useCreateRecordContext } from '#modules/records/core/providers';
 import { Button } from '@mui/material';
 import { CreateRecordPod } from '../create';
 
