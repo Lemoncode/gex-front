@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Formik } from 'formik';
 import { TextFieldForm } from '#common/components';
-import { useCreateRecordContext, Temporality } from '#modules/records/common/providers';
+import { useCreateRecordContext, Temporality } from '#modules/records/core/providers';
 import { StepNavigation } from '../step-navigation.component';
 import { temporalityValidation } from '../validations';
 import * as classes from './steps.styles';

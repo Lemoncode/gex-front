@@ -3,7 +3,7 @@ import { Dialog, DialogContent, DialogTitle, Step, StepLabel, Stepper } from '@m
 import { useWithTheme } from '#core/theme';
 import { BudgetStep, GeneralDataStep, TemporalityStep } from './components';
 import * as innerClasses from './create-record.styles';
-import { useCreateRecordContext } from '../common/providers';
+import { useCreateRecordContext } from '../core/providers';
 
 export const CreateRecord: React.FC = () => {
   const { activeStep, isOpen, onCancel } = useCreateRecordContext();
