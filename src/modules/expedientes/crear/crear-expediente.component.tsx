@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dialog, DialogContent, DialogTitle, Step, StepLabel, Stepper } from '@mui/material';
 import { useWithTheme } from '#core/theme';
-import { useCreateExpedienteContext } from '../core/providers';
+import { Steps, useCreateExpedienteContext } from '../core/providers';
 import { PresupuestoBaseStep, DatosGeneralesStep, TemporalityStep } from './components';
 import * as innerClasses from './crear-expediente.styles';
 
@@ -9,15 +9,15 @@ export const CrearExpediente: React.FC = () => {
   const { activeStep, isOpen, onCancel } = useCreateExpedienteContext();
   const classes = useWithTheme(innerClasses);
 
-  const steps = ['Datos generales', 'Presupuesto base', 'Temporalidad'];
+  const STEPS = ['Datos generales', 'Presupuesto base', 'Temporalidad'];
 
   const stepComponent = (activeStep: number) => {
     switch (activeStep) {
-      case 1:
+      case Steps.DATOS_GENERALES:
         return <DatosGeneralesStep />;
-      case 2:
+      case Steps.PRESUPUESTO_BASE:
         return <PresupuestoBaseStep />;
-      case 3:
+      case Steps.TEMPORALIDAD:
         return <TemporalityStep />;
     }
   };
@@ -28,7 +28,7 @@ export const CrearExpediente: React.FC = () => {
       <DialogContent>
         <div className={classes.root}>
           <Stepper activeStep={activeStep} className={classes.stepperContainer}>
-            {steps.map(step => (
+            {STEPS.map(step => (
               <Step key={step}>
                 <StepLabel>{step}</StepLabel>
               </Step>
