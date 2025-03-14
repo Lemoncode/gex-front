@@ -1,7 +1,8 @@
 import React from 'react';
 import { Spinner } from '#common/components';
+import { useUnidadRolList } from '#core/api/lookups/unidad-rol';
 import { CreateUser } from './create.component';
-import { useSaveUserMutation, useUnidadRolList } from './create.query.hook';
+import { useSaveUserMutation } from './create.query.hook';
 import { Usuario } from './create.vm';
 
 export const CreateUserPod: React.FC = () => {

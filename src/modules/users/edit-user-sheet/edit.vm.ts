@@ -1,10 +1,9 @@
-import { generateRandomPassword } from './create.business';
-
 export interface Usuario {
   nombre: string;
   apellido: string;
   telefono: string;
   movil: string;
+  telefonoInstitucional: string;
   email: string;
   rol: string;
   unidad: string;
@@ -19,10 +18,11 @@ export const createEmptyUsuario = (): Usuario => ({
   apellido: '',
   telefono: '',
   movil: '',
+  telefonoInstitucional: '',
   email: '',
   rol: '',
   unidad: '',
-  contraseña: generateRandomPassword(),
+  contraseña: '',
   esResponsable: false,
   esProponente: false,
   esAutorizante: false,
