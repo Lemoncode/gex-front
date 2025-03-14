@@ -1,10 +1,12 @@
-import { ColumnDef } from '@tanstack/react-table';
-import { Link } from '@tanstack/react-router';
-import { Chip, Box } from '@mui/material';
-import { Edit as EditIcon, Delete as DeleteIcon, Visibility as VisibilityIcon } from '@mui/icons-material';
-import { useWithTheme } from '#core/theme';
-import { Expediente } from './expedientes.vm';
 import * as innerClasses from './expedientes.styles';
+
+import { Box, Chip } from '@mui/material';
+import { Delete as DeleteIcon, Edit as EditIcon, Visibility as VisibilityIcon } from '@mui/icons-material';
+
+import { ColumnDef } from '@tanstack/react-table';
+import { Expediente } from './expedientes.vm';
+import { Link } from '@tanstack/react-router';
+import { useWithTheme } from '#core/theme';
 
 export const useColumns = (): ColumnDef<Expediente>[] => {
   const classes = useWithTheme(innerClasses);
