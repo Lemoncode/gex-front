@@ -2,19 +2,19 @@ import React from 'react';
 import { useWithTheme } from '#core/theme';
 import { Pagination, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } from '@tanstack/react-table';
-import { Record } from '../records.vm';
+import { Expediente } from '../expedientes.vm';
 import * as innerClasses from './table.styles';
 
 interface Props {
-  columns: ColumnDef<Record>[];
-  recordCollection: Record[];
+  columns: ColumnDef<Expediente>[];
+  expedienteCollection: Expediente[];
   totalItems: number;
   currentPage: number;
   onPageChange: (event: React.ChangeEvent<unknown>, page: number) => void;
 }
 
 export const TableComponent: React.FC<Props> = props => {
-  const { columns, recordCollection: data, totalItems, currentPage, onPageChange } = props;
+  const { columns, expedienteCollection: data, totalItems, currentPage, onPageChange } = props;
   const classes = useWithTheme(innerClasses);
   const tableInstance = useReactTable({
     data,

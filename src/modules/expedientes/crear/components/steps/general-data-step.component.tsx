@@ -1,28 +1,28 @@
 import React from 'react';
 import { Form, Formik } from 'formik';
 import { TextFieldForm } from '#common/components';
-import { useCreateRecordContext, Temporality } from '#modules/records/core/providers';
+import { GeneralData, useCreateRecordContext } from '#modules/expedientes/core/providers';
+import { generalDataValidation } from '../validations';
 import { StepNavigation } from '../step-navigation.component';
-import { temporalityValidation } from '../validations';
 import * as classes from './steps.styles';
 
-export const TemporalityStep: React.FC = () => {
+export const GeneralDataStep: React.FC = () => {
   const { formData, onNextStep } = useCreateRecordContext();
 
-  const handleSubmit = (values: Temporality) => {
-    onNextStep('temporality', values);
+  const handleSubmit = (values: GeneralData) => {
+    onNextStep('generalData', values);
   };
 
   return (
     <Formik
-      initialValues={formData.temporality}
+      initialValues={formData.generalData}
       enableReinitialize={true}
       onSubmit={handleSubmit}
-      validate={temporalityValidation.validateForm}
+      validate={generalDataValidation.validateForm}
     >
       {() => (
         <Form className={classes.form}>
-          <TextFieldForm name="description" label="Descripcion" />
+          <TextFieldForm name="name" label="Nombre" />
           <StepNavigation />
         </Form>
       )}

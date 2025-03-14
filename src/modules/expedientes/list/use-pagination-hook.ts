@@ -1,16 +1,16 @@
 import React from 'react';
-import { useRecordsQuery } from './records.query.hook';
+import { useExpedientesQuery } from './expedientes.query.hook';
 
 export const usePagination = (initialPage: number = 0, pageSize: number = 10) => {
   const [currentPage, setCurrentPage] = React.useState(initialPage);
-  const { recordCollection, isLoading } = useRecordsQuery({ page: currentPage, pageSize });
+  const { expedienteCollection, isLoading } = useExpedientesQuery({ page: currentPage, pageSize });
 
   const handleChangePage = (_: React.ChangeEvent<unknown>, newPage: number) => setCurrentPage(newPage - 1);
 
   return {
-    recordCollection,
+    expedienteCollection,
     currentPage,
-    totalPages: recordCollection.pagination.totalPages,
+    totalPages: expedienteCollection.pagination.totalPages,
     isLoading,
     onPageChange: handleChangePage,
   };

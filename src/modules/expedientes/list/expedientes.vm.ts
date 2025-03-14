@@ -1,4 +1,4 @@
-export interface Record {
+export interface Expediente {
   id: string;
   clase: string;
   titulo: string;
@@ -6,7 +6,7 @@ export interface Record {
   estado: string;
 }
 
-export const createEmptyRecord = (): Record => ({
+export const createEmptyExpediente = (): Expediente => ({
   id: '',
   clase: '',
   titulo: '',
@@ -14,7 +14,7 @@ export const createEmptyRecord = (): Record => ({
   estado: '',
 });
 
-export interface RecordQueryFilter {
+export interface ExpedienteQueryFilter {
   page: number;
   pageSize: number;
 }

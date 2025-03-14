@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@mui/material';
 import { useWithTheme } from '#core/theme/theme.hooks.ts';
-import { Steps, useCreateRecordContext } from '#modules/records/core/providers';
+import { Steps, useCreateRecordContext } from '#modules/expedientes/core/providers';
 import * as innerClasses from './step-navigation.styles';
 
 export const StepNavigation: React.FC = () => {

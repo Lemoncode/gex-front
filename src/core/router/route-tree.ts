@@ -16,10 +16,11 @@ import { Route as AuthImport } from './../../scenes/_auth';
 import { Route as IndexImport } from './../../scenes/index';
 import { Route as AuthUsersIndexImport } from './../../scenes/_auth/users/index';
 import { Route as AuthRecordsIndexImport } from './../../scenes/_auth/records/index';
+import { Route as AuthExpedientesIndexImport } from './../../scenes/_auth/expedientes/index';
 import { Route as AuthCreateUserIndexImport } from './../../scenes/_auth/create-user/index';
 import { Route as AuthUsersIdImport } from './../../scenes/_auth/users/$id';
+import { Route as AuthEditarExpedienteIdImport } from './../../scenes/_auth/editar-expediente/$id';
 import { Route as AuthEditUserIdImport } from './../../scenes/_auth/edit-user/$id';
-import { Route as AuthEditRecordIdImport } from './../../scenes/_auth/edit-record/$id';
 
 // Create/Update Routes
 
@@ -52,6 +53,12 @@ const AuthRecordsIndexRoute = AuthRecordsIndexImport.update({
   getParentRoute: () => AuthRoute,
 } as any);
 
+const AuthExpedientesIndexRoute = AuthExpedientesIndexImport.update({
+  id: '/expedientes/',
+  path: '/expedientes/',
+  getParentRoute: () => AuthRoute,
+} as any);
+
 const AuthCreateUserIndexRoute = AuthCreateUserIndexImport.update({
   id: '/create-user/',
   path: '/create-user/',
@@ -64,15 +71,15 @@ const AuthUsersIdRoute = AuthUsersIdImport.update({
   getParentRoute: () => AuthRoute,
 } as any);
 
-const AuthEditUserIdRoute = AuthEditUserIdImport.update({
-  id: '/edit-user/$id',
-  path: '/edit-user/$id',
+const AuthEditarExpedienteIdRoute = AuthEditarExpedienteIdImport.update({
+  id: '/editar-expediente/$id',
+  path: '/editar-expediente/$id',
   getParentRoute: () => AuthRoute,
 } as any);
 
-const AuthEditRecordIdRoute = AuthEditRecordIdImport.update({
-  id: '/edit-record/$id',
-  path: '/edit-record/$id',
+const AuthEditUserIdRoute = AuthEditUserIdImport.update({
+  id: '/edit-user/$id',
+  path: '/edit-user/$id',
   getParentRoute: () => AuthRoute,
 } as any);
 
@@ -101,18 +108,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginImport;
       parentRoute: typeof rootRoute;
     };
-    '/_auth/edit-record/$id': {
-      id: '/_auth/edit-record/$id';
-      path: '/edit-record/$id';
-      fullPath: '/edit-record/$id';
-      preLoaderRoute: typeof AuthEditRecordIdImport;
-      parentRoute: typeof AuthImport;
-    };
     '/_auth/edit-user/$id': {
       id: '/_auth/edit-user/$id';
       path: '/edit-user/$id';
       fullPath: '/edit-user/$id';
       preLoaderRoute: typeof AuthEditUserIdImport;
+      parentRoute: typeof AuthImport;
+    };
+    '/_auth/editar-expediente/$id': {
+      id: '/_auth/editar-expediente/$id';
+      path: '/editar-expediente/$id';
+      fullPath: '/editar-expediente/$id';
+      preLoaderRoute: typeof AuthEditarExpedienteIdImport;
       parentRoute: typeof AuthImport;
     };
     '/_auth/users/$id': {
@@ -127,6 +134,13 @@ declare module '@tanstack/react-router' {
       path: '/create-user';
       fullPath: '/create-user';
       preLoaderRoute: typeof AuthCreateUserIndexImport;
+      parentRoute: typeof AuthImport;
+    };
+    '/_auth/expedientes/': {
+      id: '/_auth/expedientes/';
+      path: '/expedientes';
+      fullPath: '/expedientes';
+      preLoaderRoute: typeof AuthExpedientesIndexImport;
       parentRoute: typeof AuthImport;
     };
     '/_auth/records/': {
@@ -149,19 +163,21 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 interface AuthRouteChildren {
-  AuthEditRecordIdRoute: typeof AuthEditRecordIdRoute;
   AuthEditUserIdRoute: typeof AuthEditUserIdRoute;
+  AuthEditarExpedienteIdRoute: typeof AuthEditarExpedienteIdRoute;
   AuthUsersIdRoute: typeof AuthUsersIdRoute;
   AuthCreateUserIndexRoute: typeof AuthCreateUserIndexRoute;
+  AuthExpedientesIndexRoute: typeof AuthExpedientesIndexRoute;
   AuthRecordsIndexRoute: typeof AuthRecordsIndexRoute;
   AuthUsersIndexRoute: typeof AuthUsersIndexRoute;
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
-  AuthEditRecordIdRoute: AuthEditRecordIdRoute,
   AuthEditUserIdRoute: AuthEditUserIdRoute,
+  AuthEditarExpedienteIdRoute: AuthEditarExpedienteIdRoute,
   AuthUsersIdRoute: AuthUsersIdRoute,
   AuthCreateUserIndexRoute: AuthCreateUserIndexRoute,
+  AuthExpedientesIndexRoute: AuthExpedientesIndexRoute,
   AuthRecordsIndexRoute: AuthRecordsIndexRoute,
   AuthUsersIndexRoute: AuthUsersIndexRoute,
 };
@@ -172,10 +188,11 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute;
   '': typeof AuthRouteWithChildren;
   '/login': typeof LoginRoute;
-  '/edit-record/$id': typeof AuthEditRecordIdRoute;
   '/edit-user/$id': typeof AuthEditUserIdRoute;
+  '/editar-expediente/$id': typeof AuthEditarExpedienteIdRoute;
   '/users/$id': typeof AuthUsersIdRoute;
   '/create-user': typeof AuthCreateUserIndexRoute;
+  '/expedientes': typeof AuthExpedientesIndexRoute;
   '/records': typeof AuthRecordsIndexRoute;
   '/users': typeof AuthUsersIndexRoute;
 }
@@ -184,10 +201,11 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute;
   '': typeof AuthRouteWithChildren;
   '/login': typeof LoginRoute;
-  '/edit-record/$id': typeof AuthEditRecordIdRoute;
   '/edit-user/$id': typeof AuthEditUserIdRoute;
+  '/editar-expediente/$id': typeof AuthEditarExpedienteIdRoute;
   '/users/$id': typeof AuthUsersIdRoute;
   '/create-user': typeof AuthCreateUserIndexRoute;
+  '/expedientes': typeof AuthExpedientesIndexRoute;
   '/records': typeof AuthRecordsIndexRoute;
   '/users': typeof AuthUsersIndexRoute;
 }
@@ -197,10 +215,11 @@ export interface FileRoutesById {
   '/': typeof IndexRoute;
   '/_auth': typeof AuthRouteWithChildren;
   '/login': typeof LoginRoute;
-  '/_auth/edit-record/$id': typeof AuthEditRecordIdRoute;
   '/_auth/edit-user/$id': typeof AuthEditUserIdRoute;
+  '/_auth/editar-expediente/$id': typeof AuthEditarExpedienteIdRoute;
   '/_auth/users/$id': typeof AuthUsersIdRoute;
   '/_auth/create-user/': typeof AuthCreateUserIndexRoute;
+  '/_auth/expedientes/': typeof AuthExpedientesIndexRoute;
   '/_auth/records/': typeof AuthRecordsIndexRoute;
   '/_auth/users/': typeof AuthUsersIndexRoute;
 }
@@ -211,10 +230,11 @@ export interface FileRouteTypes {
     | '/'
     | ''
     | '/login'
-    | '/edit-record/$id'
     | '/edit-user/$id'
+    | '/editar-expediente/$id'
     | '/users/$id'
     | '/create-user'
+    | '/expedientes'
     | '/records'
     | '/users';
   fileRoutesByTo: FileRoutesByTo;
@@ -222,10 +242,11 @@ export interface FileRouteTypes {
     | '/'
     | ''
     | '/login'
-    | '/edit-record/$id'
     | '/edit-user/$id'
+    | '/editar-expediente/$id'
     | '/users/$id'
     | '/create-user'
+    | '/expedientes'
     | '/records'
     | '/users';
   id:
@@ -233,10 +254,11 @@ export interface FileRouteTypes {
     | '/'
     | '/_auth'
     | '/login'
-    | '/_auth/edit-record/$id'
     | '/_auth/edit-user/$id'
+    | '/_auth/editar-expediente/$id'
     | '/_auth/users/$id'
     | '/_auth/create-user/'
+    | '/_auth/expedientes/'
     | '/_auth/records/'
     | '/_auth/users/';
   fileRoutesById: FileRoutesById;
@@ -273,10 +295,11 @@ export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileT
     "/_auth": {
       "filePath": "_auth.tsx",
       "children": [
-        "/_auth/edit-record/$id",
         "/_auth/edit-user/$id",
+        "/_auth/editar-expediente/$id",
         "/_auth/users/$id",
         "/_auth/create-user/",
+        "/_auth/expedientes/",
         "/_auth/records/",
         "/_auth/users/"
       ]
@@ -284,12 +307,12 @@ export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileT
     "/login": {
       "filePath": "login.tsx"
     },
-    "/_auth/edit-record/$id": {
-      "filePath": "_auth/edit-record/$id.tsx",
-      "parent": "/_auth"
-    },
     "/_auth/edit-user/$id": {
       "filePath": "_auth/edit-user/$id.tsx",
+      "parent": "/_auth"
+    },
+    "/_auth/editar-expediente/$id": {
+      "filePath": "_auth/editar-expediente/$id.tsx",
       "parent": "/_auth"
     },
     "/_auth/users/$id": {
@@ -298,6 +321,10 @@ export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileT
     },
     "/_auth/create-user/": {
       "filePath": "_auth/create-user/index.tsx",
+      "parent": "/_auth"
+    },
+    "/_auth/expedientes/": {
+      "filePath": "_auth/expedientes/index.tsx",
       "parent": "/_auth"
     },
     "/_auth/records/": {

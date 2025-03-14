@@ -2,15 +2,15 @@ import React from 'react';
 import { Button, Typography } from '@mui/material';
 import { Spinner } from '#common/components';
 import { useWithTheme } from '#core/theme/theme.hooks.ts';
-import { useCreateRecordContext } from '#modules/records/core/providers';
+import { useCreateRecordContext } from '#modules/expedientes/core/providers';
 import { usePagination } from './use-pagination-hook';
 import { TableComponent } from './components';
-import { useColumns } from './records.columns';
-import { CreateRecordPod } from '../create';
-import * as innerClasses from './records.styles';
+import { useColumns } from './expedientes.columns';
+import { CreateRecordPod } from '../crear';
+import * as innerClasses from './expedienets.styles';
 
-export const RecordsPod: React.FC = () => {
-  const { recordCollection, currentPage, totalPages, isLoading, onPageChange } = usePagination();
+export const ExpedientesPod: React.FC = () => {
+  const { expedienteCollection, currentPage, totalPages, isLoading, onPageChange } = usePagination();
   const { onOpen } = useCreateRecordContext();
   const classes = useWithTheme(innerClasses);
   const columns = useColumns();
@@ -26,7 +26,7 @@ export const RecordsPod: React.FC = () => {
       </div>
       <TableComponent
         columns={columns}
-        recordCollection={recordCollection.data}
+        expedienteCollection={expedienteCollection.data}
         totalItems={totalPages}
         currentPage={currentPage}
         onPageChange={onPageChange}

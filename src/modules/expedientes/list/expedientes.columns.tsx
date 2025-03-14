@@ -3,10 +3,10 @@ import { Link } from '@tanstack/react-router';
 import { Chip, Box } from '@mui/material';
 import { Edit as EditIcon, Delete as DeleteIcon, Visibility as VisibilityIcon } from '@mui/icons-material';
 import { useWithTheme } from '#core/theme';
-import { Record } from './records.vm';
-import * as innerClasses from './records.styles';
+import { Expediente } from './expedientes.vm';
+import * as innerClasses from './expedienets.styles';
 
-export const useColumns = (): ColumnDef<Record>[] => {
+export const useColumns = (): ColumnDef<Expediente>[] => {
   const classes = useWithTheme(innerClasses);
 
   return [
@@ -23,10 +23,10 @@ export const useColumns = (): ColumnDef<Record>[] => {
       header: 'Comandos',
       cell: ({ row }) => (
         <Box display="flex" alignItems="center" gap={2}>
-          <Link to={`/records/${row.original.id}`} className={classes.link}>
+          <Link to={`/expedientes/${row.original.id}`} className={classes.link}>
             <VisibilityIcon />
           </Link>
-          <Link to={`/edit-record/${row.original.id}`} className={classes.link}>
+          <Link to={`/editar-expediente/${row.original.id}`} className={classes.link}>
             <EditIcon />
           </Link>
           <DeleteIcon />

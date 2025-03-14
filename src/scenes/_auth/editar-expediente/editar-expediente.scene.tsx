@@ -1,22 +1,22 @@
 import React from 'react';
 import { useParams } from '@tanstack/react-router';
 import { Tabs as MUITabs, Tab, Paper } from '@mui/material/';
-import { EditGeneralInformationPod } from '#modules/records/edit-general-information';
-import { EditFinancialInformationPod } from '#modules/records/edit-financial-information';
-import { EditCertificationsPod } from '#modules/records/edit-certifications';
-import { EditNotesPod } from '#modules/records/edit-notes';
+import { EditGeneralInformationPod } from '#modules/expedientes/edit-general-information';
+import { EditFinancialInformationPod } from '#modules/expedientes/edit-financial-information';
+import { EditCertificationsPod } from '#modules/expedientes/edit-certifications';
+import { EditNotesPod } from '#modules/expedientes/edit-notes';
 import { TabPanel } from './components/tab-panel.component';
-import * as innerClasses from './edit-record.styles';
+import * as innerClasses from './editar-expediente.styles';
 
 enum TabIndex {
-  GENERAL_INFORMATION,
-  FINANCIAL_INFORMATION,
-  CERTIFICATIONS,
-  NOTES,
+  DATOS_GENERALES,
+  DATOS_ECONOMICOS,
+  CERTIFICACIONES,
+  NOTAS,
 }
 
-export const EditRecordScene: React.FC = () => {
-  const { id } = useParams({ from: '/_auth/edit-record/$id' });
+export const EditarExpedienteScene: React.FC = () => {
+  const { id } = useParams({ from: '/_auth/editar-expediente/$id' });
   const [activeTab, setActiveTab] = React.useState<number>(0);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => setActiveTab(newValue);
@@ -32,16 +32,16 @@ export const EditRecordScene: React.FC = () => {
             <Tab label="NOTAS" />
           </MUITabs>
         </div>
-        <TabPanel value={activeTab} index={TabIndex.GENERAL_INFORMATION}>
+        <TabPanel value={activeTab} index={TabIndex.DATOS_GENERALES}>
           <EditGeneralInformationPod id={id} />
         </TabPanel>
-        <TabPanel value={activeTab} index={TabIndex.FINANCIAL_INFORMATION}>
+        <TabPanel value={activeTab} index={TabIndex.DATOS_ECONOMICOS}>
           <EditFinancialInformationPod />
         </TabPanel>
-        <TabPanel value={activeTab} index={TabIndex.CERTIFICATIONS}>
+        <TabPanel value={activeTab} index={TabIndex.CERTIFICACIONES}>
           <EditCertificationsPod />
         </TabPanel>
-        <TabPanel value={activeTab} index={TabIndex.NOTES}>
+        <TabPanel value={activeTab} index={TabIndex.NOTAS}>
           <EditNotesPod />
         </TabPanel>
       </Paper>
