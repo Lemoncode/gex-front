@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from '@tanstack/react-router';
 import { Tabs as MUITabs, Tab, Paper } from '@mui/material/';
 import { EditarDatosGeneralesPod } from '#modules/expedientes/editar-datos-generales/index.ts';
-import { EditFinancialInformationPod } from '#modules/expedientes/edit-financial-information';
+import { EditarDatosEconomicosPod } from '#modules/expedientes/editar-datos-economicos/index.ts';
 import { EditCertificationsPod } from '#modules/expedientes/edit-certifications';
 import { EditNotesPod } from '#modules/expedientes/edit-notes';
 import { TabPanel } from './components/tab-panel.component';
@@ -36,7 +36,7 @@ export const EditarExpedienteScene: React.FC = () => {
           <EditarDatosGeneralesPod id={id} />
         </TabPanel>
         <TabPanel value={activeTab} index={TabIndex.DATOS_ECONOMICOS}>
-          <EditFinancialInformationPod />
+          <EditarDatosEconomicosPod />
         </TabPanel>
         <TabPanel value={activeTab} index={TabIndex.CERTIFICACIONES}>
           <EditCertificationsPod />
