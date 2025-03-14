@@ -1,5 +1,5 @@
 import React from 'react';
 
-export const EditCertificationsPod: React.FC = () => {
+export const EditarCertificacionesPod: React.FC = () => {
   return <h2>Certificaciones</h2>;
 };
