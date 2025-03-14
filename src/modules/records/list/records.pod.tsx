@@ -1,14 +1,17 @@
 import React from 'react';
-import { Typography } from '@mui/material';
-import { NavigationButton, Spinner } from '#common/components';
+import { Button, Typography } from '@mui/material';
+import { Spinner } from '#common/components';
 import { useWithTheme } from '#core/theme/theme.hooks.ts';
+import { useCreateRecordContext } from '#modules/records/core/providers';
 import { usePagination } from './use-pagination-hook';
 import { TableComponent } from './components';
 import { useColumns } from './records.columns';
+import { CreateRecordPod } from '../create';
 import * as innerClasses from './records.styles';
 
 export const RecordsPod: React.FC = () => {
   const { recordCollection, currentPage, totalPages, isLoading, onPageChange } = usePagination();
+  const { onOpen } = useCreateRecordContext();
   const classes = useWithTheme(innerClasses);
   const columns = useColumns();
 
@@ -17,8 +20,9 @@ export const RecordsPod: React.FC = () => {
       <Spinner isSpinnerShowing={isLoading} />
       <div className={classes.header}>
         <Typography variant="h4">Expedientes</Typography>
-        {/* Implement new path to create record */}
-        <NavigationButton text="Nuevo Expediente" path="/records" />
+        <Button variant="contained" color="primary" onClick={onOpen}>
+          Nuevo expediente
+        </Button>
       </div>
       <TableComponent
         columns={columns}
@@ -27,6 +31,7 @@ export const RecordsPod: React.FC = () => {
         currentPage={currentPage}
         onPageChange={onPageChange}
       />
+      <CreateRecordPod />
     </div>
   );
 };
