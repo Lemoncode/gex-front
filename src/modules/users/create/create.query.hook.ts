@@ -1,26 +1,9 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
-import { commonQueryKeys, queryClient } from '#core/react-query';
-import { getUnidadRolListRepository, saveUserRepository } from './create.repository';
-import { createEmptyUnidadRolList, UnidadRolList, Usuario } from './create.vm';
+import { queryClient } from '#core/react-query';
+import { saveUserRepository } from './create.repository';
+import { Usuario } from './create.vm';
 import { usersQueryKeys } from '../users-keys';
-
-interface UseUnidadRolQueryResult {
-  unidadRolList: UnidadRolList;
-  isLoading: boolean;
-}
-
-export const useUnidadRolList = (): UseUnidadRolQueryResult => {
-  const { data: unidadRolList = createEmptyUnidadRolList(), isLoading } = useQuery({
-    queryKey: commonQueryKeys.unidadRolList(),
-    queryFn: () => getUnidadRolListRepository(),
-  });
-
-  return {
-    unidadRolList,
-    isLoading,
-  };
-};
 
 interface UseSaveUserMutationResult {
   saveUser: (user: Usuario) => void;
