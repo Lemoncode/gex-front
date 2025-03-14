@@ -1,5 +1,11 @@
 import React from 'react';
+import { EditResetPasswordComponent } from './edit-reset-password.component';
 
-export const EditResetPassword: React.FC = () => {
-  return <h3>Reset Password</h3>;
+interface Props {
+  id: string;
+}
+
+export const EditResetPassword: React.FC<Props> = props => {
+  const { id } = props;
+  return <EditResetPasswordComponent id={id} />;
 };
