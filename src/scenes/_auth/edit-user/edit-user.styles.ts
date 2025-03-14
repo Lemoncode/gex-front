@@ -1,10 +1,11 @@
 import { css } from '@emotion/css';
 
 export const tabsComponent = css`
+  width: 100%;
+  max-width: 1208px;
   display: 'flex';
   flex-direction: 'column';
   align-items: 'center';
-  width: 100%;
 `;
 
 export const tabsContainer = css`
