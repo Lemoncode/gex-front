@@ -1,12 +1,12 @@
 import React from 'react';
 import { Dialog, DialogContent, DialogTitle, Step, StepLabel, Stepper } from '@mui/material';
 import { useWithTheme } from '#core/theme';
-import { BudgetStep, GeneralDataStep, TemporalityStep } from './components';
-import * as innerClasses from './create-record.styles';
-import { useCreateRecordContext } from '../core/providers';
+import { PresupuestoBaseStep, DatosGeneralesStep, TemporalityStep } from './components';
+import * as innerClasses from './crear-expediente.styles';
+import { useCreateExpedienteContext } from '../core/providers';
 
-export const CreateRecord: React.FC = () => {
-  const { activeStep, isOpen, onCancel } = useCreateRecordContext();
+export const CrearExpediente: React.FC = () => {
+  const { activeStep, isOpen, onCancel } = useCreateExpedienteContext();
   const classes = useWithTheme(innerClasses);
 
   const steps = ['Datos generales', 'Presupuesto base', 'Temporalidad'];
@@ -14,9 +14,9 @@ export const CreateRecord: React.FC = () => {
   const stepComponent = (activeStep: number) => {
     switch (activeStep) {
       case 1:
-        return <GeneralDataStep />;
+        return <DatosGeneralesStep />;
       case 2:
-        return <BudgetStep />;
+        return <PresupuestoBaseStep />;
       case 3:
         return <TemporalityStep />;
     }

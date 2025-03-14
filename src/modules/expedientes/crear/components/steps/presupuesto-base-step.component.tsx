@@ -1,24 +1,24 @@
 import React from 'react';
 import { Form, Formik } from 'formik';
 import { TextFieldForm } from '#common/components';
-import { useCreateRecordContext, Budget } from '#modules/expedientes/core/providers';
+import { useCreateExpedienteContext, PresupuestoBase } from '#modules/expedientes/core/providers';
 import { StepNavigation } from '../step-navigation.component';
-import { budgetValidation } from '../validations';
+import { presupuestoBaseValidations } from '../validations';
 import * as classes from './steps.styles';
 
-export const BudgetStep: React.FC = () => {
-  const { formData, onNextStep } = useCreateRecordContext();
+export const PresupuestoBaseStep: React.FC = () => {
+  const { formData, onNextStep } = useCreateExpedienteContext();
 
-  const handleSubmit = (values: Budget) => {
-    onNextStep('budget', values);
+  const handleSubmit = (values: PresupuestoBase) => {
+    onNextStep('presupuestoBase', values);
   };
 
   return (
     <Formik
-      initialValues={formData.budget}
+      initialValues={formData.presupuestoBase}
       enableReinitialize={true}
       onSubmit={handleSubmit}
-      validate={budgetValidation.validateForm}
+      validate={presupuestoBaseValidations.validateForm}
     >
       {() => (
         <Form className={classes.form}>

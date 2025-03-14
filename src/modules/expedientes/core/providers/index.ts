@@ -1,1 +1,1 @@
-export * from './create-record';
+export * from './crear-expediente';

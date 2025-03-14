@@ -1,4 +1,4 @@
 export const expedientesQueryKeys = {
-  all: ['records'],
-  recordCollection: (page?: number, pageSize?: number) => ['records', page, pageSize],
+  all: ['expedientes'],
+  expedienteCollection: (page?: number, pageSize?: number) => ['expedientes', page, pageSize],
 };

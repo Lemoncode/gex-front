@@ -15,7 +15,6 @@ import { Route as LoginImport } from './../../scenes/login';
 import { Route as AuthImport } from './../../scenes/_auth';
 import { Route as IndexImport } from './../../scenes/index';
 import { Route as AuthUsersIndexImport } from './../../scenes/_auth/users/index';
-import { Route as AuthRecordsIndexImport } from './../../scenes/_auth/records/index';
 import { Route as AuthExpedientesIndexImport } from './../../scenes/_auth/expedientes/index';
 import { Route as AuthCreateUserIndexImport } from './../../scenes/_auth/create-user/index';
 import { Route as AuthUsersIdImport } from './../../scenes/_auth/users/$id';
@@ -44,12 +43,6 @@ const IndexRoute = IndexImport.update({
 const AuthUsersIndexRoute = AuthUsersIndexImport.update({
   id: '/users/',
   path: '/users/',
-  getParentRoute: () => AuthRoute,
-} as any);
-
-const AuthRecordsIndexRoute = AuthRecordsIndexImport.update({
-  id: '/records/',
-  path: '/records/',
   getParentRoute: () => AuthRoute,
 } as any);
 
@@ -143,13 +136,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthExpedientesIndexImport;
       parentRoute: typeof AuthImport;
     };
-    '/_auth/records/': {
-      id: '/_auth/records/';
-      path: '/records';
-      fullPath: '/records';
-      preLoaderRoute: typeof AuthRecordsIndexImport;
-      parentRoute: typeof AuthImport;
-    };
     '/_auth/users/': {
       id: '/_auth/users/';
       path: '/users';
@@ -168,7 +154,6 @@ interface AuthRouteChildren {
   AuthUsersIdRoute: typeof AuthUsersIdRoute;
   AuthCreateUserIndexRoute: typeof AuthCreateUserIndexRoute;
   AuthExpedientesIndexRoute: typeof AuthExpedientesIndexRoute;
-  AuthRecordsIndexRoute: typeof AuthRecordsIndexRoute;
   AuthUsersIndexRoute: typeof AuthUsersIndexRoute;
 }
 
@@ -178,7 +163,6 @@ const AuthRouteChildren: AuthRouteChildren = {
   AuthUsersIdRoute: AuthUsersIdRoute,
   AuthCreateUserIndexRoute: AuthCreateUserIndexRoute,
   AuthExpedientesIndexRoute: AuthExpedientesIndexRoute,
-  AuthRecordsIndexRoute: AuthRecordsIndexRoute,
   AuthUsersIndexRoute: AuthUsersIndexRoute,
 };
 
@@ -193,7 +177,6 @@ export interface FileRoutesByFullPath {
   '/users/$id': typeof AuthUsersIdRoute;
   '/create-user': typeof AuthCreateUserIndexRoute;
   '/expedientes': typeof AuthExpedientesIndexRoute;
-  '/records': typeof AuthRecordsIndexRoute;
   '/users': typeof AuthUsersIndexRoute;
 }
 
@@ -206,7 +189,6 @@ export interface FileRoutesByTo {
   '/users/$id': typeof AuthUsersIdRoute;
   '/create-user': typeof AuthCreateUserIndexRoute;
   '/expedientes': typeof AuthExpedientesIndexRoute;
-  '/records': typeof AuthRecordsIndexRoute;
   '/users': typeof AuthUsersIndexRoute;
 }
 
@@ -220,7 +202,6 @@ export interface FileRoutesById {
   '/_auth/users/$id': typeof AuthUsersIdRoute;
   '/_auth/create-user/': typeof AuthCreateUserIndexRoute;
   '/_auth/expedientes/': typeof AuthExpedientesIndexRoute;
-  '/_auth/records/': typeof AuthRecordsIndexRoute;
   '/_auth/users/': typeof AuthUsersIndexRoute;
 }
 
@@ -235,7 +216,6 @@ export interface FileRouteTypes {
     | '/users/$id'
     | '/create-user'
     | '/expedientes'
-    | '/records'
     | '/users';
   fileRoutesByTo: FileRoutesByTo;
   to:
@@ -247,7 +227,6 @@ export interface FileRouteTypes {
     | '/users/$id'
     | '/create-user'
     | '/expedientes'
-    | '/records'
     | '/users';
   id:
     | '__root__'
@@ -259,7 +238,6 @@ export interface FileRouteTypes {
     | '/_auth/users/$id'
     | '/_auth/create-user/'
     | '/_auth/expedientes/'
-    | '/_auth/records/'
     | '/_auth/users/';
   fileRoutesById: FileRoutesById;
 }
@@ -300,7 +278,6 @@ export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileT
         "/_auth/users/$id",
         "/_auth/create-user/",
         "/_auth/expedientes/",
-        "/_auth/records/",
         "/_auth/users/"
       ]
     },
@@ -325,10 +302,6 @@ export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileT
     },
     "/_auth/expedientes/": {
       "filePath": "_auth/expedientes/index.tsx",
-      "parent": "/_auth"
-    },
-    "/_auth/records/": {
-      "filePath": "_auth/records/index.tsx",
       "parent": "/_auth"
     },
     "/_auth/users/": {

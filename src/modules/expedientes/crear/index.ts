@@ -1,1 +1,1 @@
-export * from './create-record.pod';
+export * from './crear-expediente.pod';

@@ -3,8 +3,8 @@ import { createFormikValidation } from '@lemoncode/fonk-formik';
 
 const validationSchema = {
   field: {
-    description: [Validators.required],
+    name: [Validators.required],
   },
 };
 
-export const temporalityValidation = createFormikValidation(validationSchema);
+export const datosGeneralesValidations = createFormikValidation(validationSchema);

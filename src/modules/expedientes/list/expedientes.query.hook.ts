@@ -13,7 +13,7 @@ export const useExpedientesQuery = (expedienteFilter: ExpedienteQueryFilter): Us
   const { page, pageSize } = expedienteFilter;
 
   const { data: expedienteCollection = createEmptyCollectionQuery(), isLoading } = useQuery({
-    queryKey: expedientesQueryKeys.recordCollection(page, pageSize),
+    queryKey: expedientesQueryKeys.expedienteCollection(page, pageSize),
     queryFn: () => getExpedienteRepository(),
   });
 

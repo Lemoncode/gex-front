@@ -2,16 +2,16 @@ import React from 'react';
 import { Button, Typography } from '@mui/material';
 import { Spinner } from '#common/components';
 import { useWithTheme } from '#core/theme/theme.hooks.ts';
-import { useCreateRecordContext } from '#modules/expedientes/core/providers';
+import { useCreateExpedienteContext } from '#modules/expedientes/core/providers';
 import { usePagination } from './use-pagination-hook';
 import { TableComponent } from './components';
 import { useColumns } from './expedientes.columns';
-import { CreateRecordPod } from '../crear';
-import * as innerClasses from './expedienets.styles';
+import { CreateExpedientePod } from '../crear';
+import * as innerClasses from './expedientes.styles';
 
 export const ExpedientesPod: React.FC = () => {
   const { expedienteCollection, currentPage, totalPages, isLoading, onPageChange } = usePagination();
-  const { onOpen } = useCreateRecordContext();
+  const { onOpen } = useCreateExpedienteContext();
   const classes = useWithTheme(innerClasses);
   const columns = useColumns();
 
@@ -31,7 +31,7 @@ export const ExpedientesPod: React.FC = () => {
         currentPage={currentPage}
         onPageChange={onPageChange}
       />
-      <CreateRecordPod />
+      <CreateExpedientePod />
     </div>
   );
 };

@@ -4,7 +4,7 @@ import { Chip, Box } from '@mui/material';
 import { Edit as EditIcon, Delete as DeleteIcon, Visibility as VisibilityIcon } from '@mui/icons-material';
 import { useWithTheme } from '#core/theme';
 import { Expediente } from './expedientes.vm';
-import * as innerClasses from './expedienets.styles';
+import * as innerClasses from './expedientes.styles';
 
 export const useColumns = (): ColumnDef<Expediente>[] => {
   const classes = useWithTheme(innerClasses);
