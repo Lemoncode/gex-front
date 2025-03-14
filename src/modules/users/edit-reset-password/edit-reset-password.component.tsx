@@ -5,19 +5,12 @@ import { Button, IconButton, TextField } from '@mui/material';
 import { Visibility, VisibilityOff, ContentCopy } from '@mui/icons-material';
 import { usePassword } from '../create/use-password.hook';
 
-interface Props {
-  id: string;
-}
-
-export const EditResetPasswordComponent: React.FC<Props> = props => {
-  const { id } = props;
-
+export const EditResetPasswordComponent: React.FC = () => {
   const { showPassword, toggleShowPassword } = usePassword();
   const classes = useWithTheme(innerClasses);
   return (
     <div className={classes.root}>
       <div className={classes.sectionContainer}>
-        <h6>Usuario: ${id}</h6>
         <div className={classes.passwordFieldContainer}>
           <TextField
             name="contraseña"
