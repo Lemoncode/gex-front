@@ -2,8 +2,6 @@ import { css } from '@emotion/css';
 import { Theme } from '@mui/material';
 
 export const root = (theme: Theme) => css`
-  width: 100%;
-  max-width: 1208px;
   display: flex;
   flex-direction: column;
   gap: ${theme.spacing(4)};
