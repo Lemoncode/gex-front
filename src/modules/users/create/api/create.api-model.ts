@@ -1,10 +1,3 @@
-import { Lookup } from '#common/models';
-
-export interface UnidadRolList {
-  roles: Lookup[];
-  unidades: Lookup[];
-}
-
 export interface Usuario {
   nombre: string;
   apellido: string;
