@@ -7,4 +7,4 @@ const validationSchema = {
   },
 };
 
-export const temporalidadValidaciones = createFormikValidation(validationSchema);
+export const temporalidadValidations = createFormikValidation(validationSchema);
