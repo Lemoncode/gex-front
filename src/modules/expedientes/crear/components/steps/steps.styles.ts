@@ -19,7 +19,7 @@ export const fields = css`
 
 export const rowHeader = css`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 56px;
+  grid-template-columns: 1fr 1fr 1fr 65px;
   background-color: #9c27b04d;
 
   & > th {
@@ -28,7 +28,7 @@ export const rowHeader = css`
 `;
 export const rowsBody = css`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 56px;
+  grid-template-columns: 1fr 1fr 1fr 65px;
 `;
 
 export const rowFooter = css`
