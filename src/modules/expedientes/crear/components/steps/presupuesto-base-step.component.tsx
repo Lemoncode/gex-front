@@ -18,6 +18,7 @@ import {
   Box,
   MenuItem,
   Button,
+  IconButton,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
@@ -116,7 +117,9 @@ export const PresupuestoBaseStep: React.FC = () => {
                     <TableCell>{row.application}</TableCell>
                     <TableCell>{row.cuantity}</TableCell>
                     <TableCell>
-                      <DeleteIcon />
+                      <IconButton>
+                        <DeleteIcon />
+                      </IconButton>
                     </TableCell>
                   </TableRow>
                 ))}
