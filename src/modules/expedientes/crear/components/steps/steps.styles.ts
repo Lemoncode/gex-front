@@ -32,19 +32,11 @@ export const rowsBody = css`
 `;
 
 export const rowFooter = css`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 123px;
-  grid-column-gap: 16px;
+  box-sizing: border-box;
   padding: 16px;
-  padding-top: 0;
-  align-items: center;
-  align-content: center;
 `;
 
 export const button = css`
   background-color: #9c27b0;
-
-  &:hover {
-    background-color: rgb(122, 23, 140);
-  }
+  width: 50%;
 `;

@@ -18,6 +18,7 @@ import {
   Box,
   MenuItem,
   Button,
+  Stack,
   IconButton,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -131,7 +132,8 @@ export const PresupuestoBaseStep: React.FC = () => {
                     Añadir anualidad
                   </Typography>
                 </TableRow>
-                <TableRow className={classes.rowFooter}>
+
+                <Stack direction="row" spacing={2} className={classes.rowFooter}>
                   <TextFieldForm type="text" name="ejercicio" label="Ejercicio" size="small" />
 
                   <TextFieldForm name="label" label="Label" select size="small">
@@ -151,10 +153,16 @@ export const PresupuestoBaseStep: React.FC = () => {
                     label="Importe"
                     size="small"
                   />
-                  <Button endIcon={<SaveIcon />} variant="contained" className={classes.button}>
+                  <Button
+                    endIcon={<SaveIcon fontSize="inherit" />}
+                    variant="contained"
+                    size="medium"
+                    className={classes.button}
+                    fullWidth
+                  >
                     GUARDAR
                   </Button>
-                </TableRow>
+                </Stack>
               </TableFooter>
             </Table>
           </TableContainer>
