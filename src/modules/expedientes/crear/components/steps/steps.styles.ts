@@ -29,6 +29,12 @@ export const rowHeader = css`
 export const rowsBody = css`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 65px;
+
+  & > td {
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
 `;
 
 export const rowFooter = css`
