@@ -23,7 +23,8 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
-import * as classes from './steps.styles';
+import * as innerClasses from './steps.styles';
+import { useWithTheme } from '#core/theme/theme.hooks.ts';
 
 export const PresupuestoBaseStep: React.FC = () => {
   const { formData, onNextStep } = useCreateExpedienteContext();
@@ -32,6 +33,7 @@ export const PresupuestoBaseStep: React.FC = () => {
     onNextStep('presupuestoBase', values);
   };
 
+  const classes = useWithTheme(innerClasses);
   const createRow = (id: number, year: number, application: string, cuantity: string) => ({
     id,
     year,
