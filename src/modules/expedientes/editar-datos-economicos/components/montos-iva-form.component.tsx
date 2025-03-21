@@ -1,8 +1,7 @@
-import * as innerClasses from './montos-iva-form.styles';
-
 import React from 'react';
 import { TextFieldForm } from '#common/components';
-import { useWithTheme } from '#core/theme/theme.hooks.ts';
+import { useWithTheme } from '#core/theme';
+import * as innerClasses from './montos-iva-form.styles';
 
 export const MontosIvaForm: React.FC<{ prefix: string }> = ({ prefix }) => {
   const classes = useWithTheme(innerClasses);

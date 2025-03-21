@@ -1,6 +1,6 @@
-import { Anualidad } from './editar-expediente.type';
-import { EditarInformacionFinanciera } from './editar-informacion-financiera.component';
 import React from 'react';
+import { Anualidad } from './editar-expediente.vm';
+import { EditarInformacionFinanciera } from './editar-informacion-financiera.component';
 
 export const EditarDatosEconomicosPod: React.FC = () => {
   // TODO: quitar luego de su implementacion

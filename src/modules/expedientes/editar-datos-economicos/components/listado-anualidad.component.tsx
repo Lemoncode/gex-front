@@ -1,16 +1,10 @@
-import * as innerClasses from './listado-anualidad.styles';
-
+import React from 'react';
 import { Button, Card, CardContent, IconButton, Typography } from '@mui/material';
-
-import { Anualidad } from '../editar-expediente.type';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FolderIcon from '@mui/icons-material/Folder';
-import React from 'react';
-import { useWithTheme } from '#core/theme/theme.hooks.ts';
-
-interface Props {
-  rows: Anualidad[];
-}
+import { useWithTheme } from '#core/theme';
+import { Anualidad } from '../editar-expediente.vm';
+import * as innerClasses from './listado-anualidad.styles';
 
 const AnualidadItem: React.FC<Anualidad> = ({ ano: year, monto: amount, iva, simbolo: symbol }) => {
   const classes = useWithTheme(innerClasses);
@@ -27,6 +21,10 @@ const AnualidadItem: React.FC<Anualidad> = ({ ano: year, monto: amount, iva, sim
   );
 };
 
+interface Props {
+  rows: Anualidad[];
+}
+
 export const ListadoAnualidad: React.FC<Props> = props => {
   const { rows } = props;
   const classes = useWithTheme(innerClasses);
@@ -34,7 +32,7 @@ export const ListadoAnualidad: React.FC<Props> = props => {
     <Card sx={{ mt: 2 }}>
       <CardContent>
         <div className={classes.tableHeader}>
-          <Typography variant="caption" fontWeight={'bold'}>
+          <Typography variant="caption" fontWeight="bold">
             Anualidades
           </Typography>
           <Button variant="outlined" className={classes.newButton}>

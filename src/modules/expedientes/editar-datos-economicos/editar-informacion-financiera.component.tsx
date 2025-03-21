@@ -1,14 +1,11 @@
-import * as innerClasses from './editar-informacion-financiera.styles';
-
-import { AdjudicacionForm, PresupuestoBaseForm } from './components';
-import { Anualidad, Expediente } from './editar-expediente.type';
-import { Form, Formik } from 'formik';
-
-import { Button } from '@mui/material';
-import { NavigationButton } from '#common/components/index.ts';
 import React from 'react';
-import { createEmptyExpediente } from './editar-expediente.vm';
-import { useWithTheme } from '#core/theme/theme.hooks.ts';
+import { Button } from '@mui/material';
+import { Form, Formik } from 'formik';
+import { NavigationButton } from '#common/components';
+import { useWithTheme } from '#core/theme';
+import { AdjudicacionForm, PresupuestoBaseForm } from './components';
+import { Anualidad, Expediente, createEmptyExpediente } from './editar-expediente.vm';
+import * as innerClasses from './editar-informacion-financiera.styles';
 
 interface Props {
   onSubmit: (values: Expediente) => void;
@@ -25,7 +22,6 @@ export const EditarInformacionFinanciera: React.FC<Props> = props => {
         <Form className={classes.form}>
           <PresupuestoBaseForm rows={listadoAnualidades} />
           <AdjudicacionForm />
-
           <section className={classes.buttonContainer}>
             <NavigationButton path="/expedientes" text="Volver" variant="text" />
             <Button type="submit" variant="contained">

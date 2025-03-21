@@ -4,7 +4,7 @@ import { css } from '@emotion/css';
 export const tableHeader = (theme: Theme) => css`
   display: flex;
   justify-content: space-between;
-  aligni-tems: center;
+  align-items: center;
   margin-bottom: ${theme.spacing(2)};
 
   @media (max-width: 768px) {
