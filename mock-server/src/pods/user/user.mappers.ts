@@ -10,7 +10,13 @@ export const mapUserFromModelToApi = (user: model.Usuario): apiModel.Usuario => 
   nombre: user.nombre,
   apellido: user.apellido,
   email: user.email,
-  unidad: user.unidad.nombre,
+  unidad: user.unidad.id,
+  esAutorizante: user.esAutorizante,
+  esProponente: user.esProponente,
+  esResponsable: user.esResponsable,
+  rol: user.rol.id,
+  movil: user.movil,
+  telefono: user.telefono,
 });
 
 export const mapUserListFromModelToApi = (

@@ -27,7 +27,6 @@ export const UserDetails: React.FC<Props> = props => {
       <div className={classes.row}>
         <TextFieldForm name="telefono" label="Teléfono fijo" />
         <TextFieldForm name="movil" label="Teléfono móvil" />
-        <TextFieldForm name="institucional" label="Teléfono Institucional" />
         <SelectForm label="Unidad" name="unidad" options={unidadRolList.unidades} />
         <SelectForm label="Rol" name="rol" options={unidadRolList.roles} />
       </div>

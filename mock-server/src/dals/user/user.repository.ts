@@ -1,6 +1,7 @@
 import { paginateItems } from '#common/helpers/index.js';
 import { CollectionQuery } from '#common/models/index.js';
 import { db } from '#dals/mock.data.js';
+//import { mapStringToObjectId } from '#common/mappers/index.js';
 import * as model from './user.model.js';
 
 export const userRepository = {
@@ -19,4 +20,5 @@ export const userRepository = {
     db.users.push(newUser);
     return true;
   },
+  getUserById: async (id: string): Promise<model.Usuario> => db.users.find(user => user._id.toHexString() === id),
 };

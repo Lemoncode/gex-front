@@ -11,7 +11,7 @@ export interface DB {
 export const db: DB = {
   users: [
     {
-      _id: new ObjectId(),
+      _id: new ObjectId('67e29f6498ec8fa00c141af1'),
       nombre: 'Carlos',
       apellido: 'González Pérez',
       email: 'carlos.gonzalez@example.com',
@@ -33,7 +33,7 @@ export const db: DB = {
       },
     },
     {
-      _id: new ObjectId(),
+      _id: new ObjectId('67e2a2a01faec0c33a18c24a'),
       nombre: 'María',
       apellido: 'Martínez López',
       email: 'maria.martinez@example.com',
@@ -55,7 +55,7 @@ export const db: DB = {
       },
     },
     {
-      _id: new ObjectId(),
+      _id: new ObjectId('67e2a2a9bdf6ec804964701e'),
       nombre: 'Juan',
       apellido: 'Rodríguez Sánchez',
       email: 'juan.rodriguez@example.com',
@@ -77,7 +77,7 @@ export const db: DB = {
       },
     },
     {
-      _id: new ObjectId(),
+      _id: new ObjectId('67e2a2b17f7177a8b57ceed7'),
       nombre: 'Laura',
       apellido: 'García Ruiz',
       email: 'laura.garcia@example.com',
@@ -99,7 +99,7 @@ export const db: DB = {
       },
     },
     {
-      _id: new ObjectId(),
+      _id: new ObjectId('67e2a2bb61e3836ad14d746e'),
       nombre: 'Miguel',
       apellido: 'Fernández Gómez',
       email: 'miguel.fernandez@example.com',

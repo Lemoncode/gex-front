@@ -1,11 +1,22 @@
 import { Router } from 'express';
 import { userRepository } from '#dals/user/user.repository.js';
-import { mapUserFromApiToModel, mapUserListFromModelToApi } from './user.mappers.js';
+import { mapUserFromModelToApi, mapUserListFromModelToApi, mapUserFromApiToModel } from './user.mappers.js';
 import { Usuario } from './user.api-model.js';
 
 export const userApi = Router();
 
 userApi
+  .get('/:id', async (req, res, next) => {
+    try {
+      const { id } = req.params;
+
+      const user = await userRepository.getUserById(id);
+      console.log(mapUserFromModelToApi(user));
+      res.send(mapUserFromModelToApi(user));
+    } catch (error) {
+      next(error);
+    }
+  })
   .get('/:email/exists', async (req, res, next) => {
     try {
       const { email } = req.params;
@@ -25,6 +36,7 @@ userApi
       next(error);
     }
   })
+
   .post('/', async (req, res, next) => {
     try {
       const newUser: Usuario = req.body;
