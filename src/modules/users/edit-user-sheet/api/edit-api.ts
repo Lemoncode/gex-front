@@ -6,3 +6,9 @@ export const getUserById = async (id: string): Promise<Usuario> => {
 
   return response.data;
 };
+
+export const updateUser = async (usuario: Usuario): Promise<boolean> => {
+  const response = await axios.put<boolean>(`/api/user/${usuario.id}`, usuario);
+
+  return response.data;
+};

@@ -1,4 +1,5 @@
 export interface Usuario {
+  id: string;
   nombre: string;
   apellido: string;
   telefono?: string;
@@ -13,6 +14,7 @@ export interface Usuario {
 }
 
 export const createEmptyUsuario = (): Usuario => ({
+  id: '',
   nombre: '',
   apellido: '',
   telefono: '',

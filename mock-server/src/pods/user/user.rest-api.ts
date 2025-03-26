@@ -6,17 +6,6 @@ import { Usuario } from './user.api-model.js';
 export const userApi = Router();
 
 userApi
-  .get('/:id', async (req, res, next) => {
-    try {
-      const { id } = req.params;
-
-      const user = await userRepository.getUserById(id);
-      console.log(mapUserFromModelToApi(user));
-      res.send(mapUserFromModelToApi(user));
-    } catch (error) {
-      next(error);
-    }
-  })
   .get('/:email/exists', async (req, res, next) => {
     try {
       const { email } = req.params;
@@ -45,6 +34,28 @@ userApi
       const createdUser = await userRepository.createUser(modelUser);
 
       res.status(201).send(createdUser);
+    } catch (error) {
+      next(error);
+    }
+  })
+  .get('/:id', async (req, res, next) => {
+    try {
+      const { id } = req.params;
+
+      const user = await userRepository.getUserById(id);
+      console.log(mapUserFromModelToApi(user));
+      res.send(mapUserFromModelToApi(user));
+    } catch (error) {
+      next(error);
+    }
+  })
+  .put('/:id', async (req, res, next) => {
+    try {
+      const usuarioActualizado: Usuario = req.body;
+      const modelUser = mapUserFromApiToModel(usuarioActualizado);
+      const estaActualizado = await userRepository.actualizarUsuario(modelUser);
+
+      res.status(201).send(estaActualizado);
     } catch (error) {
       next(error);
     }

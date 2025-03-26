@@ -38,12 +38,6 @@ const validationSchema = {
         message: validationMessages.rol.required,
       },
     ],
-    contraseña: [
-      {
-        validator: Validators.required,
-        message: validationMessages.contraseña.required,
-      },
-    ],
     telefono: [
       {
         validator: Validators.required,

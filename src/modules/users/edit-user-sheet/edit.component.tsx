@@ -13,7 +13,7 @@ import { formValidation } from './validations';
 interface Props {
   usuario: Usuario;
   unidadRolList: UnidadRolList;
-  onSubmit: (values: Usuario) => void;
+  onSubmit: (usuario: Usuario) => void;
 }
 
 export const EditUser: React.FC<Props> = (props: Props) => {
@@ -26,7 +26,7 @@ export const EditUser: React.FC<Props> = (props: Props) => {
           initialValues={usuario}
           enableReinitialize={true}
           validate={formValidation.validateForm}
-          onSubmit={onSubmit}
+          onSubmit={usuario => onSubmit(usuario)}
         >
           {({ values }) => (
             <Form className={classes.form}>
