@@ -15,12 +15,15 @@ export const useUpdateUserMutation = (): UseSaveUserMutationResult => {
 
   const { mutate: saveUser, isPending } = useMutation({
     mutationFn: (user: Usuario) => updateUser(user),
-    onSuccess: () => {
+    onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
-        queryKey: usersQueryKeys.userCollection(),
+        queryKey: [usersQueryKeys.user(variables.id), usersQueryKeys.userCollection()],
       });
 
       navigate({ to: '/users' });
+    },
+    onError: () => {
+      console.error('Error updating user');
     },
   });
 

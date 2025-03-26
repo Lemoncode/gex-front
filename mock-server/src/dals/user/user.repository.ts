@@ -21,11 +21,17 @@ export const userRepository = {
     return true;
   },
   getUserById: async (id: string): Promise<model.Usuario> => db.users.find(user => user._id.toHexString() === id),
-  actualizarUsuario: async (usuarioActualizado: model.Usuario): Promise<boolean> => {
-    const listaAcualizada = db.users.map(usuario =>
-      usuario._id.toHexString() === usuarioActualizado._id.toHexString() ? { ...usuarioActualizado } : { ...usuario }
-    );
-    db.users = [...listaAcualizada];
-    return true;
+  actualizarUsuario: async (id: string, usuarioActualizado: model.Usuario): Promise<boolean> => {
+    // const listaAcualizada = db.users.map(usuario =>
+    //   usuario._id.toHexString() === usuarioActualizado._id.toHexString() ? { ...usuarioActualizado } : { ...usuario }
+    // );
+    // db.users = [...listaAcualizada];
+    // return true;
+    const usuarioIndex = db.users.findIndex(user => user._id.toHexString() === id);
+    if (usuarioIndex !== -1) {
+      db.users[usuarioIndex] = { ...db.users[usuarioIndex], ...usuarioActualizado };
+      return true;
+    }
+    return false;
   },
 };

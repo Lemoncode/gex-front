@@ -52,8 +52,9 @@ userApi
   .put('/:id', async (req, res, next) => {
     try {
       const usuarioActualizado: Usuario = req.body;
+      const { id } = req.params;
       const modelUser = mapUserFromApiToModel(usuarioActualizado);
-      const estaActualizado = await userRepository.actualizarUsuario(modelUser);
+      const estaActualizado = await userRepository.actualizarUsuario(id, modelUser);
 
       res.status(201).send(estaActualizado);
     } catch (error) {
