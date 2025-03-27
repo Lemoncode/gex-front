@@ -41,9 +41,7 @@ userApi
   .get('/:id', async (req, res, next) => {
     try {
       const { id } = req.params;
-
       const user = await userRepository.getUserById(id);
-      console.log(mapUserFromModelToApi(user));
       res.send(mapUserFromModelToApi(user));
     } catch (error) {
       next(error);
@@ -51,8 +49,8 @@ userApi
   })
   .put('/:id', async (req, res, next) => {
     try {
-      const usuarioActualizado: Usuario = req.body;
       const { id } = req.params;
+      const usuarioActualizado: Usuario = req.body;
       const modelUser = mapUserFromApiToModel(usuarioActualizado);
       const estaActualizado = await userRepository.actualizarUsuario(id, modelUser);
 

@@ -2,37 +2,31 @@ import React from 'react';
 import { Spinner } from '#common/components/';
 import { useUnidadRolList } from '#core/api/lookups/unidad-rol';
 import { EditUser } from './edit.component';
-import { getUserByIdRepository } from './edit.repository';
-import { Usuario, createEmptyUsuario } from './edit.vm';
-import { useUpdateUserMutation } from './edit.query.hook';
+import { Usuario } from './edit.vm';
+import { useLoadUser, useUpdateUserMutation } from './edit.query.hook';
 
 interface Props {
   id: string;
 }
 
 export const EditUserSheet: React.FC<Props> = props => {
-  const [usuario, setUsuario] = React.useState<Usuario>(createEmptyUsuario());
   const { id } = props;
-  const { unidadRolList, isLoading } = useUnidadRolList();
+  const { unidadRolList, isLoading: isLoadingUnidadRolList } = useUnidadRolList();
   const { saveUser, isPending } = useUpdateUserMutation();
+  const { usuario, isLoading: isLoadingUsuario } = useLoadUser(id);
 
   const handleSubmit = (usuarioActualizado: Usuario) => {
     saveUser(usuarioActualizado);
   };
 
-  React.useEffect(() => {
-    cargarDatos();
-  }, []);
-
-  const cargarDatos = async () => {
-    const usuario = await getUserByIdRepository(id);
-    setUsuario(usuario);
-  };
+  const isLoading = React.useMemo(
+    () => isLoadingUsuario || isLoadingUnidadRolList || isPending,
+    [isLoadingUsuario, isLoadingUnidadRolList, isPending]
+  );
 
   return (
     <>
-      <h3>User id: {id}</h3>
-      <Spinner isSpinnerShowing={isLoading || isPending} />
+      <Spinner isSpinnerShowing={isLoading} />
       <EditUser usuario={usuario} unidadRolList={unidadRolList} onSubmit={handleSubmit} />
     </>
   );

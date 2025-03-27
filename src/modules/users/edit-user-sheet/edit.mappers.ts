@@ -17,7 +17,7 @@ export const mapUserFromApiToVm = (user: apiModel.Usuario): viewModel.Usuario =>
 });
 
 export const mapUserFromVmToApi = (usuario: viewModel.Usuario): apiModel.Usuario => ({
-  id: usuario.unidad,
+  id: usuario.id,
   nombre: usuario.nombre,
   apellido: usuario.apellido,
   telefono: usuario.telefono,

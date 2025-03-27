@@ -12,7 +12,6 @@ export const getUserByIdRepository = async (id: string): Promise<viewModel.Usuar
 
 export const updateUser = async (usuarioActualizado: viewModel.Usuario): Promise<boolean> => {
   const usuarioMapeado = mapUserFromVmToApi(usuarioActualizado);
-  console.log(usuarioMapeado);
   const estaActualizado = await api.updateUser(usuarioMapeado);
 
   return estaActualizado;

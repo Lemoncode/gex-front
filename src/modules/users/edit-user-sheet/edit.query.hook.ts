@@ -1,9 +1,9 @@
-import { useMutation } from '@tanstack/react-query';
-import { useNavigate } from '@tanstack/react-router';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { queryClient } from '#core/react-query';
-import { updateUser } from './edit.repository';
-import { Usuario } from './edit.vm';
+import { getUserByIdRepository, updateUser } from './edit.repository';
+import { createEmptyUsuario, Usuario } from './edit.vm';
 import { usersQueryKeys } from '../users-keys';
+import { useNavigate } from '@tanstack/react-router';
 
 interface UseSaveUserMutationResult {
   saveUser: (user: Usuario) => void;
@@ -15,20 +15,34 @@ export const useUpdateUserMutation = (): UseSaveUserMutationResult => {
 
   const { mutate: saveUser, isPending } = useMutation({
     mutationFn: (user: Usuario) => updateUser(user),
-    onSuccess: (_, variables) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [usersQueryKeys.user(variables.id), usersQueryKeys.userCollection()],
+        queryKey: usersQueryKeys.userCollection(),
       });
 
       navigate({ to: '/users' });
-    },
-    onError: () => {
-      console.error('Error updating user');
     },
   });
 
   return {
     saveUser,
     isPending,
+  };
+};
+
+interface UseLoadUser {
+  usuario: Usuario;
+  isLoading: boolean;
+}
+
+export const useLoadUser = (id: string): UseLoadUser => {
+  const { data = createEmptyUsuario(), isLoading } = useQuery({
+    queryKey: usersQueryKeys.user(id),
+    queryFn: () => getUserByIdRepository(id),
+  });
+
+  return {
+    usuario: data,
+    isLoading,
   };
 };
