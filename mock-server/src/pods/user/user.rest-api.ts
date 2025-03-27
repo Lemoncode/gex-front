@@ -1,7 +1,12 @@
 import { Router } from 'express';
 import { userRepository } from '#dals/user/user.repository.js';
-import { mapUserFromModelToApi, mapUserListFromModelToApi, mapUserFromApiToModel } from './user.mappers.js';
-import { Usuario } from './user.api-model.js';
+import {
+  mapUserFromModelToApi,
+  mapUserListFromModelToApi,
+  mapUserFromApiToModel,
+  mapUserFromApiToModelUpdate,
+} from './user.mappers.js';
+import { Usuario, UsuarioActualizado } from './user.api-model.js';
 
 export const userApi = Router();
 
@@ -50,8 +55,8 @@ userApi
   .put('/:id', async (req, res, next) => {
     try {
       const { id } = req.params;
-      const usuarioActualizado: Usuario = req.body;
-      const modelUser = mapUserFromApiToModel(usuarioActualizado);
+      const usuarioActualizado: UsuarioActualizado = req.body;
+      const modelUser = mapUserFromApiToModelUpdate(usuarioActualizado);
       const estaActualizado = await userRepository.actualizarUsuario(id, modelUser);
 
       res.status(201).send(estaActualizado);

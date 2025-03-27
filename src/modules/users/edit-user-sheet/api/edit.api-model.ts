@@ -7,7 +7,6 @@ export interface Usuario {
   movil?: string;
   unidad: string;
   rol?: string;
-  contraseña?: string;
   esResponsable?: boolean;
   esProponente?: boolean;
   esAutorizante?: boolean;

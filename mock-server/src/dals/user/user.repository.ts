@@ -20,7 +20,7 @@ export const userRepository = {
     return true;
   },
   getUserById: async (id: string): Promise<model.Usuario> => db.users.find(user => user._id.toHexString() === id),
-  actualizarUsuario: async (id: string, usuarioActualizado: model.Usuario): Promise<boolean> => {
+  actualizarUsuario: async (id: string, usuarioActualizado: model.UsuarioActualizado): Promise<boolean> => {
     const index = db.users.findIndex(user => user._id.toHexString() === id);
     if (index !== -1) {
       db.users[index] = { ...db.users[index], ...usuarioActualizado };
