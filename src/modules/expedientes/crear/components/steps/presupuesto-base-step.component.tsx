@@ -23,7 +23,7 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
-import * as innerClasses from './steps.styles';
+import * as innerClasses from './presupuesto-base.styles';
 import { useWithTheme } from '#core/theme/theme.hooks.ts';
 
 export const PresupuestoBaseStep: React.FC = () => {
