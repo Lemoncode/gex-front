@@ -13,20 +13,6 @@ export interface Usuario {
   esProponente?: boolean;
   esAutorizante?: boolean;
   esContraseñaTemporal?: boolean;
-  contraseña: string;
-  unidad: Lookup;
-}
-
-export interface UsuarioActualizado {
-  _id: ObjectId;
-  nombre: string;
-  apellido: string;
-  email: string;
-  telefono?: string;
-  movil?: string;
-  rol: Lookup;
-  esResponsable?: boolean;
-  esProponente?: boolean;
-  esAutorizante?: boolean;
+  contraseña?: string;
   unidad: Lookup;
 }

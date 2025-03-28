@@ -57,7 +57,7 @@ export const mapUserFromApiToModel = (user: apiModel.Usuario): model.Usuario => 
   };
 };
 
-export const mapUserFromApiToModelUpdate = (user: apiModel.UsuarioActualizado): model.UsuarioActualizado => {
+export const mapUserFromApiToModelUpdate = (user: apiModel.UsuarioActualizado): model.Usuario => {
   const role = db.roles.find(role => role.id === user.rol);
   const unit = db.unidadProponentes.find(unit => unit.id === user.unidad);
 
