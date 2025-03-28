@@ -1,3 +1,4 @@
+import { createEmptyCollectionQuery } from '#common/models/collection.model.ts';
 import { mapUserListFromApiToVm } from './users.mappers';
 
 describe('users.mappers.spec', () => {
@@ -7,24 +8,13 @@ describe('users.mappers.spec', () => {
       const userList = {
         data: [],
         pagination: {
-          page: 0,
-          pageSize: 10,
-          totalPages: 0,
-        },
-      };
-
-      const expectedResult = {
-        data: [],
-        pagination: {
-          page: 0,
-          pageSize: 10,
           totalPages: 0,
         },
       };
       // Act
       const result = mapUserListFromApiToVm(userList);
       // Assert
-      expect(result).toEqual(expectedResult);
+      expect(result).toEqual(createEmptyCollectionQuery());
     });
 
     it('should return collection with mapped users when passing collection with users', () => {
@@ -40,8 +30,6 @@ describe('users.mappers.spec', () => {
           },
         ],
         pagination: {
-          page: 1,
-          pageSize: 10,
           totalPages: 1,
         },
       };
@@ -61,8 +49,6 @@ describe('users.mappers.spec', () => {
           },
         ],
         pagination: {
-          page: 1,
-          pageSize: 10,
           totalPages: 1,
         },
       });

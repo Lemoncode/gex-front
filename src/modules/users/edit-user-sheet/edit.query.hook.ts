@@ -1,9 +1,8 @@
+import { useNavigate } from '@tanstack/react-router';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { queryClient } from '#core/react-query';
+import { queryClient, usersQueryKeys } from '#core/react-query';
 import { getUserByIdRepository, updateUser } from './edit.repository';
 import { createEmptyUsuario, Usuario } from './edit.vm';
-import { usersQueryKeys } from '../users-keys';
-import { useNavigate } from '@tanstack/react-router';
 
 interface UseSaveUserMutationResult {
   saveUser: (user: Usuario) => void;
