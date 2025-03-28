@@ -4,6 +4,28 @@ import { mapUserFromApiToVm, mapUserFromVmToApi } from './edit-user-sheet.mapper
 
 describe('edit mapper', () => {
   describe('mapUserFromApiToVm', () => {
+    it('should return a empty user when feed a null value', () => {
+      // Arrange
+      const user: apiModel.Usuario = null!;
+
+      // Act
+      const result = mapUserFromApiToVm(user);
+
+      // Assert
+      expect(result).toEqual(viewModel.createEmptyUsuario());
+    });
+
+    it('should return a empty user when feed a undefined value', () => {
+      // Arrange
+      const user: apiModel.Usuario = undefined!;
+
+      // Act
+      const result = mapUserFromApiToVm(user);
+
+      // Assert
+      expect(result).toEqual(viewModel.createEmptyUsuario());
+    });
+
     it('should return a mapped vm user, when feed a user api', () => {
       // Arrange
       const user: apiModel.Usuario = {
@@ -44,6 +66,28 @@ describe('edit mapper', () => {
   });
 
   describe('mapUserFromVmToApi', () => {
+    it('should return a null user when feed a null value', () => {
+      // Arrange
+      const user: viewModel.Usuario = null!;
+
+      // Act
+      const result = mapUserFromVmToApi(user);
+
+      // Assert
+      expect(result).toEqual(null);
+    });
+
+    it('should return a null user when feed a undefined value', () => {
+      // Arrange
+      const user: viewModel.Usuario = undefined!;
+
+      // Act
+      const result = mapUserFromVmToApi(user);
+
+      // Assert
+      expect(result).toEqual(null);
+    });
+
     it('should return a mapped vm user, when feed a user api', () => {
       // Arrange
       const user: viewModel.Usuario = {
