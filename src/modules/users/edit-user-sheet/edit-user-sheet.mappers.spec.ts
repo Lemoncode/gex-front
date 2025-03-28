@@ -1,6 +1,6 @@
 import * as apiModel from './api';
-import * as viewModel from './edit.vm';
-import { mapUserFromApiToVm, mapUserFromVmToApi } from './edit.mappers';
+import * as viewModel from './edit-user-sheet.vm';
+import { mapUserFromApiToVm, mapUserFromVmToApi } from './edit-user-sheet.mappers';
 
 describe('edit mapper', () => {
   describe('mapUserFromApiToVm', () => {

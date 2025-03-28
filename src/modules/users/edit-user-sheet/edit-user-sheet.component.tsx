@@ -3,11 +3,11 @@ import React from 'react';
 import { Form, Formik } from 'formik';
 import { useWithTheme } from '#core/theme';
 import { UnidadRolList } from '#core/api/lookups/unidad-rol';
-import { Usuario } from './edit.vm';
+import { Usuario } from './edit-user-sheet.vm';
 import { Button } from '@mui/material';
 import { AditionalPermissions, UserDetails } from './components';
 import { NavigationButton } from '#common/components';
-import * as innerClasses from './edit.styles';
+import * as innerClasses from './edit-user-sheet.styles';
 import { formValidation } from './validations';
 
 interface Props {
@@ -28,9 +28,9 @@ export const EditUser: React.FC<Props> = (props: Props) => {
           validate={formValidation.validateForm}
           onSubmit={usuario => onSubmit(usuario)}
         >
-          {({ values }) => (
+          {() => (
             <Form className={classes.form}>
-              <UserDetails unidadRolList={unidadRolList} contraseña={values.contraseña} />
+              <UserDetails unidadRolList={unidadRolList} contraseña={'admin'} />
               <AditionalPermissions />
               <div className={classes.buttonContainer}>
                 <Button type="submit" variant="contained">

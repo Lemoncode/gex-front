@@ -1,9 +1,9 @@
 import React from 'react';
 import { Spinner } from '#common/components/';
 import { useUnidadRolList } from '#core/api/lookups/unidad-rol';
-import { EditUser } from './edit.component';
-import { Usuario } from './edit.vm';
-import { useLoadUser, useUpdateUserMutation } from './edit.query.hook';
+import { EditUser } from './edit-user-sheet.component';
+import { Usuario } from './edit-user-sheet.vm';
+import { useLoadUser, useUpdateUserMutation } from './edit-user-sheet.query.hook';
 
 interface Props {
   id: string;

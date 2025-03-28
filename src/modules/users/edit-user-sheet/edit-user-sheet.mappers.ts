@@ -1,5 +1,5 @@
 import * as apiModel from './api';
-import * as viewModel from './edit.vm';
+import * as viewModel from './edit-user-sheet.vm';
 
 export const mapUserFromApiToVm = (user: apiModel.Usuario): viewModel.Usuario => ({
   id: user.id,

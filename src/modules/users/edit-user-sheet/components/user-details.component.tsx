@@ -3,7 +3,7 @@ import { Typography } from '@mui/material';
 import { SelectForm, TextFieldForm } from '#common/components';
 import { useWithTheme } from '#core/theme';
 import { UnidadRolList } from '#core/api/lookups/unidad-rol';
-import * as innerClasses from '../edit.styles';
+import * as innerClasses from '../edit-user-sheet.styles';
 
 interface Props {
   unidadRolList: UnidadRolList;

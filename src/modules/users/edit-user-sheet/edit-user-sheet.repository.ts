@@ -1,6 +1,6 @@
 import * as api from './api';
-import * as viewModel from './edit.vm';
-import { mapUserFromApiToVm, mapUserFromVmToApi } from './edit.mappers';
+import * as viewModel from './edit-user-sheet.vm';
+import { mapUserFromApiToVm, mapUserFromVmToApi } from './edit-user-sheet.mappers';
 
 export const getUserByIdRepository = async (id: string): Promise<viewModel.Usuario> => {
   const userApi = await api.getUserById(id);
