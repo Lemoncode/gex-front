@@ -15,7 +15,15 @@ export const sectionContainer = (theme: Theme) => css`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   min-height: 200px;
+  gap: 16px;
+`;
+
+export const formContainer = css`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   gap: 16px;
 `;
 
@@ -23,6 +31,7 @@ export const passwordFieldContainer = css`
   display: flex;
   justify-content: center;
   gap: 16px;
+  width: 400px;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
