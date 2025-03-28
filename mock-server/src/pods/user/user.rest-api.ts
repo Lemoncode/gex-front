@@ -1,7 +1,12 @@
 import { Router } from 'express';
 import { userRepository } from '#dals/user/user.repository.js';
-import { mapUserFromApiToModel, mapUserListFromModelToApi } from './user.mappers.js';
-import { Usuario } from './user.api-model.js';
+import {
+  mapUserFromModelToApi,
+  mapUserListFromModelToApi,
+  mapUserFromApiToModel,
+  mapUserFromApiToModelUpdate,
+} from './user.mappers.js';
+import { Usuario, UsuarioActualizado } from './user.api-model.js';
 
 export const userApi = Router();
 
@@ -25,6 +30,7 @@ userApi
       next(error);
     }
   })
+
   .post('/', async (req, res, next) => {
     try {
       const newUser: Usuario = req.body;
@@ -33,6 +39,27 @@ userApi
       const createdUser = await userRepository.createUser(modelUser);
 
       res.status(201).send(createdUser);
+    } catch (error) {
+      next(error);
+    }
+  })
+  .get('/:id', async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const user = await userRepository.getUserById(id);
+      res.send(mapUserFromModelToApi(user));
+    } catch (error) {
+      next(error);
+    }
+  })
+  .put('/:id', async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const usuarioActualizado: UsuarioActualizado = req.body;
+      const modelUser = mapUserFromApiToModelUpdate(usuarioActualizado);
+      const estaActualizado = await userRepository.actualizarUsuario(id, modelUser);
+
+      res.status(201).send(estaActualizado);
     } catch (error) {
       next(error);
     }

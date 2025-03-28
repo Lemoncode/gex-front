@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography } from '@mui/material';
 import { CheckboxForm } from '#common/components';
 import { useWithTheme } from '#core/theme';
-import * as innerClasses from '../edit.styles';
+import * as innerClasses from '../edit-user-sheet.styles';
 
 export const AditionalPermissions: React.FC = () => {
   const classes = useWithTheme(innerClasses);

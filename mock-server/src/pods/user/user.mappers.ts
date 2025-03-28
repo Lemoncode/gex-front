@@ -10,13 +10,27 @@ export const mapUserFromModelToApi = (user: model.Usuario): apiModel.Usuario => 
   nombre: user.nombre,
   apellido: user.apellido,
   email: user.email,
+  unidad: user.unidad.id,
+  esAutorizante: user.esAutorizante,
+  esProponente: user.esProponente,
+  esResponsable: user.esResponsable,
+  rol: user.rol.id,
+  movil: user.movil,
+  telefono: user.telefono,
+});
+
+export const mapUserSummaryFromModelToApi = (user: model.Usuario): apiModel.UsuarioSummary => ({
+  id: mapObjectIdToString(user._id),
+  nombre: user.nombre,
+  apellido: user.apellido,
+  email: user.email,
   unidad: user.unidad.nombre,
 });
 
 export const mapUserListFromModelToApi = (
   userList: CollectionQuery<model.Usuario>
 ): CollectionQuery<apiModel.Usuario> => ({
-  data: mapToCollection(userList.data, mapUserFromModelToApi),
+  data: mapToCollection(userList.data, mapUserSummaryFromModelToApi),
   pagination: {
     totalPages: userList.pagination.totalPages,
   },
@@ -37,6 +51,25 @@ export const mapUserFromApiToModel = (user: apiModel.Usuario): model.Usuario => 
     unidad: unit,
     esContraseñaTemporal: true,
     contraseña: user.contraseña,
+    esResponsable: user.esResponsable,
+    esProponente: user.esProponente,
+    esAutorizante: user.esAutorizante,
+  };
+};
+
+export const mapUserFromApiToModelUpdate = (user: apiModel.UsuarioActualizado): model.Usuario => {
+  const role = db.roles.find(role => role.id === user.rol);
+  const unit = db.unidadProponentes.find(unit => unit.id === user.unidad);
+
+  return {
+    _id: new ObjectId(),
+    nombre: user.nombre,
+    apellido: user.apellido,
+    telefono: user.telefono,
+    movil: user.movil,
+    email: user.email,
+    rol: role,
+    unidad: unit,
     esResponsable: user.esResponsable,
     esProponente: user.esProponente,
     esAutorizante: user.esAutorizante,

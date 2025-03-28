@@ -3,7 +3,7 @@ import { Typography } from '@mui/material';
 import { SelectForm, TextFieldForm } from '#common/components';
 import { useWithTheme } from '#core/theme';
 import { UnidadRolList } from '#core/api/lookups/unidad-rol';
-import * as innerClasses from '../edit.styles';
+import * as innerClasses from '../edit-user-sheet.styles';
 
 interface Props {
   unidadRolList: UnidadRolList;
@@ -27,7 +27,6 @@ export const UserDetails: React.FC<Props> = props => {
       <div className={classes.row}>
         <TextFieldForm name="telefono" label="Teléfono fijo" />
         <TextFieldForm name="movil" label="Teléfono móvil" />
-        <TextFieldForm name="institucional" label="Teléfono Institucional" />
         <SelectForm label="Unidad" name="unidad" options={unidadRolList.unidades} />
         <SelectForm label="Rol" name="rol" options={unidadRolList.roles} />
       </div>

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { CollectionQuery, createEmptyCollectionQuery } from '#common/models';
+import { usersQueryKeys } from '#core/react-query';
 import { getUsersRepository } from './users.repository';
-import { usersQueryKeys } from '../users-keys';
 import { UserQueryFilter, Usuario } from './users.vm';
 
 interface UseUsersQueryResult {

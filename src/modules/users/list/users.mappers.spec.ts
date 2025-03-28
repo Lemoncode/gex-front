@@ -1,4 +1,4 @@
-import { createEmptyCollectionQuery } from '#common/models';
+import { createEmptyCollectionQuery } from '#common/models/collection.model.ts';
 import { mapUserListFromApiToVm } from './users.mappers';
 
 describe('users.mappers.spec', () => {
@@ -8,8 +8,6 @@ describe('users.mappers.spec', () => {
       const userList = {
         data: [],
         pagination: {
-          page: 0,
-          pageSize: 10,
           totalPages: 0,
         },
       };
@@ -32,8 +30,6 @@ describe('users.mappers.spec', () => {
           },
         ],
         pagination: {
-          page: 1,
-          pageSize: 10,
           totalPages: 1,
         },
       };
@@ -53,8 +49,6 @@ describe('users.mappers.spec', () => {
           },
         ],
         pagination: {
-          page: 1,
-          pageSize: 10,
           totalPages: 1,
         },
       });
