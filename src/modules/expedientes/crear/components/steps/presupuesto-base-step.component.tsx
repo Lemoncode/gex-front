@@ -131,20 +131,17 @@ export const PresupuestoBaseStep: React.FC = () => {
 
               <TableFooter sx={{ bgcolor: '#fafafa' }}>
                 <TableRow>
-                  <Typography pt={2} pl={2}>
+                  <Typography pt={2} pl={2} component={'td'}>
                     Añadir anualidad
                   </Typography>
                 </TableRow>
-
-                <Stack direction="row" spacing={2} className={classes.rowFooter}>
-                  <TextFieldForm type="text" name="ejercicio" label="Ejercicio" size="small" />
-
-                  <TextFieldForm name="label" label="Label" select size="small">
+                <Stack direction="row" spacing={2} p={2} component={'tr'}>
+                  <TextFieldForm type="text" name="ejercicio" label="Ejercicio" size="small" component={'td'} />
+                  <TextFieldForm name="label" label="Label" select size="small" component={'td'}>
                     <MenuItem>Label 1</MenuItem>
                     <MenuItem>Label 2</MenuItem>
                     <MenuItem>Label 3</MenuItem>
                   </TextFieldForm>
-
                   <TextFieldForm
                     slotProps={{
                       input: {
@@ -155,6 +152,7 @@ export const PresupuestoBaseStep: React.FC = () => {
                     name="importe"
                     label="Importe"
                     size="small"
+                    component={'td'}
                   />
                   <Button
                     endIcon={<SaveIcon fontSize="inherit" />}
@@ -162,6 +160,7 @@ export const PresupuestoBaseStep: React.FC = () => {
                     size="medium"
                     className={classes.button}
                     fullWidth
+                    component={'td'}
                   >
                     GUARDAR
                   </Button>
