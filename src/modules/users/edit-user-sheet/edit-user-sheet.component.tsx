@@ -1,14 +1,12 @@
 import React from 'react';
-
 import { Form, Formik } from 'formik';
-import { useWithTheme } from '#core/theme';
+import { Button } from '@mui/material';
+import { NavigationButton } from '#common/components';
 import { UnidadRolList } from '#core/api/lookups/unidad-rol';
 import { Usuario } from './edit-user-sheet.vm';
-import { Button } from '@mui/material';
 import { AditionalPermissions, UserDetails } from './components';
-import { NavigationButton } from '#common/components';
-import * as innerClasses from './edit-user-sheet.styles';
 import { formValidation } from './validations';
+import * as classes from './edit-user-sheet.styles';
 
 interface Props {
   usuario: Usuario;
@@ -18,7 +16,6 @@ interface Props {
 
 export const EditUser: React.FC<Props> = (props: Props) => {
   const { unidadRolList, onSubmit, usuario } = props;
-  const classes = useWithTheme(innerClasses);
   return (
     <>
       <div className={classes.root}>
