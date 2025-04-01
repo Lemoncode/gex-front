@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { CollectionQuery, createEmptyCollectionQuery } from '#common/models';
+import { expedientesQueryKeys } from '#core/react-query';
 import { getExpedienteRepository } from './expedientes.repository';
-import { expedientesQueryKeys } from '#modules/expedientes/expedientes-keys.ts';
 import { ExpedienteQueryFilter, Expediente } from './expedientes.vm';
 
 interface UseExpedientesQueryResult {

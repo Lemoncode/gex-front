@@ -1,9 +1,8 @@
 import React from 'react';
-import { useWithTheme } from '#core/theme';
 import { Pagination, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } from '@tanstack/react-table';
 import { Certificacion } from '../editar-certificaciones.vm';
-import * as innerClasses from './table.styles';
+import * as classes from './table.styles';
 
 interface Props {
   columns: ColumnDef<Certificacion>[];
@@ -15,7 +14,6 @@ interface Props {
 
 export const TableComponent: React.FC<Props> = props => {
   const { columns, certificacionCollection: data, totalItems, currentPage, onPageChange } = props;
-  const classes = useWithTheme(innerClasses);
   const tableInstance = useReactTable({
     data,
     columns,

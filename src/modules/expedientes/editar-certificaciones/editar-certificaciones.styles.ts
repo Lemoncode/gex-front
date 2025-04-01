@@ -1,5 +1,5 @@
 import { css } from '@emotion/css';
-import { Theme } from '@mui/material';
+import { theme } from '#core/theme';
 
 export const root = css`
   display: flex;
@@ -8,7 +8,7 @@ export const root = css`
   align-items: center;
 `;
 
-export const header = (theme: Theme) => css`
+export const header = css`
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -22,13 +22,13 @@ export const newCertificacionButton = () => css`
   gap: '1rem';
 `;
 
-export const link = (theme: Theme) => css`
+export const link = css`
   color: ${theme.palette.common.black};
   text-decoration: none;
   cursor: pointer;
 `;
 
-export const buttonContainer = (theme: Theme) => css`
+export const buttonContainer = css`
   position: absolute;
   bottom: ${theme.spacing(2)};
   right: ${theme.spacing(2)};
@@ -37,6 +37,6 @@ export const buttonContainer = (theme: Theme) => css`
   gap: ${theme.spacing(4)};
 `;
 
-export const volverButton = (theme: Theme) => css`
+export const volverButton = css`
   border-radius: ${theme.shape.borderRadius}px;
 `;

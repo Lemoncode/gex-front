@@ -1,16 +1,14 @@
 import React from 'react';
 import { Button, MenuItem, TextField } from '@mui/material';
-import { useWithTheme } from '#core/theme/theme.hooks.ts';
+import { NavigationButton, Spinner } from '#common/components';
 import { usePagination } from './use-pagination-hook';
 import { TableComponent } from './components';
 import { useColumns } from './editar-certificaciones.colums';
-import * as innerClasses from './editar-certificaciones.styles';
-import { NavigationButton, Spinner } from '#common/components/index.ts';
+import * as classes from './editar-certificaciones.styles';
 
 export const EditarCertificacionesPod: React.FC = () => {
   const { certificacionCollection, currentPage, totalPages, isLoading, onPageChange } = usePagination();
   const columns = useColumns();
-  const classes = useWithTheme(innerClasses);
   const [selectedOption, setSelectedOption] = React.useState('opcion1');
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLInputElement>) => {

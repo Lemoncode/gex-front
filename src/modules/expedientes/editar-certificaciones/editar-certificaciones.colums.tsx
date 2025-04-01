@@ -1,16 +1,11 @@
-import * as innerClasses from './editar-certificaciones.styles';
-
+import { ColumnDef } from '@tanstack/react-table';
+import { Link } from '@tanstack/react-router';
 import { Box } from '@mui/material';
 import { Edit as EditIcon, Visibility as VisibilityIcon } from '@mui/icons-material';
-
-import { ColumnDef } from '@tanstack/react-table';
 import { Certificacion } from './editar-certificaciones.vm';
-import { Link } from '@tanstack/react-router';
-import { useWithTheme } from '#core/theme';
+import * as classes from './editar-certificaciones.styles';
 
 export const useColumns = (): ColumnDef<Certificacion>[] => {
-  const classes = useWithTheme(innerClasses);
-
   return [
     { accessorKey: 'id', header: 'ID' },
     { accessorKey: 'numeroFactura', header: 'Número de factura' },

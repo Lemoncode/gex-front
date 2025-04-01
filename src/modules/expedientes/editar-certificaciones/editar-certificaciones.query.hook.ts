@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { CollectionQuery, createEmptyCollectionQuery } from '#common/models';
-import { getCertificacionesRepository } from './editar-certificaciones.repository.ts';
-import { certificacionesQueryKeys } from './editar-certificaciones-keys.ts';
-import { CertificacionQueryFilter, Certificacion } from './editar-certificaciones.vm.ts';
+import { certificacionesQueryKeys } from '#core/react-query';
+import { getCertificacionesRepository } from './editar-certificaciones.repository';
+import { CertificacionQueryFilter, Certificacion } from './editar-certificaciones.vm';
 
 interface UseCertificacionesQueryResult {
   certificacionCollection: CollectionQuery<Certificacion>;
