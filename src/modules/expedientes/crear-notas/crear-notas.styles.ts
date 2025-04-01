@@ -1,8 +1,7 @@
-import { theme } from './../../../core/theme/theme';
 import { css } from '@emotion/css';
-import { Theme } from '@mui/material';
+import { theme } from '#core/theme';
 
-export const root = (theme: Theme) => css`
+export const root = css`
   display: flex;
   flex-direction: column;
 `;
@@ -13,7 +12,7 @@ export const form = () => css`
   gap: 20px;
 `;
 
-export const formHeader = (theme: Theme) => css`
+export const formHeader = css`
   display: flex;
   gap: ${theme.spacing(4)};
 `;

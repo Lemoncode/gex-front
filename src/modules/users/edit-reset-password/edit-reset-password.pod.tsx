@@ -1,5 +1,16 @@
 import React from 'react';
+import { EditResetPasswordComponent } from './edit-reset-password.component';
 
-export const EditResetPassword: React.FC = () => {
-  return <h3>Reset Password</h3>;
+// TO DO: prop id se usará cuando el endpoint de reseteo de clave esté listo
+interface Props {
+  id: string;
+}
+
+export const EditResetPassword: React.FC<Props> = () => {
+  // const { id } = props;
+  return (
+    <>
+      <EditResetPasswordComponent />
+    </>
+  );
 };

@@ -13,6 +13,6 @@ export interface Usuario {
   esProponente?: boolean;
   esAutorizante?: boolean;
   esContraseñaTemporal?: boolean;
-  contraseña: string;
+  contraseña?: string;
   unidad: Lookup;
 }
