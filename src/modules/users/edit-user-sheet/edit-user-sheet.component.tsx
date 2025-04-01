@@ -1,34 +1,33 @@
 import React from 'react';
-
 import { Form, Formik } from 'formik';
-import { useWithTheme } from '#core/theme';
-import { UnidadRolList } from '#core/api/lookups/unidad-rol';
-import { Usuario, createEmptyUsuario } from './edit.vm';
 import { Button } from '@mui/material';
-import { AditionalPermissions, UserDetails } from './components';
 import { NavigationButton } from '#common/components';
-import * as innerClasses from './edit.styles';
+import { UnidadRolList } from '#core/api/lookups/unidad-rol';
+import { Usuario } from './edit-user-sheet.vm';
+import { AditionalPermissions, UserDetails } from './components';
+import { formValidation } from './validations';
+import * as classes from './edit-user-sheet.styles';
 
 interface Props {
+  usuario: Usuario;
   unidadRolList: UnidadRolList;
-  onSubmit: (values: Usuario) => void;
+  onSubmit: (usuario: Usuario) => void;
 }
 
 export const EditUser: React.FC<Props> = (props: Props) => {
-  const { unidadRolList, onSubmit } = props;
-  const classes = useWithTheme(innerClasses);
+  const { unidadRolList, onSubmit, usuario } = props;
   return (
     <>
       <div className={classes.root}>
         <Formik
-          initialValues={createEmptyUsuario()}
+          initialValues={usuario}
           enableReinitialize={true}
-          /* TODO: implement Formik form Validation in the next steps */
-          onSubmit={onSubmit}
+          validate={formValidation.validateForm}
+          onSubmit={usuario => onSubmit(usuario)}
         >
-          {({ values }) => (
+          {() => (
             <Form className={classes.form}>
-              <UserDetails unidadRolList={unidadRolList} contraseña={values.contraseña} />
+              <UserDetails unidadRolList={unidadRolList} contraseña={'admin'} />
               <AditionalPermissions />
               <div className={classes.buttonContainer}>
                 <Button type="submit" variant="contained">
