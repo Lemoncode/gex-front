@@ -1,32 +1,28 @@
 import React from 'react';
 import { Form, Formik } from 'formik';
-import { formValidation } from './validations';
-import * as innerClasses from './edit-reset-password.styles';
-import { useWithTheme } from '#core/theme';
 import { Button, IconButton } from '@mui/material';
-import { TextFieldForm } from '#common/components';
 import { Visibility, VisibilityOff, ContentCopy } from '@mui/icons-material';
+import { TextFieldForm } from '#common/components';
+import { useToggle } from '#common/hooks';
+import { formValidation } from './validations';
 import { usePassword } from '../create/use-password.hook';
-import { ConfirmResetDialog } from './edit-reset-password.alert';
+import { ConfirmResetDialog } from './components';
 import { handleCopyPassword } from './edit-reset-password.business';
+import { createEmptyInitialResetPassword } from './edit-reset-password.vm';
+import * as classes from './edit-reset-password.styles';
 
 export const EditResetPasswordComponent: React.FC = () => {
   const { showPassword, toggleShowPassword } = usePassword();
-  const classes = useWithTheme(innerClasses);
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpenDialog = () => setOpen(true);
-  const handleCloseDialog = () => setOpen(false);
+  const { isOpen, onToggle } = useToggle(false);
 
   return (
     <div className={classes.root}>
       <div className={classes.sectionContainer}>
         <Formik
-          initialValues={{ contraseña: '' }}
+          initialValues={createEmptyInitialResetPassword()}
           enableReinitialize={true}
           validate={formValidation.validateForm}
-          validateOnChange={true}
-          validateOnBlur={false}
           onSubmit={() => {}}
         >
           {({ values, isValid, dirty }) => (
@@ -57,14 +53,7 @@ export const EditResetPasswordComponent: React.FC = () => {
               </div>
 
               <div className={classes.buttonContainer}>
-                <Button
-                  type="button"
-                  variant="contained"
-                  disabled={!isValid || !dirty}
-                  onClick={() => {
-                    handleOpenDialog();
-                  }}
-                >
+                <Button type="button" variant="contained" disabled={!isValid || !dirty} onClick={onToggle}>
                   Resetear Clave de Usuario
                 </Button>
               </div>
@@ -72,7 +61,7 @@ export const EditResetPasswordComponent: React.FC = () => {
           )}
         </Formik>
 
-        <ConfirmResetDialog open={open} handleClose={handleCloseDialog} />
+        <ConfirmResetDialog open={isOpen} handleClose={onToggle} />
       </div>
     </div>
   );

@@ -1,14 +1,14 @@
 import { css } from '@emotion/css';
-import { Theme } from '@mui/material';
+import { theme } from '#core/theme';
 
-export const root = (theme: Theme) => css`
+export const root = css`
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: ${theme.spacing(4)};
 `;
 
-export const sectionContainer = (theme: Theme) => css`
+export const sectionContainer = css`
   border: 1px solid ${theme.palette.grey[300]};
   border-radius: 4px;
   padding: ${theme.spacing(3)};

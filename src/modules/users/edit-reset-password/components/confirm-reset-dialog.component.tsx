@@ -16,12 +16,7 @@ export const ConfirmResetDialog: React.FC<Props> = props => {
 
   return (
     <React.Fragment>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
+      <Dialog open={open} onClose={handleClose}>
         <DialogTitle id="alert-dialog-title">
           {'¿Está seguro que desea resetear la contraseña de este usuario?'}
         </DialogTitle>
