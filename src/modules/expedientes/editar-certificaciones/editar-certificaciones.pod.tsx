@@ -3,7 +3,7 @@ import { Button, MenuItem, TextField } from '@mui/material';
 import { NavigationButton, Spinner } from '#common/components';
 import { usePagination } from './use-pagination-hook';
 import { TableComponent } from './components';
-import { useColumns } from './editar-certificaciones.colums';
+import { useColumns } from './editar-certificaciones.columns';
 import * as classes from './editar-certificaciones.styles';
 
 export const EditarCertificacionesPod: React.FC = () => {
