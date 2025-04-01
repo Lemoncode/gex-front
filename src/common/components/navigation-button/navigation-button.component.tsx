@@ -8,14 +8,17 @@ interface Props {
   text: string;
   params?: Record<string, string | number>;
   variant?: ButtonProps['variant'];
+  fullWidth?: boolean;
 }
 
 export const NavigationButton: React.FC<Props> = props => {
-  const { path, params, text, variant = 'contained' } = props;
+  const { path, params, text, variant = 'contained', fullWidth } = props;
 
   return (
     <Link to={path} params={params}>
-      <Button variant={variant}>{text}</Button>
+      <Button variant={variant} fullWidth={fullWidth}>
+        {text}
+      </Button>
     </Link>
   );
 };
