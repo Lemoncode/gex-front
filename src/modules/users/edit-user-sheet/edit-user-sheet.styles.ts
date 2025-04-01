@@ -1,19 +1,19 @@
 import { css } from '@emotion/css';
-import { Theme } from '@mui/material';
+import { theme } from '#core/theme';
 
-export const root = (theme: Theme) => css`
+export const root = css`
   display: flex;
   flex-direction: column;
   gap: ${theme.spacing(4)};
 `;
 
-export const form = (theme: Theme) => css`
+export const form = css`
   display: flex;
   flex-direction: column;
   gap: ${theme.spacing(4)};
 `;
 
-export const sectionContainer = (theme: Theme) => css`
+export const sectionContainer = css`
   border: 1px solid ${theme.palette.grey[300]};
   border-radius: 4px;
   padding: ${theme.spacing(3)};
@@ -21,7 +21,7 @@ export const sectionContainer = (theme: Theme) => css`
   flex-direction: column;
 `;
 
-export const row = (theme: Theme) => css`
+export const row = css`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: ${theme.spacing(2)};
@@ -39,7 +39,7 @@ export const apellidos = css`
   }
 `;
 
-export const checkboxContainer = (theme: Theme) => css`
+export const checkboxContainer = css`
   display: flex;
   gap: ${theme.spacing(2)};
 
