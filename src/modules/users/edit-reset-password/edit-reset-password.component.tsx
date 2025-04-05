@@ -10,11 +10,25 @@ import { ConfirmResetDialog } from './components';
 import { handleCopyPassword } from './edit-reset-password.business';
 import { createEmptyInitialResetPassword } from './edit-reset-password.vm';
 import * as classes from './edit-reset-password.styles';
+import { useUpdateUserPasswordMutation } from './edit-reset-password.query.hook';
+import { ErrorAlertResetPassword, SuccessAlertResetPassword } from './components/alerts-reset-password.componet';
 
-export const EditResetPasswordComponent: React.FC = () => {
+interface Props {
+  userId: string;
+}
+
+export const EditResetPasswordComponent: React.FC<Props> = (props: Props) => {
+  const { userId } = props;
   const { showPassword, toggleShowPassword } = usePassword();
+  const { isOpen: isOpenDialog, onToggle: onToggleDialog } = useToggle(false);
+  const { isOpen: isOpenAlert, onToggle: onToggleAlert } = useToggle(false);
+  const { savePassword, isPending, isSuccess, isError } = useUpdateUserPasswordMutation();
 
-  const { isOpen, onToggle } = useToggle(false);
+  const handleConfirmPassword = (newPassword: string, userId: string) => {
+    savePassword({ password: newPassword, id: userId });
+    onToggleDialog();
+    onToggleAlert();
+  };
 
   return (
     <div className={classes.root}>
@@ -25,43 +39,54 @@ export const EditResetPasswordComponent: React.FC = () => {
           validate={formValidation.validateForm}
           onSubmit={() => {}}
         >
-          {({ values, isValid, dirty }) => (
-            <Form className={classes.formContainer}>
-              <div className={classes.passwordFieldContainer}>
-                <TextFieldForm
-                  name="contraseña"
-                  label="Contraseña"
-                  type={showPassword ? 'text' : 'password'}
-                  slotProps={{
-                    input: {
-                      endAdornment: (
-                        <IconButton onClick={toggleShowPassword}>
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      ),
-                    },
-                  }}
-                />
-                <IconButton
-                  onClick={() => {
-                    handleCopyPassword(values.contraseña || '');
-                  }}
-                  className={classes.icon}
-                >
-                  <ContentCopy />
-                </IconButton>
-              </div>
+          {({ values, isValid, dirty, resetForm }) => (
+            <>
+              <Form className={classes.formContainer}>
+                <div className={classes.passwordFieldContainer}>
+                  <TextFieldForm
+                    name="contraseña"
+                    label="Contraseña"
+                    type={showPassword ? 'text' : 'password'}
+                    slotProps={{
+                      input: {
+                        endAdornment: (
+                          <IconButton onClick={toggleShowPassword}>
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        ),
+                      },
+                    }}
+                  />
+                  <IconButton
+                    onClick={() => {
+                      handleCopyPassword(values.contraseña || '');
+                    }}
+                    className={classes.icon}
+                  >
+                    <ContentCopy />
+                  </IconButton>
+                </div>
 
-              <div className={classes.buttonContainer}>
-                <Button type="button" variant="contained" disabled={!isValid || !dirty} onClick={onToggle}>
-                  Resetear Clave de Usuario
-                </Button>
-              </div>
-            </Form>
+                <div className={classes.buttonContainer}>
+                  <Button type="button" variant="contained" disabled={!isValid || !dirty} onClick={onToggleDialog}>
+                    Resetear Clave de Usuario
+                  </Button>
+                </div>
+              </Form>
+              <ConfirmResetDialog
+                open={isOpenDialog}
+                isLoading={isPending}
+                handleClose={onToggleDialog}
+                onConfirm={() => {
+                  handleConfirmPassword(values.contraseña, userId);
+                  resetForm();
+                }}
+              />
+            </>
           )}
         </Formik>
-
-        <ConfirmResetDialog open={isOpen} handleClose={onToggle} />
+        {isSuccess && isOpenAlert && <SuccessAlertResetPassword handleClose={onToggleAlert} />}
+        {isError && isOpenAlert && <ErrorAlertResetPassword handleClose={onToggleAlert} />}
       </div>
     </div>
   );
