@@ -27,4 +27,8 @@ export const userRepository = {
     }
     return index !== -1;
   },
+  // resetPassword: async (id: string, password: string): Promise<boolean> => {
+  //   // reset password, el db.users[index].password = password;
+  //   return true;
+  // },
 };

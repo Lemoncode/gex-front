@@ -7,9 +7,5 @@ interface Props {
 
 export const EditResetPassword: React.FC<Props> = props => {
   const { id } = props;
-  return (
-    <>
-      <EditResetPasswordComponent userId={id} />
-    </>
-  );
+  return <EditResetPasswordComponent userId={id} />;
 };

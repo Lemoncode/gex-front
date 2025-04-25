@@ -63,4 +63,21 @@ userApi
     } catch (error) {
       next(error);
     }
+  })
+  // TODO: Implementar la lógica para actualizar el password
+  .put('/resetPassword/:id', async (req, res, next) => {
+    try {
+      //const { id } = req.params;
+      //const { contraseña } = req.body;
+      // comporabar si existe el usuario sino mandamos un erro un 404
+      //const estaActualizado = await userRepository.resetPassword(id, contraseña);
+      // if (usaarioexiste) {
+      //   await userRepository.resetPassword(id, password);
+      // } else {
+      //   res.sendStatus(404);
+      // }
+      //res.status(201).send(estaActualizado);
+    } catch (error) {
+      next(error);
+    }
   });

@@ -1,4 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
+import { useNotification } from '#core/notification';
 import { updatePassword } from './api';
 
 interface ParamsMutationPassword {
@@ -9,24 +10,24 @@ interface ParamsMutationPassword {
 interface UseSavePasswordMutationResult {
   savePassword: (params: ParamsMutationPassword) => void;
   isPending: boolean;
-  isSuccess: boolean;
-  isError: boolean;
 }
 
-export const useUpdateUserPasswordMutation = (): UseSavePasswordMutationResult => {
-  const {
-    mutate: savePassword,
-    isPending,
-    isSuccess,
-    isError,
-  } = useMutation({
+export const useUpdateUserPasswordMutation = (onToggleDialog: () => void): UseSavePasswordMutationResult => {
+  const { notify } = useNotification();
+  const { mutate: savePassword, isPending } = useMutation({
     mutationFn: ({ password, id }: ParamsMutationPassword) => updatePassword(password, id),
+    onSuccess: () => {
+      onToggleDialog();
+      notify('Contraseña actualizada correctamente', 'success');
+    },
+    onError: () => {
+      onToggleDialog();
+      notify('Error al actualizar la contraseña', 'error');
+    },
   });
 
   return {
     savePassword,
     isPending,
-    isSuccess,
-    isError,
   };
 };

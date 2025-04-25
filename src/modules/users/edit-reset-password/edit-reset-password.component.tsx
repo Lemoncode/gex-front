@@ -4,14 +4,13 @@ import { Button, IconButton } from '@mui/material';
 import { Visibility, VisibilityOff, ContentCopy } from '@mui/icons-material';
 import { TextFieldForm } from '#common/components';
 import { useToggle } from '#common/hooks';
+import { ConfirmResetDialog } from './components';
 import { formValidation } from './validations';
 import { usePassword } from '../create/use-password.hook';
-import { ConfirmResetDialog } from './components';
 import { handleCopyPassword } from './edit-reset-password.business';
 import { createEmptyInitialResetPassword } from './edit-reset-password.vm';
-import * as classes from './edit-reset-password.styles';
 import { useUpdateUserPasswordMutation } from './edit-reset-password.query.hook';
-import { ErrorAlertResetPassword, SuccessAlertResetPassword } from './components/alerts-reset-password.componet';
+import * as classes from './edit-reset-password.styles';
 
 interface Props {
   userId: string;
@@ -21,14 +20,10 @@ export const EditResetPasswordComponent: React.FC<Props> = (props: Props) => {
   const { userId } = props;
   const { showPassword, toggleShowPassword } = usePassword();
   const { isOpen: isOpenDialog, onToggle: onToggleDialog } = useToggle(false);
-  const { isOpen: isOpenAlert, onToggle: onToggleAlert } = useToggle(false);
-  const { savePassword, isPending, isSuccess, isError } = useUpdateUserPasswordMutation();
+  const { savePassword, isPending } = useUpdateUserPasswordMutation(onToggleDialog);
 
-  const handleConfirmPassword = (newPassword: string, userId: string) => {
+  const handleConfirmPassword = (newPassword: string, userId: string) =>
     savePassword({ password: newPassword, id: userId });
-    onToggleDialog();
-    onToggleAlert();
-  };
 
   return (
     <div className={classes.root}>
@@ -37,7 +32,7 @@ export const EditResetPasswordComponent: React.FC<Props> = (props: Props) => {
           initialValues={createEmptyInitialResetPassword()}
           enableReinitialize={true}
           validate={formValidation.validateForm}
-          onSubmit={() => {}}
+          onSubmit={onToggleDialog}
         >
           {({ values, isValid, dirty, resetForm }) => (
             <>
@@ -85,8 +80,6 @@ export const EditResetPasswordComponent: React.FC<Props> = (props: Props) => {
             </>
           )}
         </Formik>
-        {isSuccess && isOpenAlert && <SuccessAlertResetPassword handleClose={onToggleAlert} />}
-        {isError && isOpenAlert && <ErrorAlertResetPassword handleClose={onToggleAlert} />}
       </div>
     </div>
   );
