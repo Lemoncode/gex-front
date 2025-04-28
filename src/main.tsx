@@ -6,6 +6,7 @@ import { RouterProvider } from '@tanstack/react-router';
 import { queryClient } from './core/react-query';
 import { router } from './core/router';
 import { ThemeProvider } from './core/theme';
+import { NotificationProvider } from './core/notification';
 
 const App = () => {
   return <RouterProvider router={router} />;
@@ -15,8 +16,10 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
-        <App />
-        <ReactQueryDevtools />
+        <NotificationProvider>
+          <App />
+          <ReactQueryDevtools />
+        </NotificationProvider>
       </ThemeProvider>
     </QueryClientProvider>
   </StrictMode>
