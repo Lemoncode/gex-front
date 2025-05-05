@@ -8,23 +8,23 @@ import * as innerClasses from './table.styles';
 interface Props {
   columns: ColumnDef<Usuario>[];
   userCollection: Usuario[];
-  totalItems: number;
+  totalPages: number;
   currentPage: number;
   onPageChange: (event: React.ChangeEvent<unknown>, page: number) => void;
 }
 
 export const TableComponent: React.FC<Props> = props => {
-  const { columns, userCollection: data, totalItems, currentPage, onPageChange } = props;
+  const { columns, userCollection: data, totalPages, currentPage, onPageChange } = props;
   const classes = useWithTheme(innerClasses);
   const tableInstance = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    rowCount: totalItems,
+    rowCount: totalPages,
   });
 
-  const { getRowModel, getHeaderGroups, getPageCount } = tableInstance;
+  const { getRowModel, getHeaderGroups } = tableInstance;
 
   return (
     <TableContainer component={Paper}>
@@ -48,12 +48,7 @@ export const TableComponent: React.FC<Props> = props => {
           ))}
         </TableBody>
       </Table>
-      <Pagination
-        count={getPageCount()}
-        page={currentPage + 1}
-        onChange={onPageChange}
-        className={classes.pagination}
-      />
+      <Pagination count={totalPages} page={currentPage + 1} onChange={onPageChange} className={classes.pagination} />
     </TableContainer>
   );
 };

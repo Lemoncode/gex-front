@@ -27,7 +27,7 @@ export const ExpedientesPod: React.FC = () => {
       <TableComponent
         columns={columns}
         expedienteCollection={expedienteCollection.data}
-        totalItems={totalPages}
+        totalPages={totalPages}
         currentPage={currentPage}
         onPageChange={onPageChange}
       />

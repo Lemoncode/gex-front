@@ -1,9 +1,11 @@
 import { ObjectId } from 'mongodb';
 import { Lookup } from '#common/models/index.js';
 import { Usuario } from './user/index.js';
+import { Expediente } from './expediente/index.js';
 
 export interface DB {
   users: Usuario[];
+  expedientes: Expediente[];
   unidadProponentes: Lookup[];
   roles: Lookup[];
 }
@@ -138,6 +140,148 @@ export const db: DB = {
     {
       id: '677d160e6d98cb2a17428884',
       nombre: 'Usuario-Lectura',
+    },
+  ],
+  expedientes: [
+    {
+      id: new ObjectId('67e2a2c1f3b8d4a8b57ceed7'),
+      clase: 'Administrativo',
+      titulo: 'Solicitud de Información',
+      adjudicataria: 'Juan Pérez',
+      estado: 'En Proceso',
+    },
+    {
+      id: new ObjectId('67e2a2c1f3b8d4a8b57ceed8'),
+      clase: 'Técnico',
+      titulo: 'Informe Técnico',
+      adjudicataria: 'María López',
+      estado: 'Finalizado',
+    },
+    {
+      id: new ObjectId('67e2a2c1f3b8d4a8b57ceed9'),
+      clase: 'Financiero',
+      titulo: 'Informe Financiero',
+      adjudicataria: 'Carlos García',
+      estado: 'Pendiente',
+    },
+    {
+      id: new ObjectId('67e2a2c1f3b8d4a8b57ceeda'),
+      clase: 'Legal',
+      titulo: 'Informe Legal',
+      adjudicataria: 'Laura Martínez',
+      estado: 'En Revisión',
+    },
+    {
+      id: new ObjectId('67e2a2c1f3b8d4a8b57ceedb'),
+      clase: 'Administrativo',
+      titulo: 'Solicitud de Modificación',
+      adjudicataria: 'Miguel Fernández',
+      estado: 'Aprobado',
+    },
+    {
+      id: new ObjectId('67e2a2c1f3b8d4a8b57ceedc'),
+      clase: 'Técnico',
+      titulo: 'Informe de Progreso',
+      adjudicataria: 'Ana Torres',
+      estado: 'En Proceso',
+    },
+    {
+      id: new ObjectId('67e2a2c1f3b8d4a8b57ceedd'),
+      clase: 'Financiero',
+      titulo: 'Informe de Gastos',
+      adjudicataria: 'Luis Martínez',
+      estado: 'Pendiente',
+    },
+    {
+      id: new ObjectId('67e2a2c1f3b8d4a8b57ceede'),
+      clase: 'Legal',
+      titulo: 'Informe de Cumplimiento',
+      adjudicataria: 'Sofía García',
+      estado: 'Finalizado',
+    },
+    {
+      id: new ObjectId('67e2a2c1f3b8d4a8b57ceedf'),
+      clase: 'Administrativo',
+      titulo: 'Solicitud de Aprobación',
+      adjudicataria: 'Pedro González',
+      estado: 'En Revisión',
+    },
+    {
+      id: new ObjectId('67e2a2c1f3b8d4a8b57ceee0'),
+      clase: 'Técnico',
+      titulo: 'Informe de Evaluación',
+      adjudicataria: 'Clara López',
+      estado: 'Aprobado',
+    },
+    {
+      id: new ObjectId('67e2a2c1f3b8d4a8b57ceee1'),
+      clase: 'Legal',
+      titulo: 'Solicitud de Revisión',
+      adjudicataria: 'Isabel Ramírez',
+      estado: 'Pendiente',
+    },
+    {
+      id: new ObjectId('67e2a2c1f3b8d4a8b57ceee2'),
+      clase: 'Financiero',
+      titulo: 'Análisis de Presupuesto',
+      adjudicataria: 'Javier Torres',
+      estado: 'Finalizado',
+    },
+    {
+      id: new ObjectId('67e2a2c1f3b8d4a8b57ceee3'),
+      clase: 'Técnico',
+      titulo: 'Inspección Técnica',
+      adjudicataria: 'Carmen Díaz',
+      estado: 'En Proceso',
+    },
+    {
+      id: new ObjectId('67e2a2c1f3b8d4a8b57ceee4'),
+      clase: 'Administrativo',
+      titulo: 'Petición Administrativa',
+      adjudicataria: 'Andrés Morales',
+      estado: 'Aprobado',
+    },
+    {
+      id: new ObjectId('67e2a2c1f3b8d4a8b57ceee5'),
+      clase: 'Legal',
+      titulo: 'Resolución Judicial',
+      adjudicataria: 'Elena Navarro',
+      estado: 'Finalizado',
+    },
+    {
+      id: new ObjectId('67e2a2c1f3b8d4a8b57ceee6'),
+      clase: 'Financiero',
+      titulo: 'Informe de Auditoría',
+      adjudicataria: 'Pablo Ortega',
+      estado: 'En Revisión',
+    },
+    {
+      id: new ObjectId('67e2a2c1f3b8d4a8b57ceee7'),
+      clase: 'Técnico',
+      titulo: 'Plan de Mantenimiento',
+      adjudicataria: 'Sara Medina',
+      estado: 'Pendiente',
+    },
+    {
+      id: new ObjectId('67e2a2c1f3b8d4a8b57ceee8'),
+      clase: 'Administrativo',
+      titulo: 'Solicitud de Recursos',
+      adjudicataria: 'Daniel Herrera',
+      estado: 'En Proceso',
+    },
+    {
+      id: new ObjectId('67e2a2c1f3b8d4a8b57ceee9'),
+      clase: 'Legal',
+      titulo: 'Consulta Jurídica',
+      adjudicataria: 'Laura Ruiz',
+      estado: 'Aprobado',
+    },
+    {
+      id: new ObjectId('67e2a2c1f3b8d4a8b57ceeea'),
+      clase: 'Financiero',
+      titulo: 'Informe de Deuda',
+      adjudicataria: 'Víctor Ramos',
+      estado: 'Pendiente',
     },
   ],
 };

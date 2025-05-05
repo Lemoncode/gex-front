@@ -22,7 +22,7 @@ export const UsersPod: React.FC = () => {
       <TableComponent
         columns={columns}
         userCollection={userCollection.data}
-        totalItems={totalPages}
+        totalPages={totalPages}
         currentPage={currentPage}
         onPageChange={onPageChange}
       />

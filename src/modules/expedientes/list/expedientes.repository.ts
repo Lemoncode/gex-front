@@ -1,12 +1,14 @@
 import { CollectionQuery } from '#common/models';
-import { Expediente } from './expedientes.vm';
+import { mapExpedienteListFromApiToVm } from './expedientes.mappers';
+import * as api from './api';
 
-export const getExpedienteRepository = async (): Promise<CollectionQuery<Expediente>> => ({
-  data: [
-    { id: '1', clase: 'Clase A', titulo: 'Título A', adjudicataria: 'Empresa A', estado: 'Activo' },
-    { id: '2', clase: 'Clase B', titulo: 'Título 2', adjudicataria: 'Empresa B', estado: 'Pendiente' },
-  ],
-  pagination: {
-    totalPages: 1,
-  },
-});
+export const getExpedienteRepository = async (
+  page: number,
+  pageSize: number
+): Promise<CollectionQuery<api.Expediente>> => {
+  const expedientesApi = await api.getExpedientes(page, pageSize);
+
+  const expedienteViewModel = mapExpedienteListFromApiToVm(expedientesApi);
+
+  return expedienteViewModel;
+};
