@@ -18,3 +18,10 @@ export const certificacionesQueryKeys = {
   all: ['certificaciones'],
   certificacionCollection: (page?: number, pageSize?: number) => ['certificaciones', page, pageSize],
 };
+
+export const authQueryKeys = {
+  all: ['auth'],
+  doLogin: () => ['auth', 'doLogin'],
+  // todo: add doLogout
+  whoami: () => ['auth', 'whoami'],
+};

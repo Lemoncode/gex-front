@@ -1,5 +1,5 @@
 import { paginateItems } from '#common/helpers/index.js';
-import { CollectionQuery } from '#common/models/index.js';
+import { CollectionQuery, UserCredentials } from '#common/models/index.js';
 import { db } from '#dals/mock.data.js';
 import * as model from './user.model.js';
 
@@ -27,4 +27,6 @@ export const userRepository = {
     }
     return index !== -1;
   },
+  getUserByCredentials: async (userCredentials: UserCredentials) =>
+    db.users.find(user => user.email === userCredentials.email && user.contraseña === userCredentials.contraseña),
 };
