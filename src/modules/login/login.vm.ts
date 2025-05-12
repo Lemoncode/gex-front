@@ -1,9 +1,6 @@
-export interface Credenciales {
-  email: string;
-  contraseña: string;
-}
+import { UserCredentials } from '#core/auth';
 
-export const createEmptyCredenciales = (): Credenciales => ({
+export const createEmptyCredenciales = (): UserCredentials => ({
   email: '',
   contraseña: '',
 });

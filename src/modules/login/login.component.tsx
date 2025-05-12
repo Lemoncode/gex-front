@@ -1,42 +1,28 @@
 import React from 'react';
 import { Button, IconButton, Paper, TableContainer, Typography } from '@mui/material';
-import { useToggle } from '#common/hooks';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Form, Formik } from 'formik';
-import { createEmptyCredenciales, Credenciales } from './login.vm';
 import { NavigationButton, TextFieldForm } from '#common/components';
+import { useToggle } from '#common/hooks';
+import { UserCredentials } from '#core/auth';
+import { createEmptyCredenciales } from './login.vm';
 import { formValidation } from './validations/login.validations.ts';
-// import { db } from '../../../mock-server/src/dals/mock.data.ts';
-import { useNavigate } from '@tanstack/react-router';
 import * as classes from './login.styles';
 
-export const Login: React.FC = () => {
-  const { isOpen: showPassword, onToggle } = useToggle(false);
-  const [loginError, setLoginError] = React.useState(false);
-  const navigate = useNavigate();
+interface Props {
+  onSubmit: (userCredentials: UserCredentials) => void;
+}
 
-  const handleSubmit = (credenciales: Credenciales) => {
-    const { email, contraseña } = credenciales;
-    // const usuario = db.users.find(user => user.email === email && user.contraseña === contraseña);
-    const usuario = email === 'carlos.gonzalez@example.com' && contraseña === 'carlos123';
-    if (usuario) {
-      setLoginError(false);
-      navigate({ to: '/expedientes' });
-    } else {
-      setLoginError(true);
-    }
-  };
+export const Login: React.FC<Props> = props => {
+  const { onSubmit } = props;
+  const { isOpen: showPassword, onToggle } = useToggle(false);
 
   return (
     <div>
       <TableContainer className={classes.root} component={Paper}>
         <Typography variant="h5">Inicia sesión en tu cuenta</Typography>
         <div className={classes.loginContainer}>
-          <Formik
-            onSubmit={handleSubmit}
-            initialValues={createEmptyCredenciales()}
-            validate={formValidation.validateForm}
-          >
+          <Formik onSubmit={onSubmit} initialValues={createEmptyCredenciales()} validate={formValidation.validateForm}>
             {() => (
               <Form>
                 <TextFieldForm name="email" label="Email" />
@@ -53,11 +39,6 @@ export const Login: React.FC = () => {
                   }}
                 />
 
-                {loginError && (
-                  <Typography color="error" variant="body2">
-                    Email o contraseña incorrectos
-                  </Typography>
-                )}
                 <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }} fullWidth>
                   Entrar
                 </Button>
