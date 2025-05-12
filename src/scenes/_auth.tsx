@@ -7,10 +7,6 @@ export const Route = createFileRoute('/_auth')({
       throw redirect({
         to: '/login',
       });
-    } else {
-      throw redirect({
-        to: '/expedientes',
-      });
     }
   },
   component: () => {

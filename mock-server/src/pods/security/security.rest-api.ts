@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import { UserCredentials, UserSession } from '#common/models/index.js';
 import { userRepository } from '#dals/user/index.js';
 import { authenticationMiddleware } from './security.middlewares.js';
+import { ENV } from '#core/constants/env.constants.js';
 
 export const securityApi = Router();
 
@@ -17,8 +18,7 @@ securityApi
           id: user._id.toHexString(),
           rol: user.rol,
         };
-        // TODO: MOVE secret to .env
-        const token = jwt.sign(userSession, 'patata', {
+        const token = jwt.sign(userSession, ENV.AUTH_SECRET, {
           expiresIn: '1d',
           algorithm: 'HS256',
         });
@@ -28,6 +28,7 @@ securityApi
         res.sendStatus(204);
       } else {
         res.sendStatus(401);
+        res.clearCookie('authorization');
       }
     } catch (error) {
       next(error);
@@ -40,9 +41,16 @@ securityApi
       if (user) {
         res.status(200).send({ id: user._id.toHexString(), nombre: user.nombre, rol: user.rol });
       } else {
-        res.clearCookie('authorization');
         res.sendStatus(401);
       }
+    } catch (error) {
+      next(error);
+    }
+  })
+  .post('/logout', authenticationMiddleware, async (req, res, next) => {
+    try {
+      res.clearCookie('authorization');
+      res.sendStatus(204);
     } catch (error) {
       next(error);
     }

@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { UserCredentials, login, User, whoami } from './api';
 import { createEmptyUser } from './auth.model';
-import { authQueryKeys } from '../react-query';
+import { authQueryKeys, queryClient } from '../react-query';
 
 interface LoginMutationResult {
   doLogin: (userCredentials: UserCredentials) => Promise<void>;
@@ -12,7 +12,7 @@ export const useLoginMutation = (): LoginMutationResult => {
   const { mutateAsync: doLogin, isPending } = useMutation({
     mutationFn: (userCredentials: UserCredentials) => login(userCredentials),
     onSuccess: () => {
-      // TODO: EJERCUTAR EL WHOAMI
+      queryClient.removeQueries({ queryKey: authQueryKeys.whoami() });
     },
   });
 
