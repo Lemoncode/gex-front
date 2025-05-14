@@ -14,7 +14,7 @@ export const useExpedientesQuery = (expedienteFilter: ExpedienteQueryFilter): Us
 
   const { data: expedienteCollection = createEmptyCollectionQuery(), isLoading } = useQuery({
     queryKey: expedientesQueryKeys.expedienteCollection(page, pageSize),
-    queryFn: () => getExpedienteRepository(),
+    queryFn: () => getExpedienteRepository(page, pageSize),
   });
 
   return {

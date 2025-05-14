@@ -1,5 +1,5 @@
 import { css } from '@emotion/css';
-import { Theme } from '@mui/material';
+import { theme } from '#core/theme';
 
 export const root = css`
   display: flex;
@@ -8,14 +8,14 @@ export const root = css`
   align-items: center;
 `;
 
-export const header = (theme: Theme) => css`
+export const header = css`
   display: flex;
   justify-content: space-between;
   width: 100%;
   padding: 0 ${theme.spacing(2)};
 `;
 
-export const link = (theme: Theme) => css`
+export const link = css`
   color: ${theme.palette.common.black};
   text-decoration: none;
   cursor: pointer;
