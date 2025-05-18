@@ -77,6 +77,14 @@ userApi
       //   res.sendStatus(404);
       // }
       //res.status(201).send(estaActualizado);
+      const { id } = req.params;
+      const { contraseña } = req.body;
+      const contraseñaEstaActualizada = await userRepository.resetPassword(id, contraseña);
+      if (contraseñaEstaActualizada) {
+        res.status(200).send(contraseñaEstaActualizada);
+      } else {
+        res.sendStatus(404);
+      }
     } catch (error) {
       next(error);
     }
