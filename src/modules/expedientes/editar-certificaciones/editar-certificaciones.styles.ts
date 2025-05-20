@@ -8,20 +8,6 @@ export const root = css`
   align-items: center;
 `;
 
-export const header = css`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 0 ${theme.spacing(2)};
-`;
-
-export const newCertificacionButton = () => css`
-  display: 'flex';
-  align-items: 'center';
-  justify-content: 'space-between';
-  gap: '1rem';
-`;
-
 export const link = css`
   color: ${theme.palette.common.black};
   text-decoration: none;
