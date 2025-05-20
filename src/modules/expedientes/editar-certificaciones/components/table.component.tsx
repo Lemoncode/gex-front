@@ -3,7 +3,7 @@ import { Pagination, Paper, Table, TableBody, TableCell, TableContainer, TableHe
 import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } from '@tanstack/react-table';
 import { Certificacion } from '../editar-certificaciones.vm';
 import * as classes from './table.styles';
-
+import { TableHeaderComponent } from './table-header.component';
 interface Props {
   columns: ColumnDef<Certificacion>[];
   certificacionCollection: Certificacion[];
@@ -26,6 +26,7 @@ export const TableComponent: React.FC<Props> = props => {
 
   return (
     <TableContainer component={Paper}>
+      <TableHeaderComponent />
       <Table className={classes.table}>
         <TableHead>
           {getHeaderGroups().map(headerGroup => (
