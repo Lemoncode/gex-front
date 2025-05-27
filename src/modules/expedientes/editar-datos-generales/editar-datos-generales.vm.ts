@@ -9,6 +9,7 @@ export interface GeneralData {
   executionPeriod: number;
   startDate: Date;
   endDate: Date;
+  executionPeriodType: 'Meses' | 'Años' | 'Días';
 }
 
 export const createEmptyGeneralData = (): GeneralData => ({
@@ -22,6 +23,7 @@ export const createEmptyGeneralData = (): GeneralData => ({
   executionPeriod: 0,
   startDate: new Date(),
   endDate: new Date(),
+  executionPeriodType: 'Meses',
 });
 
 export interface Expediente {

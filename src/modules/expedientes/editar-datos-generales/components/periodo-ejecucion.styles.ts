@@ -6,34 +6,60 @@ export const periodSection = () => css`
 `;
 
 export const periodContainer = (theme: Theme) => css`
-  display: flex;
-  align-items: flex-start;
-  align-self: stretch;
-  gap: ${theme.spacing(2)};
-  width: 100%;
-  margin-top: ${theme.spacing(2)};
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: ${theme.spacing(1)};
 
   @media (max-width: 768px) {
+    display: grid;
     grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: ${theme.spacing(1)};
   }
 `;
 
 export const periodSelector = (theme: Theme) => css`
-  display: flex;
-  flex-direction: column;
   gap: ${theme.spacing(1)};
+  padding: ${theme.spacing(1)} 0;
+  display: flex;
+
+  & > div > div > div:nth-child(2) {
+    width: auto;
+  }
+
+  & > div > div > div {
+    width: 100%;
+  }
+
+  &:nth-child(1) {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+  &:nth-child(2) {
+    grid-area: 1 / 2 / 2 / 3;
+  }
+
+  @media (max-width: 768px) {
+    &:nth-child(1) {
+      grid-area: 1 / 1 / 2 / 2;
+    }
+    &:nth-child(2) {
+      grid-area: 2 / 1 / 3 / 2;
+    }
+  }
+`;
+
+export const timeSelector = css`
+  flex: 1;
 `;
 
 export const divider = () => css`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
-`;
+  flex: 0;
 
-export const selectorNumber = () => css`
-  text-align: start;
-  width: 50%;
-  border: none;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;

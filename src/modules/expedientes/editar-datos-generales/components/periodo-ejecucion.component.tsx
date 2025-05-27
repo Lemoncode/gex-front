@@ -1,11 +1,12 @@
 import React from 'react';
-import { Typography } from '@mui/material';
+import { MenuItem, Select, TextField, Typography } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 import { calculateEndDate } from '../utils';
 import { useWithTheme } from '#core/theme/theme.hooks.ts';
 import { useFormikField } from '../hook';
 import * as innerClasses from './periodo-ejecucion.styles';
+import { PERIOD_TYPES } from '../constans';
 
 export const PeriodoEjecucionSection: React.FC = () => {
   const classes = useWithTheme(innerClasses);
@@ -32,7 +33,27 @@ export const PeriodoEjecucionSection: React.FC = () => {
       <Typography variant="h6">Período de ejecución</Typography>
       <div className={classes.periodContainer}>
         <div className={classes.periodSelector}>
-          {/* Aquí podrías agregar un selector de período si es necesario */}
+          <TextField
+            className={classes.timeSelector}
+            id="periodoEjecucion"
+            name="periodoEjecucion"
+            label="Período de ejecución*"
+            value={values.executionPeriod}
+          />
+
+          <Select
+            className={classes.timeSelector}
+            labelId="periodTypes"
+            id="periodTypes"
+            name="periodTypes"
+            value={values.executionPeriodType}
+          >
+            {PERIOD_TYPES.map(option => (
+              <MenuItem key={option} value={option}>
+                {option}
+              </MenuItem>
+            ))}
+          </Select>
         </div>
 
         <div className={classes.periodSelector}>
@@ -44,16 +65,12 @@ export const PeriodoEjecucionSection: React.FC = () => {
               textField: {
                 fullWidth: true,
                 error: touched.startDate && Boolean(errors.startDate),
-                // helperText: touched.startDate && errors.startDate,
-                size: 'small',
               },
             }}
           />
-        </div>
 
-        <div className={classes.divider}>—</div>
+          <div className={classes.divider}>—</div>
 
-        <div className={classes.periodSelector}>
           <DatePicker
             label="Fecha de fin"
             value={values.endDate}
@@ -62,8 +79,6 @@ export const PeriodoEjecucionSection: React.FC = () => {
               textField: {
                 fullWidth: true,
                 error: touched.endDate && Boolean(errors.endDate),
-                // helperText: touched.endDate && errors.endDate,
-                size: 'small',
               },
             }}
           />

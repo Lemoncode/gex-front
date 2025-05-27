@@ -17,5 +17,6 @@ export const mapExpedienteToGeneralData = (expediente: Expediente): GeneralData 
     executionPeriod,
     startDate,
     endDate,
+    executionPeriodType: 'Meses',
   };
 };
