@@ -1,8 +1,22 @@
 import express from 'express';
 import { expedienteRepository } from '#dals/expediente/expediente.repository.js';
-import { mapExpedienteListFromModelToApi } from './expediente.mappers.js';
+import { mapExpedienteFromModelToApi, mapExpedienteListFromModelToApi } from './expediente.mappers.js';
 
 export const expedienteApi = express.Router();
+
+expedienteApi.get('/:id', async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const expediente = await expedienteRepository.getExpedienteById(id);
+    if (!expediente) {
+      res.status(404).send({ message: 'Expediente no encontrado' });
+      return;
+    }
+    res.send(mapExpedienteFromModelToApi(expediente));
+  } catch (error) {
+    next(error);
+  }
+});
 
 expedienteApi.get('/', async (req, res, next) => {
   try {
