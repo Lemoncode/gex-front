@@ -27,4 +27,11 @@ export const userRepository = {
     }
     return index !== -1;
   },
+  resetPassword: async (id: string, nuevaContraseña: string): Promise<boolean> => {
+    const index = db.users.findIndex(user => user._id.toHexString() === id);
+    if (index !== -1) {
+      db.users[index].contraseña = nuevaContraseña;
+    }
+    return index !== -1;
+  },
 };
