@@ -12,20 +12,30 @@ export const PeriodoEjecucionSection: React.FC = () => {
   const classes = useWithTheme(innerClasses);
   const { values, setFieldValue, touched, errors } = useFormikField();
 
+  React.useEffect(() => {
+    if (values.startDate && values.executionPeriod && values.executionPeriodType) {
+      const numericPeriod = +values.executionPeriod;
+      const newEndDate = calculateEndDate(values.startDate, numericPeriod, values.executionPeriodType);
+      setFieldValue('endDate', newEndDate);
+    }
+  }, [values.startDate, values.executionPeriod, values.executionPeriodType, setFieldValue]);
+
   const handleStartDateChange = (date: Date | null) => {
     if (date) {
       setFieldValue('startDate', date);
-      if (values.executionPeriod) {
-        const newEndDate = calculateEndDate(date, values.executionPeriod);
-        setFieldValue('endDate', newEndDate);
-      }
     }
   };
 
-  const handleEndDateChange = (date: Date | null) => {
-    if (date) {
-      setFieldValue('endDate', date);
+  const handlePeriodChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+
+    if (value === '' || (/^\d+$/.test(value) && parseInt(value) > 0)) {
+      setFieldValue('executionPeriod', value);
     }
+  };
+
+  const handlePeriodTypeChange = (e: any) => {
+    setFieldValue('executionPeriodType', e.target.value);
   };
 
   return (
@@ -38,7 +48,10 @@ export const PeriodoEjecucionSection: React.FC = () => {
             id="periodoEjecucion"
             name="periodoEjecucion"
             label="Período de ejecución*"
+            type="number"
             value={values.executionPeriod}
+            onChange={handlePeriodChange}
+            error={touched.executionPeriod && Boolean(errors.executionPeriod)}
           />
 
           <Select
@@ -46,7 +59,9 @@ export const PeriodoEjecucionSection: React.FC = () => {
             labelId="periodTypes"
             id="periodTypes"
             name="periodTypes"
-            value={values.executionPeriodType}
+            value={values.executionPeriodType || ''}
+            onChange={handlePeriodTypeChange}
+            error={touched.executionPeriodType && Boolean(errors.executionPeriodType)}
           >
             {PERIOD_TYPES.map(option => (
               <MenuItem key={option} value={option}>
@@ -74,7 +89,7 @@ export const PeriodoEjecucionSection: React.FC = () => {
           <DatePicker
             label="Fecha de fin"
             value={values.endDate}
-            onChange={handleEndDateChange}
+            disabled
             slotProps={{
               textField: {
                 fullWidth: true,
