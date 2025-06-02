@@ -3,13 +3,11 @@ import { createFormikValidation } from '@lemoncode/fonk-formik';
 
 const validationSchema = {
   field: {
+    id: [Validators.required],
     numeroFactura: [Validators.required],
     fechaFactura: [Validators.required],
-    periodoGasto: [Validators.required],
     periodoGastoInicio: [Validators.required],
     periodoGastoFin: [Validators.required],
-    importe: [Validators.required],
-    fechaCertificacion: [Validators.required],
     certifica: [Validators.required],
   },
 };
