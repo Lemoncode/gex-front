@@ -4,7 +4,8 @@ import { Certificacion } from '../../editar-certificaciones.vm';
 import { addCertificacionRepository } from '../../editar-certificaciones.repository';
 import { useQueryClient } from '@tanstack/react-query';
 import { certificacionesQueryKeys } from '#core/react-query/query-keys.ts';
-import dayjs from 'dayjs';
+
+import { formatDateString } from '#core/utils/date-format.ts';
 
 interface Props {
   isOpen: boolean;
@@ -17,7 +18,7 @@ export const CrearCertificacionPod: React.FC<Props> = props => {
   const queryClient = useQueryClient();
 
   const handleSubmit = async (formValues: Omit<Certificacion, 'periodoGasto' | 'importe' | 'fechaCertificacion'>) => {
-    const fechaFacturaFormateada = formValues.fechaFactura ? dayjs(formValues.fechaFactura).format('DD/MM/YYYY') : '';
+    const fechaFacturaFormateada = formValues.fechaFactura ? formatDateString(formValues.fechaFactura) : '';
 
     const nuevaCertificacionCompleta: Certificacion = {
       ...formValues,

@@ -15,8 +15,9 @@ import { Form, Formik } from 'formik';
 import { TextFieldForm } from '#common/components/index.ts';
 import { DateCalendarField } from '#common/components/index.ts';
 import CloseIcon from '@mui/icons-material/Close';
-import dayjs from 'dayjs';
-import { crearCertificacionValidations } from '../validations/crear-certificacion.validations';
+
+import { crearCertificacionValidations } from './validations/crear-certificacion.validations';
+import { toDayjs } from '#core/utils/date-format.ts';
 
 interface Props {
   isOpen: boolean;
@@ -105,13 +106,13 @@ export const CrearCertificacion: React.FC<Props> = props => {
                       <DateCalendarField
                         name="periodoGastoInicio"
                         label="Fecha de inicio"
-                        maxDate={values.periodoGastoFin ? dayjs(values.periodoGastoFin, 'DD/MM/YYYY') : undefined}
+                        maxDate={values.periodoGastoFin ? toDayjs(values?.periodoGastoFin) : undefined}
                       />
                       <Divider orientation="vertical" flexItem />
                       <DateCalendarField
                         name="periodoGastoFin"
                         label="Fecha de fin"
-                        minDate={values.periodoGastoInicio ? dayjs(values.periodoGastoInicio, 'DD/MM/YYYY') : undefined}
+                        minDate={values.periodoGastoInicio ? toDayjs(values?.periodoGastoInicio) : undefined}
                       />
                     </Box>
                   </Box>
