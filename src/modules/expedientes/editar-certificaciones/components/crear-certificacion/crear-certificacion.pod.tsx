@@ -17,14 +17,14 @@ export const CrearCertificacionPod: React.FC<Props> = props => {
 
   const queryClient = useQueryClient();
 
-  const handleSubmit = async (formValues: Omit<Certificacion, 'periodoGasto' | 'importe' | 'fechaCertificacion'>) => {
+  const handleSubmit = async (formValues: Omit<Certificacion, 'periodoGasto' | 'fechaCertificacion'>) => {
     const fechaFacturaFormateada = formValues.fechaFactura ? formatDateString(formValues.fechaFactura) : '';
 
     const nuevaCertificacionCompleta: Certificacion = {
       ...formValues,
       fechaFactura: fechaFacturaFormateada,
       periodoGasto: `Del ${formValues.periodoGastoInicio || ''} al ${formValues.periodoGastoFin || ''}`,
-      importe: '0 €',
+      importe: `${formValues.importe || 0} €`,
       fechaCertificacion: fechaFacturaFormateada,
     };
 

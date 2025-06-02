@@ -118,6 +118,7 @@ export const CrearCertificacion: React.FC<Props> = props => {
                   </Box>
                 </Box>
                 <TextFieldForm name="certifica" label="Certifica" required />
+                <TextFieldForm name="importe" type="number" label="Importe" />
                 <DialogActions sx={{ mt: 2 }}>
                   <Button variant="text" color="primary" onClick={handleClose}>
                     Cancelar
