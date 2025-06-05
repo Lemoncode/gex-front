@@ -8,5 +8,6 @@ export interface UserCredentials {
 export interface User {
   id: string;
   nombre: string;
+  apellido: string;
   rol: Lookup;
 }

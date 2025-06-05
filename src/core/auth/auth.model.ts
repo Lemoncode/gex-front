@@ -9,6 +9,7 @@ export interface AuthContextModel {
 export const createEmptyUser = (): User => ({
   id: '',
   nombre: '',
+  apellido: '',
   rol: {
     id: '',
     nombre: '',

@@ -39,7 +39,9 @@ securityApi
       const user = await userRepository.getUserById(req.userSession?.id);
 
       if (user) {
-        res.status(200).send({ id: user._id.toHexString(), nombre: user.nombre, rol: user.rol });
+        res
+          .status(200)
+          .send({ id: user._id.toHexString(), nombre: user.nombre, apellido: user.apellido, rol: user.rol });
       } else {
         res.sendStatus(401);
       }
