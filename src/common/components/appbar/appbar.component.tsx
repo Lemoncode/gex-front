@@ -1,25 +1,10 @@
 import React, { useRef } from 'react';
-import {
-  AppBar as MUIAppbar,
-  IconButton,
-  Toolbar,
-  Typography,
-  Avatar,
-  List,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Paper,
-  Popper,
-  ClickAwayListener,
-  ListItem,
-} from '@mui/material';
+import { AppBar as MUIAppbar, IconButton, Toolbar, Typography, Avatar } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
-import LogoutIcon from '@mui/icons-material/Logout';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import * as classes from './appbar.styles';
 import { useAuth } from '../../../core/auth';
+import { AvatarMenu } from '../avatar-menu';
 
 interface AppBarProps {
   isDrawerOpen: boolean;
@@ -58,26 +43,13 @@ export const AppBar: React.FC<AppBarProps> = props => {
         </Toolbar>
       </MUIAppbar>
 
-      <Popper open={isListOpen} anchorEl={avatarRef.current} placement="bottom-end" style={{ zIndex: 1300 }}>
-        <ClickAwayListener onClickAway={() => onAvatarMenuAction('close')}>
-          <Paper elevation={3} sx={{ mt: 1 }}>
-            <List dense>
-              <ListItem>
-                <ListItemIcon>
-                  <AccountCircleIcon />
-                </ListItemIcon>
-                <ListItemText primary={user.nombre} />
-              </ListItem>
-              <ListItemButton onClick={() => console.log('Logout')}>
-                <ListItemIcon>
-                  <LogoutIcon />
-                </ListItemIcon>
-                <ListItemText primary="Salir" />
-              </ListItemButton>
-            </List>
-          </Paper>
-        </ClickAwayListener>
-      </Popper>
+      <AvatarMenu
+        open={isListOpen}
+        anchorEl={avatarRef.current}
+        onClose={() => onAvatarMenuAction('close')}
+        userName={`${user.nombre} ${user.apellido}`}
+        onLogout={() => console.log('Logout')}
+      />
     </>
   );
 };
