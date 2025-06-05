@@ -5,6 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 
 import * as classes from './appbar.styles';
+import { useAuth } from '../../../core/auth';
 
 interface AppBarProps {
   isDrawerOpen: boolean;
@@ -13,6 +14,14 @@ interface AppBarProps {
 
 export const AppBar: React.FC<AppBarProps> = props => {
   const { isDrawerOpen, onToggleDrawer } = props;
+
+  const { user } = useAuth();
+
+  const getInitials = (nombre: string, apellido: string): string => {
+    const first = nombre?.trim()?.[0] ?? '';
+    const last = apellido?.trim()?.[0] ?? '';
+    return `${first}${last}`.toUpperCase();
+  };
 
   return (
     <MUIAppbar className={classes.appBarContainer} position="static" color="default" square elevation={1}>
@@ -25,7 +34,7 @@ export const AppBar: React.FC<AppBarProps> = props => {
             GEX
           </Typography>
         </div>
-        <Avatar>PM</Avatar>
+        <Avatar>{getInitials(user.nombre, user.apellido)}</Avatar>
       </Toolbar>
     </MUIAppbar>
   );
