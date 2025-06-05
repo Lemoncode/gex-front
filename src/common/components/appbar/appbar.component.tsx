@@ -16,7 +16,8 @@ interface AppBarProps {
 export const AppBar: React.FC<AppBarProps> = props => {
   const { isDrawerOpen, isListOpen, onToggleDrawer, onAvatarMenuAction } = props;
 
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+
   const avatarRef = useRef<HTMLDivElement | null>(null);
 
   const getInitials = (nombre: string, apellido: string): string => {
@@ -48,7 +49,7 @@ export const AppBar: React.FC<AppBarProps> = props => {
         anchorEl={avatarRef.current}
         onClose={() => onAvatarMenuAction('close')}
         userName={`${user.nombre} ${user.apellido}`}
-        onLogout={() => console.log('Logout')}
+        onLogout={() => logout()}
       />
     </>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 import { AuthContextModel } from './auth.model';
 import { useLoginMutation, useWhoamiQuery } from './auth.query.hook';
+import { authQueryKeys, queryClient } from '../react-query';
 
 const AuthContext = React.createContext<AuthContextModel | null>(null);
 
@@ -13,6 +14,10 @@ export const AuthProvider: React.FC<Props> = props => {
 
   const { doLogin } = useLoginMutation();
   const { user, isAuthenticated, isLoading } = useWhoamiQuery();
+  const logout = async () => {
+    await fetch('/api/security/logout', { method: 'POST', credentials: 'include' });
+    await queryClient.invalidateQueries({ queryKey: authQueryKeys.whoami() });
+  };
 
   const isReady = !isLoading;
 
@@ -26,6 +31,7 @@ export const AuthProvider: React.FC<Props> = props => {
         user,
         isAuthenticated,
         doLogin,
+        logout,
       }}
     >
       {children}
