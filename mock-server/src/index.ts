@@ -13,9 +13,9 @@ app.use(logRequestMiddleware(logger));
 
 app.use('/api/user', userApi);
 app.use('/api/lookup', lookupApi);
+app.use('/api/expediente', expedienteApi);
 app.use('/api/security', securityApi);
 
-app.use('/api/expediente', expedienteApi);
 
 app.use(logErrorRequestMiddleware(logger));
 
