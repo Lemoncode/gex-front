@@ -1,5 +1,10 @@
 export interface DatosGenerales {
-  name: string;
+  numero: string;
+  titulo: string;
+  clase: string;
+  tipo: string;
+  unidad: string;
+  responsable: string;
 }
 
 export interface PresupuestoBase {
@@ -18,7 +23,12 @@ export interface Expediente {
 
 export const createEmptyExpedienteFormData = (): Expediente => ({
   datosGenerales: {
-    name: '',
+    numero: '',
+    titulo: '',
+    clase: '',
+    tipo: '',
+    unidad: '',
+    responsable: '',
   },
   presupuestoBase: {
     amount: 0,
