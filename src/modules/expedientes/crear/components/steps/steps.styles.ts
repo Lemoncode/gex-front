@@ -32,3 +32,30 @@ export const selectForm = css`
   width: 10rem;
   margin: 0;
 `;
+
+export const row = css`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+export const fullRow = css`
+  grid-column: 1 / -1;
+`;
+
+export const halfLeft = css`
+  grid-column: 1 / 3;
+`;
+
+export const halfRight = css`
+  grid-column: 3 / -1;
+
+  @media (max-width: 768px) {
+    grid-column: 1 / 3;
+  }
+`;
